@@ -36,6 +36,20 @@ body {
     padding: 0;
 }
 
+/* 접근성을 위한 focus 스타일 */
+*:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -480,6 +494,52 @@ textarea.form-control {
     display: block;
 }
 
+.sel-tab-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.sel-tab-content.active {
+    display: block;
+}
+
+.sel-tab-btn {
+    transition: var(--transition-normal);
+    border-radius: var(--border-radius);
+}
+
+.sel-tab-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sel-tab-btn:hover {
+    background-color: var(--primary-light);
+    color: white;
+}
+
+.emotion-btn {
+    transition: var(--transition-normal);
+}
+
+.emotion-btn.active {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+.emotion-btn:hover {
+    background-color: var(--secondary-light);
+}
+
+.scenario {
+    display: none;
+}
+
+.scenario.active {
+    display: block;
+}
+
 /* AI 상호작용 */
 .ai-chat-container {
     height: 400px;
@@ -650,6 +710,27 @@ textarea.form-control {
         width: 100%;
         margin-right: 0;
         margin-bottom: 1rem;
+    }
+    
+    /* SEL 탭 버튼 반응형 */
+    .sel-tab-btn {
+        margin-bottom: 0.5rem;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* 감정 버튼 그리드 개선 */
+    .emotion-btn {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+    
+    /* 네비게이션 버튼 개선 */
+    .emotion-prev-btn, .emotion-next-btn,
+    .project-prev-btn, .project-next-btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
     }
 }
 

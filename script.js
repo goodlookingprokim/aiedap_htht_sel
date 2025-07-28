@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // SEL 역량 탭 이벤트 등록
-        document.querySelectorAll('.sel-tab').forEach(tab => {
+        document.querySelectorAll('.sel-tab-btn').forEach(tab => {
             tab.addEventListener('click', function() {
-                const competency = this.getAttribute('data-competency');
+                const competency = this.getAttribute('data-target');
                 if (competency) {
                     switchSELCompetency(competency);
                 }
@@ -78,6 +78,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        // 감정 버튼 클릭 이벤트 등록
+        document.querySelectorAll('.emotion-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 같은 그룹의 다른 버튼들에서 active 클래스 제거
+                const scenario = this.closest('.scenario');
+                scenario.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
+                
+                // 클릭한 버튼에 active 클래스 추가
+                this.classList.add('active');
+            });
+        });
+
         // 폼 저장 버튼 이벤트 등록
         document.querySelectorAll('.save-form-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -94,6 +106,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 const exampleId = this.getAttribute('data-example');
                 showProjectExample(exampleId);
             });
+        });
+
+        // 키보드 네비게이션 지원
+        document.addEventListener('keydown', function(e) {
+            // ESC 키로 모달 닫기 (해당하는 경우)
+            if (e.key === 'Escape') {
+                // 필요시 모달 닫기 로직 추가
+            }
+            
+            // Tab 키 네비게이션은 브라우저 기본 동작 사용
+            // 접근성을 위해 focus outline 보장
         });
     }
 
@@ -274,22 +297,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function switchSELCompetency(competency) {
         try {
             // 모든 역량 컨텐츠 숨기기
-            document.querySelectorAll('.sel-content').forEach(content => {
-                content.style.display = 'none';
+            document.querySelectorAll('.sel-tab-content').forEach(content => {
+                content.classList.remove('active');
             });
             
             // 선택한 역량 컨텐츠 표시
-            const targetContent = document.querySelector(`.sel-content[data-competency="${competency}"]`);
+            const targetContent = document.querySelector(`#${competency}`);
             if (targetContent) {
-                targetContent.style.display = 'block';
+                targetContent.classList.add('active');
                 currentSELCompetency = competency;
                 
                 // 탭 스타일 업데이트
-                document.querySelectorAll('.sel-tab').forEach(tab => {
+                document.querySelectorAll('.sel-tab-btn').forEach(tab => {
                     tab.classList.remove('active');
                 });
                 
-                document.querySelector(`.sel-tab[data-competency="${competency}"]`)?.classList.add('active');
+                document.querySelector(`.sel-tab-btn[data-target="${competency}"]`)?.classList.add('active');
                 
                 // 현재 역량 저장
                 localStorage.setItem('currentSELCompetency', competency);
