@@ -91,11 +91,35 @@
         .feature-card::before,
         .feature-card::after {
             display: none !important;
+            content: none !important;
         }
         
         .feature-card * {
             position: relative;
             z-index: 1;
+        }
+        
+        /* 링크 스타일 리셋 */
+        a.feature-card {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            outline: none;
+            background-image: none;
+        }
+        
+        /* 모든 자식 요소에서 버튼 스타일 제거 */
+        .feature-card button,
+        .feature-card input[type="button"],
+        .feature-card input[type="submit"],
+        .feature-card [role="button"] {
+            display: none !important;
+        }
+        
+        /* 추가적인 리셋 */
+        .feature-card::-webkit-details-marker {
+            display: none !important;
         }
         
         .feature-icon {

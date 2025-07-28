@@ -34,6 +34,23 @@
     box-sizing: border-box;
 }
 
+/* 브라우저 기본 버튼 스타일 제거 */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+[role="button"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 의사 요소 리셋 */
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-family);
     color: var(--text-dark);
