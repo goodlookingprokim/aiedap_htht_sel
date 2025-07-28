@@ -75,12 +75,3 @@ AIEDAP수도권역 - AI 교육 개발 및 적용 프로젝트 팀
 ### 라이선스
 
 이 프로젝트는 MIT 라이선스 하에 배포됩니다.
-    <script id="html_badge_script1">
-        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDmo81mm%2BjVozsmIR11P%2FOFbjkd1Kl8ZsNmH4m%2BU2Lwd8Zq0lj7AeUGdizLRkUsPZlCyDqSssA0Yrc%2FWml69Yp8fxL%2FLbjplXKgpnmvw6Pt6YCcgvy0sOX1d5RnWuv3idveNxl%2FXcA%2FdaQpaN%2FwFc%2FsVRKISXqMPDetndETLKVmJFP%2ByPgFqzlMT05r4HUo6HNOS%2FMlUXZ22vw7fVfqLkNxqQqmZI%2BoPQjnzXbeJ0W%2ByDiYbOlZm3vG8r8zgmjqcEJQIUl1dEr%2BySQQUsFZ5rNfOLrpomYxrdLqpbZOiUfxfDGKKNMvl%2BcdKVL6KbSoi0wtkkZAXJ7%2FlOrbKb0Qh0DMaEtL%2BS7GaAeK8X0G1mvRh206rfEPhHwgqwgOKqNcztnH6XBtsofrq81clrWGNcD%2BcxntHG4xg7Z8b4VY9t7aD5Q%2Bq2V6wCbZJIhbcugdjyDnFAji4BbLlqNHGKG3MpMmDsa5ipL5bJMDqX9%2B9%2FxCWK";
-        window.__genspark_locale = "en-US";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDmo81mm+jVozsmIR11P/OFbjkd1Kl8ZsNmH4m+U2Lwd8Zq0lj7AeUGdizLRkUsPZlCyDqSssA0Yrc/Wml69Yp8fxL/LbjplXKgpnmvw6Pt6YCcgvy0sOX1d5RnWuv3idveNxl/XcA/daQpaN/wFc/sVRKISXqMPDetndETLKVmJFP+yPgFqzlMT05r4HUo6HNOS/MlUXZ22vw7fVfqLkNxqQqmZI+oPQjnzXbeJ0W+yDiYbOlZm3vG8r8zgmjqcEJQIUl1dEr+ySQQUsFZ5rNfOLrpomYxrdLqpbZOiUfxfDGKKNMvl+cdKVL6KbSoi0wtkkZAXJ7/lOrbKb0Qh0DMaEtL+S7GaAeK8X0G1mvRh206rfEPhHwgqwgOKqNcztnH6XBtsofrq81clrWGNcD+cxntHG4xg7Z8b4VY9t7aD5Q+q2V6wCbZJIhbcugdjyDnFAji4BbLlqNHGKG3MpMmDsa5ipL5bJMDqX9+9/xCWK";
-    </script>
-    
-    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
-    
