@@ -51,52 +51,11 @@ input[type="reset"],
     box-sizing: border-box;
 }
 
-html, body {
-    position: relative;
-    overflow-x: hidden;
-}
-
 body {
     font-family: var(--font-family);
     color: var(--text-dark);
     line-height: 1.6;
     background-color: var(--bg-light);
-}
-
-/* 페이지 하단 침입 요소 차단 */
-body::after {
-    content: none !important;
-    display: none !important;
-}
-
-/* 하단 고정 요소 차단 */
-body > *:last-child:not(script):not(style):not(main):not(footer) {
-    display: none !important;
-}
-
-/* 하단 고정 버튼/툴바 차단 */
-*[style*="position: fixed"][style*="bottom"],
-*[style*="position: sticky"][style*="bottom"],
-.fixed-bottom,
-.sticky-bottom {
-    display: none !important;
-}
-
-/* 특정 높이의 빈 요소 차단 */
-body > div:empty,
-body > div:not([class]):not([id]) {
-    display: none !important;
-}
-
-/* 페이지 하단 여백 제거 */
-body > :last-child {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-/* 의심스러운 하단 요소 차단 */
-body > div[style*="height"]:not(.container):not([class*="section"]) {
-    display: none !important;
 }
 
 /* 접근성을 위한 focus 스타일 */
