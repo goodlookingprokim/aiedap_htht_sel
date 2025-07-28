@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDT HTHT×SEL 프로젝트 파일 가이드</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl font-bold mb-4">AIDT HTHT×SEL 프로젝트 파일 가이드</h1>
+            <p class="text-xl">개선된 프로젝트 파일 설명 및 GitHub 배포 안내</p>
+        </div>
+    </header>
+
+    <!-- 공통 네비게이션 바 -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="py-2 px-4 text-gray-700 hover:text-indigo-700 hover:bg-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-home mr-2"></i>홈으로
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <span class="font-semibold text-indigo-700">프로젝트 가이드</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="instructor_manual.html" class="nav-link py-2 px-4 text-gray-700 hover:text-indigo-700 hover:bg-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i>강사 메뉴얼
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 페이지 내 네비게이션 -->
+    <nav class="bg-gray-50 border-b">
+        <div class="container mx-auto px-6 py-3">
+            <ul class="flex flex-wrap space-x-4 md:space-x-8">
+                <li><a href="#overview" class="text-blue-600 hover:text-blue-800 font-medium">프로젝트 개요</a></li>
+                <li><a href="#files" class="text-blue-600 hover:text-blue-800 font-medium">파일 구조</a></li>
+                <li><a href="#improvements" class="text-blue-600 hover:text-blue-800 font-medium">개선 사항</a></li>
+                <li><a href="#deployment" class="text-blue-600 hover:text-blue-800 font-medium">GitHub 배포</a></li>
+                <li><a href="#usage" class="text-blue-600 hover:text-blue-800 font-medium">사용 방법</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <section id="overview" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">프로젝트 개요</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <p class="text-gray-700 mb-4">
+                    <strong>AIDT HTHT×SEL</strong> 프로젝트는 고등학교 1-2학년 학생들을 위한 AI Digital Textbook(AIDT)의 기술과 
+                    High-Tech × High-Touch(HTHT) 교육 모델을 통합하여 사회정서학습(SEL)을 촉진하는 교육 도구입니다.
+                </p>
+                <p class="text-gray-700 mb-4">
+                    이 프로젝트는 기존 파일들의 문제점을 개선하고, 사용자 경험을 향상시키며, GitHub에서 쉽게 배포할 수 있도록 
+                    파일 구조를 간소화하였습니다.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-md border-l-4 border-blue-500">
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">주요 개선 목표</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>파일 구조 간소화 및 중복 파일 제거</li>
+                        <li>버튼 클릭 시 링크 깨짐 문제 해결</li>
+                        <li>CSS와 JavaScript 코드의 HTML 태그 제거</li>
+                        <li>코드 최적화 및 가독성 개선</li>
+                        <li>GitHub 배포 환경에 최적화</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="files" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">개선된 파일 구조</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- README.md 파일 -->
+                <div class="file-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 border-b">
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i class="fab fa-markdown text-blue-500 mr-2"></i> README.md
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-3">
+                            프로젝트에 대한 개요, 설치 방법, 사용법 등을 설명하는 마크다운 문서입니다.
+                            GitHub 저장소의 메인 페이지에 표시됩니다.
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">문서</span>
+                            <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full font-medium">4.0 KB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- index.html 파일 -->
+                <div class="file-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 border-b">
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i class="fab fa-html5 text-orange-500 mr-2"></i> index.html
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-3">
+                            웹 애플리케이션의 메인 HTML 구조 파일입니다.
+                            외부 CSS와 JavaScript 파일을 참조하며, 네비게이션 구조가 개선되었습니다.
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-medium">HTML</span>
+                            <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full font-medium">83.2 KB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- style.css 파일 -->
+                <div class="file-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 border-b">
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i class="fab fa-css3-alt text-blue-500 mr-2"></i> style.css
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-3">
+                            웹 애플리케이션의 스타일시트 파일입니다.
+                            HTML 태그가 제거되고 순수 CSS만 포함되도록 개선되었습니다.
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">CSS</span>
+                            <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full font-medium">15.5 KB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- script.js 파일 -->
+                <div class="file-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 border-b">
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i class="fab fa-js-square text-yellow-500 mr-2"></i> script.js
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-3">
+                            웹 애플리케이션의 JavaScript 파일입니다.
+                            HTML 태그가 제거되고, 버튼 클릭 문제가 해결된 순수 JavaScript 코드입니다.
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">JavaScript</span>
+                            <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full font-medium">25.7 KB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- instructor_manual.html 파일 -->
+                <div class="file-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="bg-gray-100 px-6 py-4 border-b">
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i class="fas fa-book text-green-500 mr-2"></i> instructor_manual.html
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-3">
+                            교사를 위한 상세 메뉴얼 HTML 파일입니다.
+                            수업 진행 방법, 활동 지도 방법, 평가 루브릭 등을 포함합니다.
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">HTML</span>
+                            <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full font-medium">94.5 KB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="improvements" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">주요 개선 사항</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <!-- 파일 구조 간소화 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-sitemap text-purple-500 mr-2"></i> 파일 구조 간소화
+                    </h3>
+                    <div class="pl-6 border-l-4 border-purple-200">
+                        <p class="mb-3 text-gray-700">중복되는 파일을 제거하고 필수 파일만 유지하여 구조를 간소화했습니다:</p>
+                        <ul class="list-disc pl-6 text-gray-700 mb-4">
+                            <li><code>web_application_functional.html</code> 삭제 (통합 파일)</li>
+                            <li><code>instructor_manual.html</code>과 <code>instructor_manual_improved.html</code> 중복 해결</li>
+                        </ul>
+                        <p class="text-sm text-gray-500">기존 복잡한 구조에서 간결하고 명확한 파일 구조로 변경하여 관리가 용이해졌습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 버튼 링크 문제 해결 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-link text-blue-500 mr-2"></i> 버튼 링크 문제 해결
+                    </h3>
+                    <div class="pl-6 border-l-4 border-blue-200">
+                        <p class="mb-3 text-gray-700">버튼 클릭 시 링크가 깨지는 문제를 해결했습니다:</p>
+                        <div class="code-block mb-4">
+<pre class="text-sm text-gray-800">// 탭 전환 함수 개선
+function switchTab(tabId) {
+    // 모든 탭 콘텐츠 숨기기
+    document.querySelectorAll('.section-container').forEach(container => {
+        container.classList.remove('active');
+    });
+    
+    // 선택한 탭 콘텐츠 표시
+    if (document.getElementById(tabId)) {
+        document.getElementById(tabId).classList.add('active');
+        
+        // 탭 버튼 스타일 업데이트
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        document.querySelector(`.tab-button[data-target="${tabId}"]`)?.classList.add('active');
+        
+        // 현재 탭 상태 저장
+        currentTab = tabId;
+        localStorage.setItem('currentTab', tabId);
+    } else {
+        console.error(`Tab with ID "${tabId}" not found`);
+    }
+}</pre>
+                        </div>
+                        <p class="text-sm text-gray-500">이벤트 리스너 개선 및 오류 처리 코드 추가로 버튼 클릭 시 안정적으로 작동합니다.</p>
+                    </div>
+                </div>
+
+                <!-- CSS 및 JS 파일 최적화 -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-code text-green-500 mr-2"></i> CSS 및 JS 파일 최적화
+                    </h3>
+                    <div class="pl-6 border-l-4 border-green-200">
+                        <p class="mb-3 text-gray-700">HTML 태그로 감싸진 CSS 및 JavaScript 파일을 순수 파일로 변환했습니다:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">변경 전 style.css:</h4>
+                                <div class="code-block text-xs">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;style&gt;
+        /* 기본 스타일 */
+        :root {
+            --primary-color: #4a6fa5;
+            ...
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</pre>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">변경 후 style.css:</h4>
+                                <div class="code-block text-xs">
+<pre>/* 기본 스타일 */
+:root {
+    --primary-color: #4a6fa5;
+    --primary-dark: #345381;
+    --primary-light: #6e8cb8;
+    ...
+}</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500">각 파일의 형식을 올바르게 수정하여 웹 표준을 준수하고 유지 관리가 쉬워졌습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 파일 참조 경로 수정 -->
+                <div class="mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-project-diagram text-red-500 mr-2"></i> 파일 참조 경로 수정
+                    </h3>
+                    <div class="pl-6 border-l-4 border-red-200">
+                        <p class="mb-3 text-gray-700">HTML 파일에서 CSS 및 JavaScript 파일 참조 경로를 수정했습니다:</p>
+                        <div class="code-block mb-4">
+<pre class="text-sm text-gray-800">&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;AIDT HTHT×SEL 체험형 웹 애플리케이션&lt;/title&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+                        </div>
+                        <p class="text-sm text-gray-500">상대 경로를 사용하여 파일을 올바르게 참조하도록 수정했습니다. 또한 defer 속성을 추가하여 페이지 로딩 성능을 개선했습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deployment" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">GitHub 배포 방법</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">1. GitHub 저장소 생성</h3>
+                    <div class="pl-6 border-l-4 border-blue-200 mb-4">
+                        <ol class="list-decimal pl-6 text-gray-700 mb-4">
+                            <li class="mb-2">GitHub 계정에 로그인합니다.</li>
+                            <li class="mb-2">오른쪽 상단의 "+" 아이콘을 클릭하고 "New repository"를 선택합니다.</li>
+                            <li class="mb-2">저장소 이름(예: <code>aidt-htht-sel</code>)을 입력합니다.</li>
+                            <li class="mb-2">필요에 따라 설명을 추가합니다.</li>
+                            <li class="mb-2">"Public" 옵션을 선택합니다.</li>
+                            <li class="mb-2">"Create repository" 버튼을 클릭합니다.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">2. 파일 업로드</h3>
+                    <div class="pl-6 border-l-4 border-green-200 mb-4">
+                        <ol class="list-decimal pl-6 text-gray-700 mb-4">
+                            <li class="mb-2">생성된 저장소 페이지에서 "uploading an existing file" 링크를 클릭합니다.</li>
+                            <li class="mb-2">다음 파일들을 업로드합니다:
+                                <ul class="list-disc pl-8 mt-2">
+                                    <li><code>README.md</code></li>
+                                    <li><code>index.html</code></li>
+                                    <li><code>style.css</code></li>
+                                    <li><code>script.js</code></li>
+                                    <li><code>instructor_manual.html</code></li>
+                                </ul>
+                            </li>
+                            <li class="mb-2">"Commit changes" 버튼을 클릭하여 업로드를 완료합니다.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">3. GitHub Pages 설정</h3>
+                    <div class="pl-6 border-l-4 border-yellow-200 mb-4">
+                        <ol class="list-decimal pl-6 text-gray-700 mb-4">
+                            <li class="mb-2">저장소 페이지에서 "Settings" 탭을 클릭합니다.</li>
+                            <li class="mb-2">왼쪽 사이드바에서 "Pages"를 선택합니다.</li>
+                            <li class="mb-2">"Source" 섹션에서:
+                                <ul class="list-disc pl-8 mt-2">
+                                    <li>"Branch" 드롭다운에서 "main"을 선택합니다.</li>
+                                    <li>폴더 드롭다운에서 "/(root)"를 선택합니다.</li>
+                                    <li>"Save" 버튼을 클릭합니다.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2">페이지 상단에 배포된 URL이 표시될 때까지 기다립니다 (몇 분 소요).</li>
+                        </ol>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-md">
+                        <p class="text-yellow-700">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                            배포된 URL은 일반적으로 <code>https://[사용자이름].github.io/[저장소이름]</code> 형식입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">4. 배포 확인</h3>
+                    <div class="pl-6 border-l-4 border-purple-200">
+                        <ol class="list-decimal pl-6 text-gray-700 mb-4">
+                            <li class="mb-2">GitHub Pages에서 제공한 URL로 접속합니다.</li>
+                            <li class="mb-2">웹 애플리케이션이 제대로 로드되는지 확인합니다.</li>
+                            <li class="mb-2">모든 버튼과 기능이 정상적으로 작동하는지 테스트합니다.</li>
+                            <li class="mb-2">다양한 브라우저와 기기에서 접근성을 확인합니다.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="usage" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">사용 방법</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 교사용 가이드 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-chalkboard-teacher text-green-500 mr-2"></i> 교사용 가이드
+                    </h3>
+                    <ol class="list-decimal pl-6 text-gray-700 mb-6">
+                        <li class="mb-3">
+                            <span class="font-medium">강사용 메뉴얼 확인</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                <code>instructor_manual.html</code> 파일을 열어 AIDT, HTHT, SEL의 개념과 
+                                수업 적용 방법을 숙지합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">웹 애플리케이션 체험</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                <code>index.html</code>을 열어 직접 체험해보고 학생들에게 적용할 활동을 선택합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">수업 계획 준비</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                메뉴얼에 제공된 수업 계획과 활동지를 참고하여 수업을 준비합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">학생 안내</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                학생들에게 웹 애플리케이션 URL을 공유하고 활동을 안내합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">평가 및 피드백</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                메뉴얼에 포함된 평가 루브릭을 활용하여 학생 활동을 평가하고 피드백합니다.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- 학생용 가이드 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-user-graduate text-blue-500 mr-2"></i> 학생용 가이드
+                    </h3>
+                    <ol class="list-decimal pl-6 text-gray-700 mb-6">
+                        <li class="mb-3">
+                            <span class="font-medium">웹 애플리케이션 접속</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                교사가 제공한 URL로 접속하거나 로컬에서 <code>index.html</code> 파일을 엽니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">개념 이해</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                소개 페이지에서 AIDT, HTHT, SEL의 개념을 이해합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">활동 참여</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                관심 있는 활동(프로젝트 기획, 감정 인식, SEL 역량 개발 등)을 선택하여 참여합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">결과 저장</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                활동 결과를 저장하거나 교사/동료와 공유합니다.
+                            </p>
+                        </li>
+                        <li class="mb-3">
+                            <span class="font-medium">성찰 및 피드백</span>
+                            <p class="mt-1 text-sm text-gray-600">
+                                활동 후 자기 성찰을 진행하고 피드백을 교환합니다.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">자주 묻는 질문</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Q: 버튼 클릭이 작동하지 않을 경우 어떻게 해야 하나요?</h3>
+                    <div class="pl-6 border-l-4 border-gray-200">
+                        <p class="text-gray-700">
+                            A: 개선된 코드에서 버튼 클릭 문제를 해결했지만, 만약 문제가 발생한다면 브라우저 콘솔을 확인하세요. 
+                            웹 페이지에서 F12를 눌러 개발자 도구를 열고 Console 탭에서 오류 메시지를 확인할 수 있습니다. 
+                            가장 흔한 원인은 파일 경로 문제이므로 HTML 파일과 같은 폴더에 CSS 및 JS 파일이 있는지 확인하세요.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Q: 웹 애플리케이션에서 작성한 데이터가 저장되나요?</h3>
+                    <div class="pl-6 border-l-4 border-gray-200">
+                        <p class="text-gray-700">
+                            A: 이 웹 애플리케이션은 브라우저의 LocalStorage를 활용하여 데이터를 저장합니다. 
+                            같은 브라우저와 기기를 사용하는 한 데이터가 유지됩니다. 
+                            하지만 브라우저 데이터를 삭제하면 저장된 정보도 함께 삭제되므로, 
+                            중요한 정보는 별도로 저장하는 것을 권장합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Q: GitHub Pages에 배포 후 CSS나 JS가 적용되지 않습니다.</h3>
+                    <div class="pl-6 border-l-4 border-gray-200">
+                        <p class="text-gray-700">
+                            A: GitHub Pages에서 파일 경로 문제가 발생할 수 있습니다. 
+                            HTML 파일에서 CSS와 JS 파일 참조를 상대 경로로 올바르게 설정했는지 확인하세요. 
+                            <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>와 같은 형식으로 
+                            파일 이름만 사용해야 합니다. 절대 경로를 사용할 경우 GitHub Pages 저장소 이름을 포함해야 합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold mb-2">AIDT HTHT×SEL 프로젝트</h2>
+                    <p class="text-gray-400">고등학교 1-2학년 대상 AI Digital Textbook 기반 사회정서학습 체험</p>
+                </div>
+                <div class="flex flex-col">
+                    <h3 class="text-lg font-semibold mb-2">연락처</h3>
+                    <p class="text-gray-400">AIEDAP수도권역 - AI 교육 개발 및 적용 프로젝트 팀</p>
+                    <p class="text-gray-400">이메일: aiedap@example.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>© 2025 AIEDAP All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDkji6UA8VviCi8VYs8K%2F%2BnQ0kHQlQhaljo11uygT4QO2NAUs924cNngoHWQOJ00ghzVG4TNWg7JpiwCUXfs8EZWYthElP7VaaGLODfZ6LDi2UiRg%2FnzqqlQXCtQu%2FylRDaNGsgPwKerCzQGDRd4C9icHBAWg%2B0CnIdyQWFVW%2Bue9lbJDLE55GBU9qQ7WZTKX%2BiV5KydKS5siquVb%2Fpc0yXqvMmyIi8Sbyb%2Bds4ODALsBseGLo6FpkICtOURXQmdWCSYRQWq5Bpqeyg3mIupwPO84d4oEl90chYGFz3%2BCJ1EvGS8u9Zgo7skp%2F0j2GBCPk8zssjs1Ng3B9YmbK8y79J6eqkXiwkYAQvioKSk63HmEUR53W1SdADsFZypgBihTqUr2rqLPoFP0zKgGoosMzaCE%2BEiRKXMR4nkiqqgfiDTgsNio%2Bhk5D9K6gcQTHbwnYJLOT3m93K9hLGMouIU1tDLfV9NR0EbGHkPsu3ckFLGowwnfH%2B1MSMBui6XVpzGE9w%3D%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDkji6UA8VviCi8VYs8K/+nQ0kHQlQhaljo11uygT4QO2NAUs924cNngoHWQOJ00ghzVG4TNWg7JpiwCUXfs8EZWYthElP7VaaGLODfZ6LDi2UiRg/nzqqlQXCtQu/ylRDaNGsgPwKerCzQGDRd4C9icHBAWg+0CnIdyQWFVW+ue9lbJDLE55GBU9qQ7WZTKX+iV5KydKS5siquVb/pc0yXqvMmyIi8Sbyb+ds4ODALsBseGLo6FpkICtOURXQmdWCSYRQWq5Bpqeyg3mIupwPO84d4oEl90chYGFz3+CJ1EvGS8u9Zgo7skp/0j2GBCPk8zssjs1Ng3B9YmbK8y79J6eqkXiwkYAQvioKSk63HmEUR53W1SdADsFZypgBihTqUr2rqLPoFP0zKgGoosMzaCE+EiRKXMR4nkiqqgfiDTgsNio+hk5D9K6gcQTHbwnYJLOT3m93K9hLGMouIU1tDLfV9NR0EbGHkPsu3ckFLGowwnfH+1MSMBui6XVpzGE9w==";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
