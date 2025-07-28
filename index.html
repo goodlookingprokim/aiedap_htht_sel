@@ -75,6 +75,9 @@
             cursor: pointer;
             text-decoration: none;
             color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
         }
         
         .feature-card:hover {
@@ -82,6 +85,17 @@
             box-shadow: var(--shadow-lg);
             text-decoration: none;
             color: inherit;
+        }
+        
+        /* 이상한 버튼이나 요소 제거 */
+        .feature-card::before,
+        .feature-card::after {
+            display: none !important;
+        }
+        
+        .feature-card * {
+            position: relative;
+            z-index: 1;
         }
         
         .feature-icon {
