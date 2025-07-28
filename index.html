@@ -219,6 +219,38 @@
             line-height: 1.6;
         }
         
+        /* 브라우저 확장 프로그램 및 번역 버튼 차단 */
+        .feature-card [class*="goog-te"],
+        .feature-card [class*="skiptranslate"],
+        .feature-card [id*="goog-gt"],
+        .feature-card .goog-te-gadget,
+        .feature-card .goog-te-banner-frame,
+        .feature-card #goog-gt-tt,
+        .feature-card .goog-tooltip,
+        .feature-card .jfk-bubble,
+        .feature-card [class*="translate"]:not(.feature-title):not(.feature-description),
+        .feature-card [class*="translator"],
+        .feature-card [data-translate],
+        .feature-card [translate="yes"],
+        .feature-card .translated-ltr,
+        .feature-card .translated-rtl {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            left: -9999px !important;
+        }
+        
+        /* 페이지 하단 일반적인 불필요한 요소들 */
+        body > div:empty,
+        body > div[style*="position: fixed"][style*="bottom"],
+        body > div[style*="position: absolute"][style*="bottom"],
+        body > button[style*="position: fixed"],
+        body > button[style*="position: absolute"] {
+            display: none !important;
+        }
+        
         .stats-section {
             background: var(--primary-color);
             color: white;
