@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDT HTHT×SEL 소개 - AI Digital Textbook과 사회정서학습</title>
+    <meta name="description" content="AI Digital Textbook(AIDT), High-Tech High-Touch(HTHT), Social Emotional Learning(SEL)의 핵심 개념과 통합 교육방향을 소개합니다.">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .concept-section {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .concept-section:last-child {
+            border-bottom: none;
+        }
+        
+        .concept-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .integration-diagram {
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .integration-circles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .integration-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+        }
+        
+        .aidt-circle {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .htht-circle {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+        
+        .sel-circle {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-item {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .integration-circles {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .integration-circle {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="../index.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-brain"></i>
+                        AIDT HTHT×SEL
+                    </a>
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 글로벌 네비게이션 -->
+    <nav class="global-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="intro.html" class="nav-link active">
+                        <i class="fas fa-lightbulb"></i> 소개
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="project-wizard.html" class="nav-link">
+                        <i class="fas fa-magic"></i> 프로젝트 기획
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="emotion-recognition.html" class="nav-link">
+                        <i class="fas fa-smile"></i> 감정 인식
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="sel-competency.html" class="nav-link">
+                        <i class="fas fa-users"></i> SEL 역량
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-interaction.html" class="nav-link">
+                        <i class="fas fa-comments"></i> AI 상호작용
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="collaboration.html" class="nav-link">
+                        <i class="fas fa-project-diagram"></i> 협업 공간
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../instructor/manual.html" class="nav-link">
+                        <i class="fas fa-chalkboard-teacher"></i> 강사 메뉴얼
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 브레드크럼 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">홈</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">AIDT HTHT×SEL 소개</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container" style="padding: 2rem 1rem;">
+        <!-- 페이지 헤더 -->
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                <h1 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-lightbulb" style="color: var(--secondary-color);"></i>
+                    AIDT HTHT×SEL 소개
+                </h1>
+                <p class="card-subtitle" style="font-size: 1.1rem;">
+                    미래 교육을 위한 AI 디지털 교과서, 하이테크 하이터치, 사회정서학습의 융합
+                </p>
+            </div>
+        </div>
+
+        <!-- 핵심 개념 섹션 -->
+        <div class="row mb-5">
+            <!-- AIDT 개념 -->
+            <div class="col concept-section">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="concept-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h2 class="card-title">AI Digital Textbook (AIDT)</h2>
+                        <p class="text-muted mb-3">인공지능 기반 디지털 교과서</p>
+                        <p>
+                            인공지능 기술이 적용된 디지털 교과서로, 학습자 개인의 수준과 특성에 맞춘 
+                            개별화 학습과 협력적 활동을 지원하는 디지털 교수학습 도구입니다.
+                        </p>
+                        <div class="mt-3">
+                            <span class="btn btn-outline btn-sm">개별화 학습</span>
+                            <span class="btn btn-outline btn-sm">적응적 콘텐츠</span>
+                            <span class="btn btn-outline btn-sm">학습 분석</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTHT 개념 -->
+            <div class="col concept-section">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="concept-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h2 class="card-title">High-Tech High-Touch (HTHT)</h2>
+                        <p class="text-muted mb-3">기술과 인간적 소통의 조화</p>
+                        <p>
+                            기술을 통한 개별화 학습(High-Tech)과 교사의 정서적 지원(High-Touch)을 
+                            융합한 교육 모델로, 기술의 효율성과 인간적 온정을 동시에 추구합니다.
+                        </p>
+                        <div class="mt-3">
+                            <span class="btn btn-outline btn-sm">기술 활용</span>
+                            <span class="btn btn-outline btn-sm">인간적 소통</span>
+                            <span class="btn btn-outline btn-sm">균형적 접근</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEL 개념 -->
+            <div class="col concept-section">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="concept-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h2 class="card-title">Social Emotional Learning (SEL)</h2>
+                        <p class="text-muted mb-3">사회정서학습</p>
+                        <p>
+                            자기인식, 자기관리, 사회적 인식, 관계 기술, 책임 있는 의사결정의 
+                            5가지 핵심 역량을 개발하는 학습 과정입니다.
+                        </p>
+                        <div class="mt-3">
+                            <span class="btn btn-outline btn-sm">자기인식</span>
+                            <span class="btn btn-outline btn-sm">관계 기술</span>
+                            <span class="btn btn-outline btn-sm">정서 관리</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 통합 모델 섹션 -->
+        <div class="card mb-5">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-puzzle-piece"></i>
+                    통합 교육 모델
+                </h2>
+                <p class="card-subtitle">AIDT × HTHT × SEL의 시너지 효과</p>
+            </div>
+            <div class="card-body">
+                <div class="integration-diagram">
+                    <h3 style="margin-bottom: 2rem;">미래 교육의 새로운 패러다임</h3>
+                    <div class="integration-circles">
+                        <div class="integration-circle aidt-circle">
+                            <i class="fas fa-robot" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>AIDT</strong>
+                            <small>개별맞춤학습</small>
+                        </div>
+                        <div style="font-size: 2rem; color: var(--primary-color);">+</div>
+                        <div class="integration-circle htht-circle">
+                            <i class="fas fa-handshake" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>HTHT</strong>
+                            <small>기술×소통</small>
+                        </div>
+                        <div style="font-size: 2rem; color: var(--primary-color);">+</div>
+                        <div class="integration-circle sel-circle">
+                            <i class="fas fa-heart" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>SEL</strong>
+                            <small>정서역량</small>
+                        </div>
+                    </div>
+                    <div style="font-size: 2rem; color: var(--primary-color); margin: 1rem 0;">||</div>
+                    <div class="card" style="max-width: 400px; margin: 0 auto; background: var(--primary-color); color: white;">
+                        <div class="card-body text-center">
+                            <h4><i class="fas fa-star"></i> 통합 교육 효과</h4>
+                            <p class="mb-0">개별화된 학습과 정서적 성장을 동시에 지원하는<br>미래형 교육 생태계</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 교육적 효과 섹션 -->
+        <div class="card mb-5">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-line"></i>
+                    기대 효과
+                </h2>
+                <p class="card-subtitle">AIDT HTHT×SEL 통합 모델의 교육적 효과</p>
+            </div>
+            <div class="card-body">
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h4><i class="fas fa-user-graduate text-primary"></i> 개별맞춤 학습</h4>
+                        <p>AI 기술을 통한 학습자 수준별 콘텐츠 제공과 개별화된 학습 경로 설계</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4><i class="fas fa-users text-secondary"></i> 사회정서역량 강화</h4>
+                        <p>SEL 5대 핵심역량을 체계적으로 개발하여 전인적 성장 도모</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4><i class="fas fa-handshake text-accent"></i> 인간중심 교육</h4>
+                        <p>기술과 인간적 소통의 균형으로 따뜻한 교육 환경 조성</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4><i class="fas fa-lightbulb text-warning"></i> 창의적 사고</h4>
+                        <p>다양한 관점과 협업을 통한 창의적 문제해결력 향상</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4><i class="fas fa-chart-bar text-success"></i> 학습 동기 증진</h4>
+                        <p>흥미로운 활동과 즉각적 피드백으로 학습 참여도 향상</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4><i class="fas fa-globe text-primary"></i> 미래 역량 준비</h4>
+                        <p>4차 산업혁명 시대에 필요한 핵심 역량과 소양 함양</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 다음 단계 안내 -->
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 class="card-title">
+                    <i class="fas fa-arrow-right"></i>
+                    다음 단계
+                </h2>
+                <p class="card-subtitle">AIDT HTHT×SEL을 직접 체험해보세요</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <a href="project-wizard.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <h4>프로젝트 기획 마법사</h4>
+                                <p class="text-muted">체계적인 교육 프로젝트를 설계해보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="emotion-recognition.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-smile"></i>
+                                </div>
+                                <h4>감정 인식 활동</h4>
+                                <p class="text-muted">다양한 상황에서의 감정을 인식해보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="sel-competency.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>SEL 역량 개발</h4>
+                                <p class="text-muted">5가지 핵심 역량을 체계적으로 개발해보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 공통 JavaScript -->
+    <script src="../assets/js/common.js"></script>
+    
+    <script>
+        // 페이지별 추가 기능
+        document.addEventListener('DOMContentLoaded', function() {
+            // 개념 카드 호버 효과
+            document.querySelectorAll('.concept-section .card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = 'var(--shadow-lg)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'var(--shadow-md)';
+                });
+            });
+            
+            // 통합 원형 다이어그램 애니메이션
+            const circles = document.querySelectorAll('.integration-circle');
+            circles.forEach((circle, index) => {
+                setTimeout(() => {
+                    circle.style.opacity = '0';
+                    circle.style.transform = 'scale(0.8)';
+                    circle.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        circle.style.opacity = '1';
+                        circle.style.transform = 'scale(1)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

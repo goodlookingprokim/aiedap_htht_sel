@@ -3,1102 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIDT HTHT×SEL 체험형 웹 애플리케이션</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>AIDT HTHT×SEL - AI Digital Textbook과 사회정서학습</title>
+    <meta name="description" content="AI Digital Textbook(AIDT)을 활용한 High-Tech High-Touch(HTHT) 교육 모델과 사회정서학습(SEL) 통합 플랫폼">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* 페이지별 추가 스타일 */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .concept-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .concept-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        
+        .features-section {
+            padding: 4rem 0;
+            background-color: var(--bg-light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .stats-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .concept-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans">
-    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
-            <h1 class="text-3xl font-bold mb-2">AI Digital Textbook(AIDT) 기반 사회정서학습 체험</h1>
-            <p class="text-xl">고등학교 1-2학년 대상</p>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-brain"></i>
+                    AIDT HTHT×SEL
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-2">
-            <div class="flex flex-wrap justify-between items-center">
-                <div class="flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4">
-                    <a href="#" class="tab-button active py-2 px-4 rounded-lg hover:bg-indigo-100 transition-all" data-target="intro">소개</a>
-                    <a href="#" class="tab-button py-2 px-4 rounded-lg hover:bg-indigo-100 transition-all" data-target="project-wizard">프로젝트 기획</a>
-                    <a href="#" class="tab-button py-2 px-4 rounded-lg hover:bg-indigo-100 transition-all" data-target="emotion-recognition">감정 인식 활동</a>
-                    <a href="#" class="tab-button py-2 px-4 rounded-lg hover:bg-indigo-100 transition-all" data-target="sel-competency">SEL 역량 개발</a>
-                    <a href="#" class="tab-button py-2 px-4 rounded-lg hover:bg-indigo-100 transition-all" data-target="ai-interaction">AI 상호작용</a>
-                    <a href="#" class="tab-button py-2 px-4 rounded-lg hover:bg-indigo-100 transition-all" data-target="collaboration">협업 공간</a>
+    <!-- 히어로 섹션 -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">미래 교육의 새로운 패러다임</h1>
+            <p class="hero-subtitle">
+                AI 디지털 교과서와 하이테크 하이터치 교육 모델을 통한<br>
+                사회정서학습 통합 플랫폼에 오신 것을 환영합니다
+            </p>
+            
+            <div class="concept-badges">
+                <div class="concept-badge">
+                    <i class="fas fa-robot"></i> AIDT
                 </div>
-                <div class="flex space-x-4 mt-2 md:mt-0">
-                    <a href="instructor_manual.html" class="nav-link py-2 px-4 text-gray-700 hover:text-indigo-700 hover:bg-gray-100 rounded-lg transition-all">
-                        <i class="fas fa-chalkboard-teacher mr-2"></i>강사 메뉴얼
+                <div class="concept-badge">
+                    <i class="fas fa-handshake"></i> HTHT
+                </div>
+                <div class="concept-badge">
+                    <i class="fas fa-heart"></i> SEL
+                </div>
+            </div>
+            
+            <a href="pages/intro.html" class="btn btn-secondary btn-lg">
+                <i class="fas fa-play"></i> 학습 시작하기
+            </a>
+        </div>
+    </section>
+
+    <!-- 주요 기능 섹션 -->
+    <section class="features-section">
+        <div class="container">
+            <div class="text-center">
+                <h2>학습 영역 탐색</h2>
+                <p class="text-muted">각 영역을 클릭하여 체험형 학습을 시작해보세요</p>
+            </div>
+            
+            <div class="features-grid">
+                <a href="pages/intro.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="feature-title">AIDT HTHT×SEL 소개</h3>
+                    <p class="feature-description">
+                        AI 디지털 교과서, 하이테크 하이터치 교육 모델, 사회정서학습의 
+                        핵심 개념과 통합 교육 방향을 이해합니다.
+                    </p>
+                </a>
+
+                <a href="pages/project-wizard.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="feature-title">프로젝트 기획 마법사</h3>
+                    <p class="feature-description">
+                        AIDT와 HTHT×SEL을 접목한 교육 프로젝트를 단계별로 기획하고 
+                        설계할 수 있는 체계적인 도구입니다.
+                    </p>
+                </a>
+
+                <a href="pages/emotion-recognition.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="feature-title">감정 인식 활동</h3>
+                    <p class="feature-description">
+                        다양한 상황에서의 감정 인식 및 공감 능력을 개발하는 
+                        대화형 시나리오 기반 활동을 제공합니다.
+                    </p>
+                </a>
+
+                <a href="pages/sel-competency.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">SEL 역량 개발</h3>
+                    <p class="feature-description">
+                        자기인식, 자기관리, 사회적 인식, 관계 기술, 책임 있는 의사결정 
+                        등 5가지 SEL 핵심 역량을 체계적으로 개발합니다.
+                    </p>
+                </a>
+
+                <a href="pages/ai-interaction.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="feature-title">AI 상호작용 체험</h3>
+                    <p class="feature-description">
+                        모의 AI 환경에서 질문하고 피드백을 받으며 
+                        AI 기반 학습 지원을 직접 경험해볼 수 있습니다.
+                    </p>
+                </a>
+
+                <a href="pages/collaboration.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="feature-title">협업 공간</h3>
+                    <p class="feature-description">
+                        팀 프로젝트를 위한 협업 도구와 토론 기능을 통해 
+                        효과적인 협력 학습을 실현합니다.
+                    </p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 통계 섹션 -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">SEL 핵심 역량</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">체험 영역</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">학습 가능성</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">통합 플랫폼</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 강사 자료 섹션 -->
+    <section class="features-section">
+        <div class="container">
+            <div class="text-center">
+                <h2>강사 지원 자료</h2>
+                <p class="text-muted">교육 운영을 위한 전문 자료와 가이드</p>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col">
+                    <a href="instructor/manual.html" class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="feature-title">강사 메뉴얼</h3>
+                        <p class="feature-description">
+                            AIDT HTHT×SEL 교육 운영을 위한 상세한 지침서와 
+                            교수법 가이드를 제공합니다.
+                        </p>
                     </a>
-                    <a href="project_guide.html" class="nav-link py-2 px-4 text-gray-700 hover:text-indigo-700 hover:bg-gray-100 rounded-lg transition-all">
-                        <i class="fas fa-book-open mr-2"></i>프로젝트 가이드
+                </div>
+                <div class="col">
+                    <a href="resources/" class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h3 class="feature-title">교육 자료실</h3>
+                        <p class="feature-description">
+                            수업 계획서, 활동 가이드, 평가 도구 등 
+                            교육 운영에 필요한 다양한 자료를 제공합니다.
+                        </p>
                     </a>
                 </div>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <main class="container mx-auto px-4 py-8">
-        <!-- 소개 섹션 -->
-        <section id="intro" class="section-container active">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-4">AI Digital Textbook(AIDT)과 HTHT×SEL 소개</h2>
-                
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-blue-50 p-5 rounded-lg shadow">
-                        <h3 class="text-xl font-semibold mb-3 text-blue-700">AIDT란?</h3>
-                        <p class="text-gray-700">인공지능 기술이 적용된 디지털 교과서로, 학습자 개인의 수준과 특성에 맞춘 개별화 학습과 협력적 활동을 지원하는 디지털 교수학습 도구입니다.</p>
-                    </div>
-                    <div class="bg-indigo-50 p-5 rounded-lg shadow">
-                        <h3 class="text-xl font-semibold mb-3 text-indigo-700">HTHT 모델이란?</h3>
-                        <p class="text-gray-700">HTHT(High-Tech High-Touch)는 기술과 인간의 만남을 통한 혁신적 교육 모델로, 기술을 통한 개별화 학습(High-Tech)과 교사의 정서적 지원(High-Touch)의 융합을 지향합니다.</p>
-                    </div>
-                    <div class="bg-purple-50 p-5 rounded-lg shadow">
-                        <h3 class="text-xl font-semibold mb-3 text-purple-700">SEL이란?</h3>
-                        <p class="text-gray-700">사회정서학습(Social Emotional Learning)으로, 자신의 감정을 인식하고 관리하며 타인에 대한 공감과 책임있는 의사결정 능력을 기르는 학습입니다.</p>
-                    </div>
-                </div>
-
-                <h3 class="text-xl font-bold text-indigo-700 mb-4">SEL의 5대 역량</h3>
-                <div class="grid md:grid-cols-5 gap-4 mb-8">
-                    <div class="bg-green-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-brain text-2xl text-green-600 mb-2"></i>
-                        <h4 class="font-semibold mb-1">자기인식</h4>
-                        <p class="text-sm">자신의 감정, 생각, 가치관을 인식하는 능력</p>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-balance-scale text-2xl text-blue-600 mb-2"></i>
-                        <h4 class="font-semibold mb-1">자기관리</h4>
-                        <p class="text-sm">다양한 상황에서 감정과 행동을 조절하는 능력</p>
-                    </div>
-                    <div class="bg-yellow-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-users text-2xl text-yellow-600 mb-2"></i>
-                        <h4 class="font-semibold mb-1">사회적 인식</h4>
-                        <p class="text-sm">타인의 관점을 이해하고 공감하는 능력</p>
-                    </div>
-                    <div class="bg-red-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-handshake text-2xl text-red-600 mb-2"></i>
-                        <h4 class="font-semibold mb-1">관계 기술</h4>
-                        <p class="text-sm">다양한 관계를 형성하고 유지하는 능력</p>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-lightbulb text-2xl text-purple-600 mb-2"></i>
-                        <h4 class="font-semibold mb-1">책임있는 의사결정</h4>
-                        <p class="text-sm">윤리적이고 건설적인 선택을 하는 능력</p>
-                    </div>
-                </div>
-
-                <h3 class="text-xl font-bold text-indigo-700 mb-4">이 웹 애플리케이션으로 할 수 있는 활동</h3>
-                <div class="grid md:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="text-center mb-4">
-                            <i class="fas fa-project-diagram text-4xl text-indigo-600"></i>
-                        </div>
-                        <h4 class="text-lg font-semibold text-center mb-2">프로젝트 기획</h4>
-                        <p class="text-gray-600 text-sm">AIDT와 HTHT×SEL을 접목한 교육 프로젝트를 단계별로 기획해보세요.</p>
-                        <div class="text-center mt-4">
-                            <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors tab-button" data-target="project-wizard">시작하기</button>
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="text-center mb-4">
-                            <i class="fas fa-heartbeat text-4xl text-pink-600"></i>
-                        </div>
-                        <h4 class="text-lg font-semibold text-center mb-2">감정 인식 활동</h4>
-                        <p class="text-gray-600 text-sm">다양한 상황에서의 감정을 인식하고 공감하는 체험형 활동에 참여하세요.</p>
-                        <div class="text-center mt-4">
-                            <button class="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors tab-button" data-target="emotion-recognition">시작하기</button>
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="text-center mb-4">
-                            <i class="fas fa-graduation-cap text-4xl text-green-600"></i>
-                        </div>
-                        <h4 class="text-lg font-semibold text-center mb-2">SEL 역량 개발</h4>
-                        <p class="text-gray-600 text-sm">5가지 SEL 역량을 개발하는 다양한 활동과 성찰 도구를 경험하세요.</p>
-                        <div class="text-center mt-4">
-                            <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors tab-button" data-target="sel-competency">시작하기</button>
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="text-center mb-4">
-                            <i class="fas fa-robot text-4xl text-blue-600"></i>
-                        </div>
-                        <h4 class="text-lg font-semibold text-center mb-2">AI 상호작용</h4>
-                        <p class="text-gray-600 text-sm">모의 AI 환경에서 질문, 피드백, 학습 지원을 경험해보세요.</p>
-                        <div class="text-center mt-4">
-                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors tab-button" data-target="ai-interaction">시작하기</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-4">HTHT×SEL 통합 모델 효과</h3>
-                    <h4 class="text-lg font-semibold text-indigo-600 mb-3">주요 효과</h4>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <ul class="list-inside space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>학업 성취도 향상</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>정서적 지능 및 사회적 역량 강화</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>학습 몰입도 및 동기부여 증가</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>학생 맞춤형 학습 경로 제공</span>
-                            </li>
-                        </ul>
-                        <ul class="list-inside space-y-2">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>교사-학생 관계 강화</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>협력적 문제해결 능력 향상</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>책임감 있는 디지털 시민의식 함양</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>
-                                <span>효과적인 의사소통 능력 개발</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 프로젝트 기획 마법사 섹션 -->
-        <section id="project-wizard" class="section-container">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-6">HTHT×SEL 프로젝트 기획 마법사</h2>
-                <p class="mb-4 text-gray-700">AI Digital Textbook(AIDT)을 활용한 HTHT×SEL 프로젝트를 단계별로 기획해보세요.</p>
-
-                <div class="flex mb-6 overflow-auto">
-                    <div class="step-indicator active">1. 문제 정의</div>
-                    <div class="step-indicator">2. 목표 설정</div>
-                    <div class="step-indicator">3. AIDT 기술 선택</div>
-                    <div class="step-indicator">4. HTHT 요소 설계</div>
-                    <div class="step-indicator">5. SEL 역량 연계</div>
-                </div>
-
-                <!-- 1단계: 문제 정의 -->
-                <div class="step-container active" id="step1">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-4">1단계: 문제 정의</h3>
-                    <div class="mb-4">
-                        <label for="project-topic" class="block text-sm font-medium text-gray-700 mb-1">프로젝트 주제</label>
-                        <input type="text" id="project-topic" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="주제를 입력하세요">
-                    </div>
-                    <div class="mb-4">
-                        <label for="project-problem" class="block text-sm font-medium text-gray-700 mb-1">해결하고자 하는 문제 또는 필요성</label>
-                        <textarea id="project-problem" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="해결하고자 하는 문제나 필요성을 설명하세요"></textarea>
-                    </div>
-                    <div class="mb-6">
-                        <label for="project-goals" class="block text-sm font-medium text-gray-700 mb-1">목표 및 기대 효과</label>
-                        <textarea id="project-goals" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="프로젝트의 목표와 기대 효과를 작성하세요"></textarea>
-                    </div>
-                    <div class="flex justify-end">
-                        <button class="project-next-btn px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors" data-next-step="2">다음 단계</button>
-                    </div>
-                </div>
-
-                <!-- 2단계: 목표 설정 -->
-                <div class="step-container" id="step2">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-4">2단계: 목표 설정</h3>
-                    <div class="mb-4">
-                        <p class="block text-sm font-medium text-gray-700 mb-2">학습 목표 선택 (복수 선택 가능)</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <input type="checkbox" id="goal1" class="mr-2">
-                                <label for="goal1">지식 이해 및 습득</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" id="goal2" class="mr-2">
-                                <label for="goal2">비판적 사고력 향상</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" id="goal3" class="mr-2">
-                                <label for="goal3">창의적 문제해결 능력</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" id="goal4" class="mr-2">
-                                <label for="goal4">의사소통 능력 개발</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" id="goal5" class="mr-2">
-                                <label for="goal5">협업 능력 함양</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" id="goal6" class="mr-2">
-                                <label for="goal6">자기주도적 학습 역량</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="measurable-goals" class="block text-sm font-medium text-gray-700 mb-1">측정 가능한 목표 설정</label>
-                        <textarea id="measurable-goals" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="구체적이고 측정 가능한 목표를 설정하세요"></textarea>
-                    </div>
-                    <div class="mb-6">
-                        <label for="project-duration" class="block text-sm font-medium text-gray-700 mb-1">프로젝트 진행 기간</label>
-                        <select id="project-duration" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="">기간을 선택하세요</option>
-                            <option value="1차시">1차시 (약 50분)</option>
-                            <option value="2-3차시">2-3차시 (약 100-150분)</option>
-                            <option value="4-6차시">4-6차시 (약 200-300분)</option>
-                            <option value="프로젝트형">장기 프로젝트 (1주 이상)</option>
-                        </select>
-                    </div>
-                    <div class="flex justify-between">
-                        <button class="project-prev-btn px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors" data-prev-step="1">이전 단계</button>
-                        <button class="project-next-btn px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors" data-next-step="3">다음 단계</button>
-                    </div>
-                </div>
-
-                <!-- 3단계: AIDT 기술 선택 -->
-                <div class="step-container" id="step3">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-4">3단계: AIDT 기술 선택</h3>
-                    <div class="mb-4">
-                        <p class="block text-sm font-medium text-gray-700 mb-2">활용할 AI Digital Textbook 기술 (복수 선택 가능)</p>
-                        
-                        <div class="grid md:grid-cols-2 gap-4 mb-6">
-                            <div class="border rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="tech1" class="mt-1 mr-2">
-                                    <div>
-                                        <label for="tech1" class="font-medium">AI 챗봇 기반 학습 지원</label>
-                                        <p class="text-sm text-gray-600 mt-1">개인화된 질의응답 및 학습 가이드를 제공하는 AI 챗봇</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="tech2" class="mt-1 mr-2">
-                                    <div>
-                                        <label for="tech2" class="font-medium">데이터 분석 및 시각화</label>
-                                        <p class="text-sm text-gray-600 mt-1">학습 데이터 수집 및 패턴 분석을 통한 맞춤형 피드백</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="tech3" class="mt-1 mr-2">
-                                    <div>
-                                        <label for="tech3" class="font-medium">AI 협력적 창작 도구</label>
-                                        <p class="text-sm text-gray-600 mt-1">AI와 협업하여 텍스트, 이미지 등의 콘텐츠 제작</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="tech4" class="mt-1 mr-2">
-                                    <div>
-                                        <label for="tech4" class="font-medium">감정 인식 및 분석</label>
-                                        <p class="text-sm text-gray-600 mt-1">텍스트나 표현에서 감정을 분석하고 피드백 제공</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="tech5" class="mt-1 mr-2">
-                                    <div>
-                                        <label for="tech5" class="font-medium">개인화된 학습 경로</label>
-                                        <p class="text-sm text-gray-600 mt-1">학생의 수준과 관심사에 맞는 맞춤형 학습 여정 제공</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border rounded-lg p-4 hover:bg-blue-50 transition-colors">
-                                <div class="flex items-start">
-                                    <input type="checkbox" id="tech6" class="mt-1 mr-2">
-                                    <div>
-                                        <label for="tech6" class="font-medium">가상/증강 현실 학습 환경</label>
-                                        <p class="text-sm text-gray-600 mt-1">몰입형 VR/AR 기술을 활용한 체험형 학습</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label for="tech-integration" class="block text-sm font-medium text-gray-700 mb-1">기술 통합 방안</label>
-                        <textarea id="tech-integration" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="선택한 기술들을 프로젝트에 어떻게 통합할 것인지 설명하세요"></textarea>
-                    </div>
-                    <div class="flex justify-between">
-                        <button class="project-prev-btn px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors" data-prev-step="2">이전 단계</button>
-                        <button class="project-next-btn px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors" data-next-step="4">다음 단계</button>
-                    </div>
-                </div>
-
-                <!-- 4단계: HTHT 요소 설계 -->
-                <div class="step-container" id="step4">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-4">4단계: HTHT 요소 설계</h3>
-                    
-                    <div class="mb-4">
-                        <label for="high-tech" class="block text-sm font-medium text-gray-700 mb-1">High-Tech 요소</label>
-                        <textarea id="high-tech" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="프로젝트에서 활용할 기술적 요소를 구체적으로 설계하세요"></textarea>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="high-touch" class="block text-sm font-medium text-gray-700 mb-1">High-Touch 요소</label>
-                        <textarea id="high-touch" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="프로젝트에서 활용할 인간적 상호작용 요소를 구체적으로 설계하세요"></textarea>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label for="htht-balance" class="block text-sm font-medium text-gray-700 mb-1">HTHT 균형 전략</label>
-                        <textarea id="htht-balance" rows="3" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="High-Tech와 High-Touch 요소 간의 균형을 어떻게 유지할 것인지 설명하세요"></textarea>
-                    </div>
-                    
-                    <div class="flex justify-between">
-                        <button class="project-prev-btn px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors" data-prev-step="3">이전 단계</button>
-                        <button class="project-next-btn px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors" data-next-step="5">다음 단계</button>
-                    </div>
-                </div>
-
-                <!-- 5단계: SEL 역량 연계 -->
-                <div class="step-container" id="step5">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-4">5단계: SEL 역량 연계</h3>
-                    
-                    <div class="mb-4">
-                        <label for="sel-activities" class="block text-sm font-medium text-gray-700 mb-1">SEL 역량 개발 활동 설계</label>
-                        <textarea id="sel-activities" rows="4" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="프로젝트를 통해 개발하고자 하는 SEL 역량과 구체적인 활동을 설계하세요"></textarea>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label for="sel-assessment" class="block text-sm font-medium text-gray-700 mb-1">SEL 역량 평가 방법</label>
-                        <textarea id="sel-assessment" rows="4" class="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="SEL 역량 개발을 어떻게 평가하고 측정할 것인지 설명하세요"></textarea>
-                    </div>
-                    
-                    <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200 mb-6">
-                        <h4 class="font-semibold text-indigo-700 mb-2">프로젝트 예시</h4>
-                        
-                        <div class="mb-4 border-b pb-4">
-                            <h5 class="font-medium text-indigo-600 mb-1">감정 데이터 기반 학급 분위기 개선 프로젝트</h5>
-                            <p class="text-sm text-gray-700 mb-2">대상: 고등학교 1-2학년 | 기간: 4차시</p>
-                            <p class="text-sm text-gray-700 mb-2">AIDT의 감정 인식 기능을 활용하여 학급 내 감정 데이터를 수집하고 분석하여 긍정적 학습 환경을 조성하는 프로젝트입니다.</p>
-                            <div class="flex flex-wrap gap-2 mt-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">High-Tech: 감정 분석 AI</span>
-                                <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded">High-Touch: 또래 정서 지원</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">SEL 역량: 사회적 인식, 관계 기술</span>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h5 class="font-medium text-indigo-600 mb-1">AI 협력적 디지털 스토리텔링</h5>
-                            <p class="text-sm text-gray-700 mb-2">대상: 고등학교 1-2학년 | 기간: 3차시</p>
-                            <p class="text-sm text-gray-700 mb-2">학생들이 AI와 협업하여 사회 문제를 다루는 디지털 스토리를 제작하며 공감 능력과 창의성을 향상시키는 프로젝트입니다.</p>
-                            <div class="flex flex-wrap gap-2 mt-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">High-Tech: AI 창작 도구</span>
-                                <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded">High-Touch: 모둠별 창작 활동</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">SEL 역량: 자기인식, 사회적 인식</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-between">
-                        <button class="project-prev-btn px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors" data-prev-step="4">이전 단계</button>
-                        <button id="save-project-btn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">프로젝트 저장</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 감정 인식 활동 섹션 -->
-        <section id="emotion-recognition" class="section-container">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-pink-700 mb-4">감정 인식 활동</h2>
-                <p class="mb-6 text-gray-700">다양한 상황에서의 감정을 인식하고 공감하는 능력은 SEL의 중요한 부분입니다. 아래 활동을 통해 감정 인식 능력을 체험해보세요.</p>
-
-                <!-- 상황별 감정 인식 -->
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold text-pink-700 mb-4">상황별 감정 인식</h3>
-                    
-                    <!-- 상황 1 -->
-                    <div class="scenario active" data-scenario="1">
-                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                            <p class="mb-2">상황 1/5</p>
-                            <p class="text-gray-800">민호는 열심히 준비한 발표에서 예상치 못한 질문을 받았습니다. 순간 당황했지만, 깊게 생각해보니 좋은 관점이라는 생각이 들었습니다. 하지만 즉시 답변하기는 어려웠습니다.</p>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <p class="block text-sm font-medium text-gray-700 mb-2">이 상황에서 민호는 어떤 감정을 느꼈을까요?</p>
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">당혹감</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">호기심</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">불안감</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">흥미로움</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">초조함</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">기타</button>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="emotion-reason-1" class="block text-sm font-medium text-gray-700 mb-1">왜 그런 감정을 느꼈을까요?</label>
-                            <textarea id="emotion-reason-1" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="2" placeholder="이유를 설명해보세요"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- 상황 2 (기본적으로 숨겨져 있음) -->
-                    <div class="scenario" data-scenario="2">
-                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                            <p class="mb-2">상황 2/5</p>
-                            <p class="text-gray-800">수민이는 중요한 시험 결과를 확인했습니다. 열심히 공부했지만 기대했던 것보다 낮은 점수를 받았습니다. 주변 친구들은 자신의 점수에 만족하며 기뻐하고 있었습니다.</p>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <p class="block text-sm font-medium text-gray-700 mb-2">이 상황에서 수민이는 어떤 감정을 느꼈을까요?</p>
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">실망감</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">좌절감</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">시기심</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">분노</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">무력감</button>
-                                <button class="emotion-btn p-2 bg-white border border-gray-300 rounded-md hover:bg-pink-50">기타</button>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="emotion-reason-2" class="block text-sm font-medium text-gray-700 mb-1">왜 그런 감정을 느꼈을까요?</label>
-                            <textarea id="emotion-reason-2" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="2" placeholder="이유를 설명해보세요"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-between items-center mt-6">
-                        <button class="emotion-prev-btn px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">이전 상황</button>
-                        <div class="text-center">
-                            <span class="emotion-progress text-sm text-gray-600">1/5</span>
-                        </div>
-                        <button class="emotion-next-btn px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors">다음 상황</button>
-                    </div>
-                </div>
-
-                <!-- 감정 표현 연습 -->
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold text-pink-700 mb-4">감정 표현 연습</h3>
-                    <p class="mb-4 text-gray-700">자신의 감정을 적절하게 표현하는 것은 건강한 인간관계의 기본입니다. 아래 상황에서 어떻게 감정을 표현할지 작성해보세요.</p>
-                    
-                    <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                        <p class="text-gray-800">상황: 친구가 당신이 열심히 준비한 발표를 공개적으로 비판했습니다.</p>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label for="emotion-expression" class="block text-sm font-medium text-gray-700 mb-1">어떻게 감정을 표현할 것인가요?</label>
-                        <textarea id="emotion-expression" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="3" placeholder="자신의 감정을 건설적으로 표현하는 방법을 작성해보세요"></textarea>
-                    </div>
-                    
-                    <div class="bg-pink-50 p-4 rounded-lg border border-pink-200">
-                        <h4 class="font-semibold text-pink-700 mb-2">효과적인 감정 표현 팁</h4>
-                        <ul class="list-disc pl-5 space-y-1 text-sm">
-                            <li>나-전달법(I-message)을 사용하기: "나는 ~라고 느꼈어" 형식으로 표현</li>
-                            <li>구체적인 상황과 행동에 대해 언급하기</li>
-                            <li>상대방 인격 비난이나 과장된 표현 피하기</li>
-                            <li>자신의 기분과 그 이유를 명확하게 설명하기</li>
-                            <li>해결책이나 요청사항 제시하기</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 감정 인식 일기 -->
-                <div class="mb-4">
-                    <h3 class="text-xl font-bold text-pink-700 mb-4">감정 인식 일기</h3>
-                    <p class="mb-4 text-gray-700">오늘 하루 동안 경험한 가장 강한 감정 세 가지를 기록해보세요.</p>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div>
-                            <label for="emotion1" class="block text-sm font-medium text-gray-700 mb-1">감정 1</label>
-                            <input type="text" id="emotion1" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" placeholder="감정을 입력하세요">
-                            <textarea id="emotion1-desc" class="w-full mt-2 p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="2" placeholder="이 감정을 느꼈던 상황과 이유를 설명하세요"></textarea>
-                        </div>
-                        <div>
-                            <label for="emotion2" class="block text-sm font-medium text-gray-700 mb-1">감정 2</label>
-                            <input type="text" id="emotion2" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" placeholder="감정을 입력하세요">
-                            <textarea id="emotion2-desc" class="w-full mt-2 p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="2" placeholder="이 감정을 느꼈던 상황과 이유를 설명하세요"></textarea>
-                        </div>
-                        <div>
-                            <label for="emotion3" class="block text-sm font-medium text-gray-700 mb-1">감정 3</label>
-                            <input type="text" id="emotion3" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" placeholder="감정을 입력하세요">
-                            <textarea id="emotion3-desc" class="w-full mt-2 p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="2" placeholder="이 감정을 느꼈던 상황과 이유를 설명하세요"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="emotion-pattern" class="block text-sm font-medium text-gray-700 mb-1">감정 패턴 성찰</label>
-                        <textarea id="emotion-pattern" class="w-full p-2 border rounded-md focus:ring-pink-500 focus:border-pink-500" rows="3" placeholder="이 감정들 사이에 어떤 패턴이 있나요? 특정 상황이나 생각이 특정 감정을 일으키나요?"></textarea>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button id="save-emotion-diary" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">감정 일기 저장</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEL 역량 개발 섹션 -->
-        <section id="sel-competency" class="section-container">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-green-700 mb-4">SEL 역량 개발</h2>
-                <p class="mb-6 text-gray-700">아래 활동을 통해 사회정서학습(SEL)의 5가지 핵심 역량을 체험하고 개발해보세요.</p>
-                
-                <!-- SEL 역량 탭 -->
-                <div class="flex flex-wrap mb-6 border-b overflow-x-auto">
-                    <button class="sel-tab-btn active px-4 py-2 mr-2 hover:bg-green-50 transition-colors" data-target="self-awareness">자기인식</button>
-                    <button class="sel-tab-btn px-4 py-2 mr-2 hover:bg-green-50 transition-colors" data-target="self-management">자기관리</button>
-                    <button class="sel-tab-btn px-4 py-2 mr-2 hover:bg-green-50 transition-colors" data-target="social-awareness">사회적 인식</button>
-                    <button class="sel-tab-btn px-4 py-2 mr-2 hover:bg-green-50 transition-colors" data-target="relationship-skills">관계 기술</button>
-                    <button class="sel-tab-btn px-4 py-2 mr-2 hover:bg-green-50 transition-colors" data-target="responsible-decision-making">책임 있는 의사결정</button>
-                </div>
-                
-                <!-- 자기인식 역량 -->
-                <div id="self-awareness" class="sel-tab-content active">
-                    <h3 class="text-xl font-bold text-green-700 mb-3">자기인식 역량</h3>
-                    <p class="mb-4 text-gray-700">자신의 감정, 생각, 가치관을 정확하게 인식하고 이들이 행동에 미치는 영향을 이해하는 능력입니다.</p>
-                    
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">나의 감정 지도 그리기</h4>
-                        <p class="mb-3 text-gray-700">오늘 하루 동안 경험한 다양한 감정들을 떠올려보고, 아래 표에 기록해보세요.</p>
-                        
-                        <div class="overflow-x-auto mb-4">
-                            <table class="w-full border-collapse border">
-                                <thead>
-                                    <tr class="bg-green-50">
-                                        <th class="border p-2">시간/상황</th>
-                                        <th class="border p-2">느낀 감정</th>
-                                        <th class="border p-2">감정의 강도(1-5)</th>
-                                        <th class="border p-2">감정을 유발한 생각</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="number" min="1" max="5" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="number" min="1" max="5" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="number" min="1" max="5" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">감정 패턴 분석</h4>
-                        <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="3" placeholder="위 감정 기록에서 발견한 패턴이나 경향성이 있나요? 어떤 상황이나 생각이 특정 감정을 유발하나요?"></textarea>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">나의 강점과 약점</h4>
-                        <div class="mb-3">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">나의 강점 (최소 3가지)</label>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="3" placeholder="자신의 강점을 적어보세요"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">개선하고 싶은 부분 (최소 2가지)</label>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="2" placeholder="개선하고 싶은 부분을 적어보세요"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">개선 계획</label>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="3" placeholder="개선을 위한 구체적인 계획을 세워보세요"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="save-sel-btn px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">활동 저장</button>
-                    </div>
-                </div>
-                
-                <!-- 자기관리 역량 (기본적으로 숨겨져 있음) -->
-                <div id="self-management" class="sel-tab-content">
-                    <h3 class="text-xl font-bold text-green-700 mb-3">자기관리 역량</h3>
-                    <p class="mb-4 text-gray-700">다양한 상황에서 자신의 감정, 생각, 행동을 효과적으로 조절하는 능력입니다.</p>
-                    
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">목표 설정 및 실행 계획</h4>
-                        <p class="mb-3 text-gray-700">달성하고자 하는 단기 목표를 설정하고, 이를 위한 구체적인 실행 계획을 세워보세요.</p>
-                        
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">나의 목표 (1주일 내 달성할 수 있는 목표)</label>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="2" placeholder="구체적이고 측정 가능한 목표를 작성하세요"></textarea>
-                        </div>
-                        
-                        <h5 class="font-semibold text-green-600 mb-2">목표 달성을 위한 일일 계획</h5>
-                        <div class="overflow-x-auto mb-4">
-                            <table class="w-full border-collapse border">
-                                <thead>
-                                    <tr class="bg-green-50">
-                                        <th class="border p-2">요일</th>
-                                        <th class="border p-2">해야 할 일</th>
-                                        <th class="border p-2">소요 시간</th>
-                                        <th class="border p-2">장애물/방해 요소</th>
-                                        <th class="border p-2">극복 전략</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="border p-2">월요일</td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2">화요일</td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2">수요일</td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                        <td class="border p-2"><input type="text" class="w-full border-0 bg-transparent focus:outline-none"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">스트레스 관리 전략</h4>
-                        <p class="mb-3 text-gray-700">목표를 향해 나아갈 때 스트레스를 받을 수 있습니다. 어떻게 스트레스를 관리할 계획인가요?</p>
-                        
-                        <div class="mb-4">
-                            <h5 class="font-semibold text-green-600 mb-2">나의 스트레스 신호</h5>
-                            <div class="grid grid-cols-2 gap-2">
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="stress1" class="mr-2">
-                                    <label for="stress1">집중력 저하</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="stress2" class="mr-2">
-                                    <label for="stress2">수면 장애</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="stress3" class="mr-2">
-                                    <label for="stress3">과민 반응</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="stress4" class="mr-2">
-                                    <label for="stress4">신체적 긴장감</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="stress5" class="mr-2">
-                                    <label for="stress5">식습관 변화</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="text" class="border p-1 rounded w-full" placeholder="기타">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h5 class="font-semibold text-green-600 mb-2">스트레스 관리 방법</h5>
-                            <div class="grid grid-cols-2 gap-2">
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="manage1" class="mr-2">
-                                    <label for="manage1">심호흡/명상</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="manage2" class="mr-2">
-                                    <label for="manage2">가벼운 운동</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="manage3" class="mr-2">
-                                    <label for="manage3">취미 활동</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="manage4" class="mr-2">
-                                    <label for="manage4">친구와 대화</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="manage5" class="mr-2">
-                                    <label for="manage5">충분한 휴식</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="text" class="border p-1 rounded w-full" placeholder="기타">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">자기 보상 계획</h4>
-                        <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="2" placeholder="목표 달성 시 자신에게 줄 보상을 미리 계획해보세요."></textarea>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="save-sel-btn px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">활동 저장</button>
-                    </div>
-                </div>
-                
-                <!-- 나머지 SEL 역량 탭 내용 (축약) -->
-                <div id="social-awareness" class="sel-tab-content">
-                    <h3 class="text-xl font-bold text-green-700 mb-3">사회적 인식 역량</h3>
-                    <p class="mb-4 text-gray-700">다양한 배경과 문화를 가진 타인의 관점을 이해하고 공감하는 능력입니다.</p>
-                    
-                    <!-- 사회적 인식 활동들 -->
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">다양한 관점 탐색하기</h4>
-                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                            <p class="font-semibold mb-2">상황:</p>
-                            <p class="text-gray-800">학급 프로젝트에서 한 학생이 맡은 부분을 제대로 완성하지 못해 팀 전체 점수가 낮아질 위기에 처했습니다. 일부 팀원들은 해당 학생을 비난하고 있고, 다른 팀원들은 도와주려고 합니다.</p>
-                        </div>
-                        
-                        <h5 class="font-semibold text-green-600 mb-2">각 입장에서의 감정과 생각</h5>
-                        <div class="overflow-x-auto mb-4">
-                            <table class="w-full border-collapse border">
-                                <thead>
-                                    <tr class="bg-green-50">
-                                        <th class="border p-2">입장</th>
-                                        <th class="border p-2">느끼는 감정</th>
-                                        <th class="border p-2">가능한 생각/관점</th>
-                                        <th class="border p-2">필요한 지원/해결책</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="border p-2">과제를 완성하지 못한 학생</td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2">비난하는 팀원</td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2">도와주려는 팀원</td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border p-2">담당 교사</td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                        <td class="border p-2"><textarea class="w-full border-0 bg-transparent focus:outline-none" rows="2"></textarea></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">내가 이 상황에서 할 수 있는 행동</label>
-                        <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="3" placeholder="이 상황에서 당신이라면 어떤 행동을 취할 것인지 작성해보세요."></textarea>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="save-sel-btn px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">활동 저장</button>
-                    </div>
-                </div>
-                
-                <div id="relationship-skills" class="sel-tab-content">
-                    <h3 class="text-xl font-bold text-green-700 mb-3">관계 기술 역량</h3>
-                    <p class="mb-4 text-gray-700">다양한 개인 및 그룹과 건강하고 지지적인 관계를 형성하고 유지하는 능력입니다.</p>
-                    
-                    <!-- 관계 기술 활동 내용 (간략히) -->
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">효과적인 의사소통 연습</h4>
-                        <p class="mb-3 text-gray-700">아래 상황에서 어떻게 효과적으로 의사소통할지 연습해보세요.</p>
-                        
-                        <div class="mb-4">
-                            <h5 class="font-semibold text-green-600 mb-2">상황 1: 의견 충돌</h5>
-                            <p class="text-gray-700 mb-2">모둠 활동에서 당신의 아이디어와 다른 친구의 아이디어가 충돌했습니다. 두 아이디어 모두 좋지만, 하나만 선택해야 합니다.</p>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="3" placeholder="나의 반응:"></textarea>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h5 class="font-semibold text-green-600 mb-2">상황 2: 피드백 제공</h5>
-                            <p class="text-gray-700 mb-2">친한 친구가 발표를 준비 중인데, 몇 가지 개선할 점이 보입니다. 하지만 친구는 자신의 발표에 자신감을 가지고 있습니다.</p>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="3" placeholder="나의 반응:"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="save-sel-btn px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">활동 저장</button>
-                    </div>
-                </div>
-                
-                <div id="responsible-decision-making" class="sel-tab-content">
-                    <h3 class="text-xl font-bold text-green-700 mb-3">책임 있는 의사결정 역량</h3>
-                    <p class="mb-4 text-gray-700">개인 행동과 사회적 상호작용에 대해 윤리적이고 건설적인 선택을 하는 능력입니다.</p>
-                    
-                    <!-- 의사결정 활동 내용 (간략히) -->
-                    <div class="mb-6">
-                        <h4 class="text-lg font-semibold text-green-600 mb-3">의사결정 과정 연습</h4>
-                        <p class="mb-3 text-gray-700">아래 딜레마 상황에서 책임 있는 의사결정을 연습해보세요.</p>
-                        
-                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                            <h5 class="font-semibold mb-2">딜레마 상황:</h5>
-                            <p class="text-gray-800">당신은 중요한 시험에서 친한 친구가 부정행위를 하는 것을 목격했습니다. 친구는 이번 시험 결과가 매우 중요하다고 했고, 만약 낮은 점수를 받으면 장학금을 잃을 수도 있습니다. 선생님은 부정행위를 목격한 학생이 있으면 보고하도록 요청했습니다. 이 상황에서 어떤 결정을 내려야 할까요?</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <h5 class="font-semibold text-green-600 mb-2">1단계: 상황 분석</h5>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="2" placeholder="이 상황에서 고려해야 할 중요한 사항들은 무엇인가요?"></textarea>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <h5 class="font-semibold text-green-600 mb-2">2단계: 가능한 선택지</h5>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="2" placeholder="이 상황에서 취할 수 있는 다양한 행동 방안을 적어보세요."></textarea>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <h5 class="font-semibold text-green-600 mb-2">3단계: 결과 예측</h5>
-                            <textarea class="w-full p-2 border rounded-md focus:ring-green-500 focus:border-green-500" rows="2" placeholder="각 선택지에 따른 가능한 결과와 영향을 예측해보세요."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="save-sel-btn px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">활동 저장</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- AI 상호작용 섹션 -->
-        <section id="ai-interaction" class="section-container">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-blue-700 mb-4">AI 상호작용 체험</h2>
-                <p class="mb-6 text-gray-700">AI Digital Textbook(AIDT)의 AI 상호작용을 체험해보세요. 이 모의 AI는 실제 AI의 기능을 시연하기 위한 것으로, 학습 지원, 질문 응답, 피드백 등을 제공합니다.</p>
-                
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="w-full md:w-2/3">
-                        <div class="border rounded-lg h-80 overflow-y-auto mb-4 p-4 bg-gray-50" id="ai-chat-container">
-                            <div class="flex items-start mb-4 ai-message">
-                                <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white mr-2 flex-shrink-0">
-                                    <i class="fas fa-robot"></i>
-                                </div>
-                                <div class="bg-blue-100 rounded-lg p-3 max-w-3/4">
-                                    <p>안녕하세요! 저는 AI Digital Textbook 학습 도우미입니다. 어떤 학습 주제에 대해 도움이 필요하신가요? HTHT 수업 모델이나 SEL 역량 개발에 대해 질문하셔도 좋아요.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex">
-                            <input type="text" id="ai-input" class="flex-grow p-2 border rounded-l-md focus:ring-blue-500 focus:border-blue-500" placeholder="AI에게 질문하세요...">
-                            <button id="ai-submit" class="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 transition-colors">전송</button>
-                        </div>
-                    </div>
-                    
-                    <div class="w-full md:w-1/3">
-                        <div class="border rounded-lg p-4">
-                            <h3 class="font-bold text-blue-700 mb-3">추천 질문</h3>
-                            <div class="space-y-2">
-                                <button class="ai-question-btn w-full text-left p-2 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors">AIDT와 HTHT 모델은 어떻게 연결되나요?</button>
-                                <button class="ai-question-btn w-full text-left p-2 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors">SEL 역량을 강화하는 효과적인 활동은 무엇인가요?</button>
-                                <button class="ai-question-btn w-full text-left p-2 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors">학생들의 자기인식 능력을 어떻게 향상시킬 수 있나요?</button>
-                                <button class="ai-question-btn w-full text-left p-2 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors">HTHT 수업에서 교사의 역할은 무엇인가요?</button>
-                            </div>
-                        </div>
-                        
-                        <div class="border rounded-lg p-4 mt-4">
-                            <h3 class="font-bold text-blue-700 mb-3">AI 학습 지원 시뮬레이션</h3>
-                            
-                            <div class="mb-4">
-                                <h4 class="font-semibold text-blue-600 mb-2">개인화된 학습 경로</h4>
-                                <p class="text-sm text-gray-700 mb-2">AI가 분석한 당신의 학습 스타일과 강점을 기반으로 맞춤형 학습 경로를 제안합니다.</p>
-                                <div class="bg-blue-50 p-2 rounded text-sm">
-                                    <p>추천: 시각적 자료와 실습 위주의 학습 방식이 효과적일 것입니다.</p>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-semibold text-blue-600 mb-2">다음 단계 추천</h4>
-                                <ul class="list-disc list-inside text-sm space-y-1">
-                                    <li>프로젝트 기획 연습하기</li>
-                                    <li>감정 인식 활동 완료하기</li>
-                                    <li>의사결정 과정 연습하기</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 협업 공간 섹션 -->
-        <section id="collaboration" class="section-container">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-purple-700 mb-4">협업 공간</h2>
-                <p class="mb-6 text-gray-700">팀원들과 함께 HTHT×SEL 프로젝트를 기획하고 협력하세요. 아이디어를 공유하고 피드백을 주고받는 공간입니다.</p>
-                
-                <div class="flex flex-col lg:flex-row gap-6">
-                    <div class="w-full lg:w-2/3">
-                        <h3 class="text-xl font-bold text-purple-700 mb-4">팀 프로젝트 보드</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <!-- 계획 칸반 -->
-                            <div>
-                                <h4 class="font-semibold bg-purple-100 p-2 rounded-t-md">계획 <span class="bg-purple-200 px-2 py-1 rounded-full text-sm">3</span></h4>
-                                <div class="border border-gray-200 rounded-b-md p-2 space-y-2 h-64 overflow-y-auto">
-                                    <!-- 계획 카드 1 -->
-                                    <div class="bg-white p-2 rounded shadow-sm">
-                                        <p class="font-medium">프로젝트 주제 선정</p>
-                                        <div class="flex justify-between text-sm text-gray-500 mt-1">
-                                            <p>담당: 전체</p>
-                                            <span class="bg-red-100 text-red-800 px-1 rounded text-xs">높음</span>
-                                        </div>
-                                    </div>
-                                    <!-- 계획 카드 2 -->
-                                    <div class="bg-white p-2 rounded shadow-sm">
-                                        <p class="font-medium">자료 조사</p>
-                                        <div class="flex justify-between text-sm text-gray-500 mt-1">
-                                            <p>담당: 민지, 준호</p>
-                                            <span class="bg-yellow-100 text-yellow-800 px-1 rounded text-xs">중간</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- 진행중 칸반 -->
-                            <div>
-                                <h4 class="font-semibold bg-blue-100 p-2 rounded-t-md">진행중 <span class="bg-blue-200 px-2 py-1 rounded-full text-sm">2</span></h4>
-                                <div class="border border-gray-200 rounded-b-md p-2 space-y-2 h-64 overflow-y-auto">
-                                    <!-- 진행중 카드 1 -->
-                                    <div class="bg-white p-2 rounded shadow-sm">
-                                        <p class="font-medium">프로토타입 개발</p>
-                                        <div class="flex justify-between text-sm text-gray-500 mt-1">
-                                            <p>담당: 태윤, 서연</p>
-                                            <span class="bg-yellow-100 text-yellow-800 px-1 rounded text-xs">중간</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- 완료 칸반 -->
-                            <div>
-                                <h4 class="font-semibold bg-green-100 p-2 rounded-t-md">완료 <span class="bg-green-200 px-2 py-1 rounded-full text-sm">1</span></h4>
-                                <div class="border border-gray-200 rounded-b-md p-2 space-y-2 h-64 overflow-y-auto">
-                                    <!-- 비어 있음 -->
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <button id="add-task-btn" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">새 작업 추가</button>
-                        </div>
-                    </div>
-                    
-                    <div class="w-full lg:w-1/3">
-                        <h3 class="text-xl font-bold text-purple-700 mb-4">팀 토론</h3>
-                        
-                        <div class="border rounded-lg h-80 overflow-y-auto mb-4 p-4">
-                            <!-- 토론 메시지 1 -->
-                            <div class="mb-4">
-                                <div class="flex items-center mb-1">
-                                    <div class="w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center text-white text-xs mr-2">SY</div>
-                                    <span class="font-semibold">서연</span>
-                                    <span class="text-gray-500 text-xs ml-2">오늘 오전 10:15</span>
-                                </div>
-                                <div class="pl-8">
-                                    <p class="text-gray-800">프로젝트 주제로 '감정 분석 기반 학급 분위기 개선 프로그램'은 어떨까요? 요즘 우리 반 분위기가 좀 침체되어 있는 것 같아서요.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 토론 메시지 2 -->
-                            <div class="mb-4">
-                                <div class="flex items-center mb-1">
-                                    <div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs mr-2">TY</div>
-                                    <span class="font-semibold">태윤</span>
-                                    <span class="text-gray-500 text-xs ml-2">오늘 오전 10:22</span>
-                                </div>
-                                <div class="pl-8">
-                                    <p class="text-gray-800">좋은 아이디어네요! AI가 학급 구성원들의 글이나 대화에서 감정을 분석하고, 그 결과를 바탕으로 학급 분위기를 개선하는 방안을 제안하는 프로그램이 될 수 있을 것 같아요.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 토론 메시지 3 -->
-                            <div class="mb-4">
-                                <div class="flex items-center mb-1">
-                                    <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white text-xs mr-2">MJ</div>
-                                    <span class="font-semibold">민지</span>
-                                    <span class="text-gray-500 text-xs ml-2">오늘 오전 10:30</span>
-                                </div>
-                                <div class="pl-8">
-                                    <p class="text-gray-800">저도 동의해요! 여기에 추가로 개인적인 감정 관리 팁이나 학급 활동 제안도 포함하면 좋을 것 같아요. SEL 역량 중에서는 '사회적 인식'과 '관계 기술'에 초점을 맞출 수 있을 것 같네요.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex">
-                            <input type="text" id="team-chat-input" class="flex-grow p-2 border rounded-l-md focus:ring-purple-500 focus:border-purple-500" placeholder="메시지를 입력하세요...">
-                            <button id="team-chat-submit" class="px-4 py-2 bg-purple-600 text-white rounded-r-md hover:bg-purple-700 transition-colors">전송</button>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <h4 class="font-semibold text-purple-700 mb-2">팀원</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-                                    <div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs mr-2">TY</div>
-                                    <span>태윤</span>
-                                </div>
-                                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-                                    <div class="w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center text-white text-xs mr-2">SY</div>
-                                    <span>서연</span>
-                                </div>
-                                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-                                    <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white text-xs mr-2">MJ</div>
-                                    <span>민지</span>
-                                </div>
-                                <div class="flex items-center bg-gray-100 px-3 py-1 rounded-full">
-                                    <div class="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs mr-2">JH</div>
-                                    <span>준호</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold mb-2">AIDT HTHT×SEL 체험형 웹 애플리케이션</h3>
-                    <p class="text-gray-400">주관: AIEDAP수도권역</p>
-                </div>
-                <div>
-                    <p class="text-gray-400">&copy; 2025 AIEDAP All rights reserved.</p>
-                </div>
-            </div>
+    <!-- 푸터 -->
+    <footer class="bg-primary text-center p-4">
+        <div class="container">
+            <p class="mb-0 text-white">
+                &copy; 2024 AIEDAP수도권역 - AI 교육 개발 및 적용 프로젝트
+            </p>
+            <p class="mb-0 text-white" style="opacity: 0.8; font-size: 0.875rem;">
+                AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning
+            </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- 공통 JavaScript -->
+    <script src="assets/js/common.js"></script>
+    
+    <script>
+        // 페이지별 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 카드 호버 효과 개선
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // 통계 카운터 애니메이션
+            const animateCounter = (element, target) => {
+                if (target === '∞') {
+                    element.textContent = '∞';
+                    return;
+                }
+                
+                let current = 0;
+                const increment = target / 20;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current);
+                    }
+                }, 50);
+            };
+            
+            // Intersection Observer로 통계 섹션이 보일 때 애니메이션 실행
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.stat-number').forEach(stat => {
+                            const target = stat.textContent;
+                            animateCounter(stat, target);
+                        });
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+        });
+    </script>
 </body>
 </html>
-    <script id="html_badge_script1">
-        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDqxzwyQy5X6YEJftAf7MSGCrFGfKkRVvmDaPsC9AoxF3QiJnvAHgkaZB%2BswMjz2t5twlHjM%2FEvs24n0GrFoN6TWjaHUNSjaNo%2F6iFo%2BxhHSOg4raPZfH%2F2Y%2FEvrd9EZPcD41GJ%2BmuKiw6p5oFhtSvdZciblnym1wPGFXMeaok1WCtyUFfIit2pK4TFUAkUxt2uMHP%2FyKxxiSQJewP9x1sHsZEOQ4K5QgU2jf4zx8gT7onXqkyCLL%2FKAQiXy66D2BRPda4r0nk0kD%2BiEowQjNOs2iBBbkgmQIdCBM7wVVoXRPzAQZfPoJLe4ywaQtMaTSoAYRS5fgIak2YNuhbIurCc8b2nXvEhkNENWX1aRXxUQMq8uYJeqI9DRWfKc66cqH9%2Bk1PVI2BBOcBrYwwxb9wgG3pK3hyNC9cEwjcFHqvDDYSrayDuit0x6IUyGUkbl2iYMUJm%2BcSSgsO3lta4RZKBdHOFS9N14nvhOUMJk2Zz1M";
-        window.__genspark_locale = "en-US";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDqxzwyQy5X6YEJftAf7MSGCrFGfKkRVvmDaPsC9AoxF3QiJnvAHgkaZB+swMjz2t5twlHjM/Evs24n0GrFoN6TWjaHUNSjaNo/6iFo+xhHSOg4raPZfH/2Y/Evrd9EZPcD41GJ+muKiw6p5oFhtSvdZciblnym1wPGFXMeaok1WCtyUFfIit2pK4TFUAkUxt2uMHP/yKxxiSQJewP9x1sHsZEOQ4K5QgU2jf4zx8gT7onXqkyCLL/KAQiXy66D2BRPda4r0nk0kD+iEowQjNOs2iBBbkgmQIdCBM7wVVoXRPzAQZfPoJLe4ywaQtMaTSoAYRS5fgIak2YNuhbIurCc8b2nXvEhkNENWX1aRXxUQMq8uYJeqI9DRWfKc66cqH9+k1PVI2BBOcBrYwwxb9wgG3pK3hyNC9cEwjcFHqvDDYSrayDuit0x6IUyGUkbl2iYMUJm+cSSgsO3lta4RZKBdHOFS9N14nvhOUMJk2Zz1M";
-    </script>
-    
-    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
-    

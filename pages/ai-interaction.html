@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 상호작용 체험 - AIDT HTHT×SEL</title>
+    <meta name="description" content="모의 AI 환경에서 질문하고 피드백을 받으며 AI 기반 학습 지원을 직접 경험해볼 수 있습니다.">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--accent-color), #2c5d5b);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 2s infinite;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--bg-light);
+        }
+        
+        .message {
+            display: flex;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .message.user {
+            justify-content: flex-end;
+        }
+        
+        .message.ai {
+            justify-content: flex-start;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            position: relative;
+            word-wrap: break-word;
+        }
+        
+        .message.user .message-content {
+            background: var(--primary-color);
+            color: white;
+            border-bottom-right-radius: 0.3rem;
+        }
+        
+        .message.ai .message-content {
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 0.3rem;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .user-avatar {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .ai-avatar {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 0;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-lighter);
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .chat-input-area {
+            padding: 1rem;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .chat-input-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-end;
+        }
+        
+        .chat-input {
+            flex: 1;
+            min-height: 2.5rem;
+            max-height: 6rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+        }
+        
+        .send-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .send-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        .send-btn:disabled {
+            background: var(--bg-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .suggested-questions {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .suggested-question {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+        
+        .suggested-question:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                height: 500px;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
+            
+            .suggested-questions {
+                flex-direction: column;
+            }
+            
+            .suggested-question {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="../index.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-brain"></i>
+                        AIDT HTHT×SEL
+                    </a>
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 글로벌 네비게이션 -->
+    <nav class="global-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="intro.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i> 소개
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="project-wizard.html" class="nav-link">
+                        <i class="fas fa-magic"></i> 프로젝트 기획
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="emotion-recognition.html" class="nav-link">
+                        <i class="fas fa-smile"></i> 감정 인식
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="sel-competency.html" class="nav-link">
+                        <i class="fas fa-users"></i> SEL 역량
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-interaction.html" class="nav-link active">
+                        <i class="fas fa-comments"></i> AI 상호작용
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="collaboration.html" class="nav-link">
+                        <i class="fas fa-project-diagram"></i> 협업 공간
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../instructor/manual.html" class="nav-link">
+                        <i class="fas fa-chalkboard-teacher"></i> 강사 메뉴얼
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 브레드크럼 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">홈</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">AI 상호작용 체험</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container" style="padding: 2rem 1rem;">
+        <!-- 페이지 헤더 -->
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                <h1 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-comments" style="color: var(--accent-color);"></i>
+                    AI 상호작용 체험
+                </h1>
+                <p class="card-subtitle" style="font-size: 1.1rem;">
+                    AI 학습 도우미와 대화하며 개별 맞춤형 학습 지원을 경험해보세요
+                </p>
+            </div>
+        </div>
+
+        <!-- AI 기능 소개 -->
+        <div class="ai-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3>질문 답변</h3>
+                <p>학습 내용에 대한 궁금한 점을 언제든지 질문하고 즉시 답변을 받을 수 있습니다.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>학습 분석</h3>
+                <p>개인의 학습 패턴을 분석하여 맞춤형 학습 방향을 제시합니다.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>피드백 제공</h3>
+                <p>학습 과정에서 건설적인 피드백과 개선 방향을 제공합니다.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>정서적 지원</h3>
+                <p>학습 동기를 높이고 정서적 어려움을 해결하는 데 도움을 제공합니다.</p>
+            </div>
+        </div>
+
+        <!-- 채팅 인터페이스 -->
+        <div class="chat-container">
+            <div class="chat-header">
+                <div>
+                    <h3><i class="fas fa-robot"></i> AIDT 학습 도우미</h3>
+                    <small>AI-powered Learning Assistant</small>
+                </div>
+                <div class="ai-status">
+                    <div class="status-indicator"></div>
+                    <span>온라인</span>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="message ai">
+                    <div class="message-avatar ai-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        안녕하세요! 저는 AIDT 학습 도우미입니다. 🤖<br><br>
+                        AIDT, HTHT, SEL에 관한 질문이나 학습에 도움이 필요한 것이 있으면 언제든지 말씀해 주세요. 
+                        함께 배워나가요!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <div class="suggested-questions">
+                    <div class="suggested-question" data-question="AIDT가 뭐야?">AIDT가 뭐야?</div>
+                    <div class="suggested-question" data-question="SEL 역량을 어떻게 기를 수 있어?">SEL 역량을 어떻게 기를 수 있어?</div>
+                    <div class="suggested-question" data-question="감정 조절이 어려워">감정 조절이 어려워</div>
+                    <div class="suggested-question" data-question="친구와 갈등이 생겼어">친구와 갈등이 생겼어</div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <textarea 
+                        id="chat-input" 
+                        class="chat-input" 
+                        placeholder="AI 학습 도우미에게 질문해보세요..." 
+                        rows="1"
+                    ></textarea>
+                    <button id="send-btn" class="send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 학습 팁 -->
+        <div class="card mt-4" style="background: linear-gradient(135deg, var(--bg-light), var(--bg-white));">
+            <div class="card-body">
+                <h3><i class="fas fa-tips text-primary"></i> AI와 효과적으로 소통하는 방법</h3>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-question text-primary" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>구체적으로 질문하기</h5>
+                            <p class="text-muted small">"어떻게 해야 해?" 보다는 "친구와 싸웠을 때 어떻게 화해할 수 있을까?"와 같이 구체적으로 질문하세요.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-context text-secondary" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>상황 설명하기</h5>
+                            <p class="text-muted small">현재 상황이나 배경을 함께 설명하면 더 정확하고 도움이 되는 답변을 받을 수 있습니다.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-follow-up text-accent" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>추가 질문하기</h5>
+                            <p class="text-muted small">이해가 안 되는 부분이 있으면 주저하지 말고 추가로 질문해보세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 대화 주제 카테고리 -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-tags"></i>
+                    대화 주제별 가이드
+                </h2>
+                <p class="card-subtitle">다양한 주제로 AI와 대화해보세요</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="card" style="border-left: 4px solid var(--primary-color);">
+                            <div class="card-body">
+                                <h4><i class="fas fa-book-open"></i> 학습 관련</h4>
+                                <ul class="mb-0">
+                                    <li>AIDT, HTHT, SEL 개념 질문</li>
+                                    <li>학습 방법 및 전략</li>
+                                    <li>과제 및 프로젝트 도움</li>
+                                    <li>학습 동기 부여</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style="border-left: 4px solid var(--secondary-color);">
+                            <div class="card-body">
+                                <h4><i class="fas fa-heart"></i> 감정 및 관계</h4>
+                                <ul class="mb-0">
+                                    <li>감정 인식 및 조절</li>
+                                    <li>친구 관계 고민</li>
+                                    <li>갈등 해결 방법</li>
+                                    <li>스트레스 관리</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style="border-left: 4px solid var(--accent-color);">
+                            <div class="card-body">
+                                <h4><i class="fas fa-compass"></i> 진로 및 성장</h4>
+                                <ul class="mb-0">
+                                    <li>진로 탐색 및 고민</li>
+                                    <li>자기계발 방법</li>
+                                    <li>미래 설계</li>
+                                    <li>목표 설정 및 달성</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 다음 활동 안내 -->
+        <div class="card mt-4">
+            <div class="card-header text-center">
+                <h2 class="card-title">
+                    <i class="fas fa-arrow-right"></i>
+                    다음 활동
+                </h2>
+                <p class="card-subtitle">AI와의 대화를 바탕으로 협업 활동에 참여해보세요</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <a href="collaboration.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--success-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h4>협업 공간</h4>
+                                <p class="text-muted">팀 프로젝트를 통해 협력하고 소통하는 방법을 배워보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="project-wizard.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <h4>프로젝트 기획</h4>
+                                <p class="text-muted">AI의 조언을 바탕으로 새로운 프로젝트를 기획해보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 공통 JavaScript -->
+    <script src="../assets/js/common.js"></script>
+    
+    <script>
+        let chatHistory = [];
+        
+        // 채팅 기능 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 추천 질문 클릭 이벤트
+            document.querySelectorAll('.suggested-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const questionText = this.dataset.question;
+                    document.getElementById('chat-input').value = questionText;
+                    sendMessage();
+                });
+            });
+            
+            // 입력창 이벤트
+            const chatInput = document.getElementById('chat-input');
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            // 입력창 자동 높이 조절
+            chatInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 96) + 'px';
+                
+                // 전송 버튼 활성화/비활성화
+                const sendBtn = document.getElementById('send-btn');
+                sendBtn.disabled = this.value.trim().length === 0;
+            });
+            
+            // 저장된 채팅 기록 복원
+            loadChatHistory();
+        });
+        
+        // 메시지 전송
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // 사용자 메시지 추가
+            addMessage('user', message);
+            
+            // 입력창 초기화
+            input.value = '';
+            input.style.height = 'auto';
+            document.getElementById('send-btn').disabled = true;
+            
+            // 타이핑 인디케이터 표시
+            showTypingIndicator();
+            
+            // AI 응답 생성 (시뮬레이션)
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateAIResponse(message);
+                addMessage('ai', response);
+                saveChatHistory();
+            }, 1000 + Math.random() * 2000);
+        }
+        
+        // 메시지 추가
+        function addMessage(sender, content) {
+            const messagesContainer = document.getElementById('chat-messages');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatarClass = sender === 'user' ? 'user-avatar' : 'ai-avatar';
+            const avatarIcon = sender === 'user' ? 'fas fa-user' : 'fas fa-robot';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar ${avatarClass}">
+                    <i class="${avatarIcon}"></i>
+                </div>
+                <div class="message-content">
+                    ${content.replace(/\n/g, '<br>')}
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            
+            // 채팅 히스토리에 추가
+            chatHistory.push({ sender, content, timestamp: new Date() });
+            
+            // 스크롤을 맨 아래로
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // 타이핑 인디케이터 표시/숨기기
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chat-messages');
+            
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai typing-indicator-message';
+            typingDiv.innerHTML = `
+                <div class="message-avatar ai-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function hideTypingIndicator() {
+            const typingIndicator = document.querySelector('.typing-indicator-message');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+        
+        // AI 응답 생성 (시뮬레이션)
+        function generateAIResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // 키워드 기반 응답 생성
+            if (message.includes('aidt') || message.includes('에이아이디티')) {
+                return `AI Digital Textbook(AIDT)는 인공지능 기술이 적용된 디지털 교과서입니다! 🤖📚\n\n주요 특징:\n• 개별 맞춤형 학습 경로 제공\n• 실시간 학습 분석 및 피드백\n• 적응형 콘텐츠 추천\n• 협력적 학습 활동 지원\n\n더 궁금한 점이 있으면 언제든지 물어보세요!`;
+            }
+            
+            if (message.includes('htht') || message.includes('하이테크') || message.includes('하이터치')) {
+                return `HTHT(High-Tech High-Touch)는 기술과 인간적 소통의 균형을 의미합니다! 💻🤝\n\n• High-Tech: 첨단 기술을 활용한 효율적 학습\n• High-Touch: 교사와 학생 간의 따뜻한 상호작용\n\n이 두 요소가 조화를 이룰 때 진정한 교육적 효과를 얻을 수 있어요. 어떤 부분이 더 궁금하신가요?`;
+            }
+            
+            if (message.includes('sel') || message.includes('사회정서') || message.includes('역량')) {
+                return `SEL(사회정서학습)의 5가지 핵심 역량을 소개해드릴게요! 💪❤️\n\n1. 🎯 자기인식: 내 감정과 생각 파악하기\n2. 🔧 자기관리: 감정과 행동 조절하기\n3. 👀 사회적 인식: 타인의 감정 이해하기\n4. 🤝 관계 기술: 건강한 관계 형성하기\n5. ⚖️ 책임감 있는 의사결정: 올바른 선택하기\n\n어떤 역량을 더 자세히 알고 싶으신가요?`;
+            }
+            
+            if (message.includes('감정') && (message.includes('조절') || message.includes('관리') || message.includes('어려워'))) {
+                return `감정 조절이 어려우실 때 도움이 될 수 있는 방법들을 알려드릴게요! 😊\n\n🔹 즉시 시도할 수 있는 방법:\n• 깊게 숨 쉬기 (4초 들이마시고 6초 내쉬기)\n• 10까지 천천히 세기\n• 잠시 그 자리를 떠나기\n\n🔹 장기적인 방법:\n• 감정 일기 쓰기\n• 규칙적인 운동하기\n• 충분한 수면 취하기\n\n지금 어떤 감정 때문에 힘드신가요? 더 구체적으로 이야기해주시면 더 도움이 될 조언을 드릴 수 있어요.`;
+            }
+            
+            if (message.includes('친구') && (message.includes('갈등') || message.includes('싸웠') || message.includes('문제'))) {
+                return `친구와의 갈등은 누구에게나 있을 수 있는 일이에요. 해결 방법을 함께 생각해볼까요? 🤗\n\n💭 먼저 생각해볼 점:\n• 갈등의 원인이 무엇인지 파악하기\n• 내 감정과 상대방 감정 이해하기\n• 서로의 입장에서 생각해보기\n\n🗣️ 대화 방법:\n• "나는 ~라고 느꼈어"로 표현하기\n• 상대방 말 끝까지 듣기\n• 해결책을 함께 찾기\n\n어떤 상황인지 더 자세히 말해주시면 구체적인 조언을 드릴 수 있어요!`;
+            }
+            
+            if (message.includes('학습') || message.includes('공부') || message.includes('성적')) {
+                return `학습에 관해 궁금하신 점이 있으시군요! 📚✨\n\n효과적인 학습을 위한 팁:\n• 🎯 명확한 목표 설정하기\n• ⏰ 규칙적인 학습 시간 만들기\n• 🔄 다양한 방법으로 반복 학습하기\n• 🤝 친구들과 함께 공부하기\n• 💪 충분한 휴식과 수면 취하기\n\n어떤 과목이나 분야에서 어려움을 겪고 계신가요? 더 구체적으로 말씀해주시면 맞춤형 조언을 드릴게요!`;
+            }
+            
+            if (message.includes('스트레스') || message.includes('힘들') || message.includes('우울')) {
+                return `힘든 시간을 보내고 계시는군요. 그런 감정을 느끼는 것은 자연스러운 일이에요. 🌟\n\n💙 스트레스 관리 방법:\n• 신뢰할 수 있는 사람과 대화하기\n• 좋아하는 활동하기 (음악 듣기, 산책 등)\n• 규칙적인 운동하기\n• 충분한 수면 취하기\n• 명상이나 요가 시도하기\n\n❗ 중요한 점:\n만약 이런 감정이 계속되거나 너무 힘들다면, 부모님이나 선생님, 전문가의 도움을 받는 것이 좋아요.\n\n지금 가장 힘든 부분이 무엇인가요?`;
+            }
+            
+            if (message.includes('안녕') || message.includes('반가') || message.includes('처음')) {
+                return `안녕하세요! 만나서 반가워요! 😊\n\n저는 AIDT 학습 도우미예요. 여러분의 학습과 성장을 돕기 위해 여기 있답니다!\n\n제가 도울 수 있는 것들:\n• 📚 학습 관련 질문 답변\n• 💭 감정과 관계 고민 상담\n• 🎯 목표 설정과 동기 부여\n• 🤝 협력과 소통 방법 안내\n\n무엇을 도와드릴까요?`;
+            }
+            
+            // 기본 응답
+            const defaultResponses = [
+                `흥미로운 질문이네요! 🤔 좀 더 구체적으로 설명해주시면 더 도움이 되는 답변을 드릴 수 있을 것 같아요.`,
+                `그런 생각을 하고 계시는군요! 어떤 부분이 가장 궁금하신가요? 더 자세히 이야기해주세요. 😊`,
+                `좋은 관점이에요! 이 주제에 대해 어떤 경험이나 생각이 있으신지 궁금해요. 함께 이야기해볼까요?`,
+                `아직 이해하지 못한 부분이 있는 것 같아요. 😅 다른 방식으로 질문해주시거나 상황을 더 설명해주시면 도와드릴게요!`
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+        
+        // 채팅 기록 저장/로드
+        function saveChatHistory() {
+            AIDT.utils.storage.set('aiChatHistory', chatHistory);
+        }
+        
+        function loadChatHistory() {
+            const savedHistory = AIDT.utils.storage.get('aiChatHistory');
+            if (savedHistory && savedHistory.length > 0) {
+                chatHistory = savedHistory;
+                
+                // 기존 메시지들 복원 (첫 번째 환영 메시지 제외)
+                const messagesContainer = document.getElementById('chat-messages');
+                
+                savedHistory.forEach(msg => {
+                    if (msg.sender !== 'ai' || !msg.content.includes('안녕하세요! 저는 AIDT 학습 도우미입니다')) {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = `message ${msg.sender}`;
+                        
+                        const avatarClass = msg.sender === 'user' ? 'user-avatar' : 'ai-avatar';
+                        const avatarIcon = msg.sender === 'user' ? 'fas fa-user' : 'fas fa-robot';
+                        
+                        messageDiv.innerHTML = `
+                            <div class="message-avatar ${avatarClass}">
+                                <i class="${avatarIcon}"></i>
+                            </div>
+                            <div class="message-content">
+                                ${msg.content.replace(/\n/g, '<br>')}
+                            </div>
+                        `;
+                        
+                        messagesContainer.appendChild(messageDiv);
+                    }
+                });
+                
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+        
+        // 채팅 기록 초기화 (개발용)
+        function clearChatHistory() {
+            chatHistory = [];
+            AIDT.utils.storage.remove('aiChatHistory');
+            
+            const messagesContainer = document.getElementById('chat-messages');
+            messagesContainer.innerHTML = `
+                <div class="message ai">
+                    <div class="message-avatar ai-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        안녕하세요! 저는 AIDT 학습 도우미입니다. 🤖<br><br>
+                        AIDT, HTHT, SEL에 관한 질문이나 학습에 도움이 필요한 것이 있으면 언제든지 말씀해 주세요. 
+                        함께 배워나가요!
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

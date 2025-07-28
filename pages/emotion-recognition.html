@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감정 인식 활동 - AIDT HTHT×SEL</title>
+    <meta name="description" content="다양한 상황에서의 감정 인식 및 공감 능력을 개발하는 대화형 시나리오 기반 활동을 제공합니다.">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .scenario-container {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .scenario {
+            display: none;
+            padding: 2rem;
+        }
+        
+        .scenario.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .scenario-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .scenario-image {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background: var(--bg-gray);
+            border-radius: var(--border-radius);
+            margin: 1.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--text-lighter);
+        }
+        
+        .scenario-content {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .emotion-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .emotion-btn {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background: var(--bg-white);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .emotion-btn:hover {
+            border-color: var(--secondary-color);
+            background: var(--secondary-light);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .emotion-btn.selected {
+            border-color: var(--secondary-color);
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .emotion-feedback {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .emotion-feedback.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .scenario-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .scenario-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-gray);
+            transition: var(--transition);
+        }
+        
+        .progress-dot.active {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+        
+        .reflection-section {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .reflection-questions {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .reflection-questions li {
+            background: var(--bg-light);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .emotion-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .scenario-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="../index.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-brain"></i>
+                        AIDT HTHT×SEL
+                    </a>
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 글로벌 네비게이션 -->
+    <nav class="global-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="intro.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i> 소개
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="project-wizard.html" class="nav-link">
+                        <i class="fas fa-magic"></i> 프로젝트 기획
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="emotion-recognition.html" class="nav-link active">
+                        <i class="fas fa-smile"></i> 감정 인식
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="sel-competency.html" class="nav-link">
+                        <i class="fas fa-users"></i> SEL 역량
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-interaction.html" class="nav-link">
+                        <i class="fas fa-comments"></i> AI 상호작용
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="collaboration.html" class="nav-link">
+                        <i class="fas fa-project-diagram"></i> 협업 공간
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../instructor/manual.html" class="nav-link">
+                        <i class="fas fa-chalkboard-teacher"></i> 강사 메뉴얼
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 브레드크럼 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">홈</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">감정 인식 활동</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container" style="padding: 2rem 1rem;">
+        <!-- 페이지 헤더 -->
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                <h1 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-smile" style="color: var(--secondary-color);"></i>
+                    감정 인식 활동
+                </h1>
+                <p class="card-subtitle" style="font-size: 1.1rem;">
+                    다양한 상황에서 자신과 타인의 감정을 인식하고 공감하는 능력을 기릅니다
+                </p>
+            </div>
+        </div>
+
+        <!-- 활동 안내 -->
+        <div class="card mb-4" style="background: linear-gradient(135deg, var(--bg-light), var(--bg-white));">
+            <div class="card-body">
+                <h3><i class="fas fa-info-circle text-primary"></i> 활동 안내</h3>
+                <p>각 시나리오를 읽고 등장인물의 감정을 파악해보세요. 올바른 감정을 선택하면 피드백을 받을 수 있습니다.</p>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-eye text-primary" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>관찰하기</h5>
+                            <p class="text-muted small">상황을 자세히 관찰하세요</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-heart text-secondary" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>감정 인식</h5>
+                            <p class="text-muted small">감정을 정확히 파악하세요</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-handshake text-accent" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>공감하기</h5>
+                            <p class="text-muted small">상대방의 입장에서 생각하세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 시나리오 컨테이너 -->
+        <div class="scenario-container">
+            <div class="scenario-header">
+                <h2>시나리오 <span id="scenario-number">1</span> / 5</h2>
+                <p>다음 상황에서 등장인물의 감정을 파악해보세요</p>
+            </div>
+
+            <!-- 시나리오 1: 친구와의 갈등 -->
+            <div id="scenario-1" class="scenario active" data-scenario="1">
+                <div class="scenario-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                
+                <div class="scenario-content">
+                    <h3>친구와의 약속</h3>
+                    <p>
+                        지수는 오늘 절친한 친구 민지와 영화를 보기로 약속했습니다. 
+                        지수는 이번 주 내내 힘든 일이 있어서 친구와의 만남을 정말 기대하고 있었습니다. 
+                        하지만 약속 시간 30분 전에 민지에게서 "갑자기 다른 약속이 생겨서 오늘 못 만날 것 같아. 미안해!"라는 메시지가 왔습니다.
+                    </p>
+                    <p><strong>이 상황에서 지수는 어떤 감정을 느꼈을까요?</strong></p>
+                </div>
+
+                <div class="emotion-options">
+                    <button class="emotion-btn" data-emotion="disappointed" data-correct="true">
+                        <i class="fas fa-frown"></i><br>실망감
+                    </button>
+                    <button class="emotion-btn" data-emotion="angry" data-correct="false">
+                        <i class="fas fa-angry"></i><br>분노
+                    </button>
+                    <button class="emotion-btn" data-emotion="happy" data-correct="false">
+                        <i class="fas fa-smile"></i><br>기쁨
+                    </button>
+                    <button class="emotion-btn" data-emotion="confused" data-correct="false">
+                        <i class="fas fa-question"></i><br>혼란
+                    </button>
+                </div>
+
+                <div class="emotion-feedback">
+                    <h4><i class="fas fa-check-circle"></i> 정답입니다!</h4>
+                    <p>
+                        지수는 친구와의 만남을 기대하고 있었기 때문에 갑작스러운 약속 취소에 실망감을 느꼈을 것입니다. 
+                        실망감은 기대했던 일이 뜻대로 되지 않을 때 느끼는 자연스러운 감정입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 시나리오 2: 성취와 기쁨 -->
+            <div id="scenario-2" class="scenario" data-scenario="2">
+                <div class="scenario-image">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                
+                <div class="scenario-content">
+                    <h3>시험 결과 발표</h3>
+                    <p>
+                        현우는 지난 달부터 열심히 준비한 영어 말하기 대회에 참가했습니다. 
+                        평소 영어 말하기에 자신이 없었던 현우는 매일 밤늦게까지 연습했습니다. 
+                        오늘 결과가 발표되었는데, 현우는 예상을 뛰어넘어 2등을 차지했습니다.
+                    </p>
+                    <p><strong>이 상황에서 현우는 어떤 감정을 느꼈을까요?</strong></p>
+                </div>
+
+                <div class="emotion-options">
+                    <button class="emotion-btn" data-emotion="proud" data-correct="true">
+                        <i class="fas fa-star"></i><br>자부심
+                    </button>
+                    <button class="emotion-btn" data-emotion="surprised" data-correct="false">
+                        <i class="fas fa-surprise"></i><br>놀람
+                    </button>
+                    <button class="emotion-btn" data-emotion="nervous" data-correct="false">
+                        <i class="fas fa-nervous"></i><br>긴장
+                    </button>
+                    <button class="emotion-btn" data-emotion="sad" data-correct="false">
+                        <i class="fas fa-sad-tear"></i><br>슬픔
+                    </button>
+                </div>
+
+                <div class="emotion-feedback">
+                    <h4><i class="fas fa-check-circle"></i> 정답입니다!</h4>
+                    <p>
+                        현우는 자신의 노력이 결실을 맺어 좋은 결과를 얻었기 때문에 자부심을 느꼈을 것입니다. 
+                        특히 자신이 부족하다고 생각했던 영역에서 성과를 거두었으므로 더욱 뿌듯할 것입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 시나리오 3: 고민과 걱정 -->
+            <div id="scenario-3" class="scenario" data-scenario="3">
+                <div class="scenario-image">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                
+                <div class="scenario-content">
+                    <h3>진로 고민</h3>
+                    <p>
+                        고등학교 2학년인 서연이는 문과와 이과 중 어느 계열을 선택할지 고민하고 있습니다. 
+                        수학과 과학을 좋아하지만 문학과 역사에도 관심이 많습니다. 
+                        부모님과 선생님들은 각각 다른 조언을 주시고, 친구들도 서로 다른 선택을 하고 있어서 더욱 혼란스럽습니다.
+                    </p>
+                    <p><strong>이 상황에서 서연이는 어떤 감정을 느꼈을까요?</strong></p>
+                </div>
+
+                <div class="emotion-options">
+                    <button class="emotion-btn" data-emotion="anxious" data-correct="true">
+                        <i class="fas fa-dizzy"></i><br>불안감
+                    </button>
+                    <button class="emotion-btn" data-emotion="excited" data-correct="false">
+                        <i class="fas fa-grin-hearts"></i><br>흥분
+                    </button>
+                    <button class="emotion-btn" data-emotion="bored" data-correct="false">
+                        <i class="fas fa-meh"></i><br>지루함
+                    </button>
+                    <button class="emotion-btn" data-emotion="grateful" data-correct="false">
+                        <i class="fas fa-heart"></i><br>감사함
+                    </button>
+                </div>
+
+                <div class="emotion-feedback">
+                    <h4><i class="fas fa-check-circle"></i> 정답입니다!</h4>
+                    <p>
+                        서연이는 중요한 선택을 앞두고 있으면서 확신이 서지 않아 불안감을 느꼈을 것입니다. 
+                        미래에 대한 결정을 내려야 하는 상황에서 불안감을 느끼는 것은 매우 자연스러운 반응입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 시나리오 4: 좌절과 포기 -->
+            <div id="scenario-4" class="scenario" data-scenario="4">
+                <div class="scenario-image">
+                    <i class="fas fa-tired"></i>
+                </div>
+                
+                <div class="scenario-content">
+                    <h3>동아리 활동</h3>
+                    <p>
+                        태민이는 학교 밴드 동아리에서 기타를 담당하고 있습니다. 
+                        다음 주 학교 축제에서 공연을 앞두고 있는데, 연습할 때마다 실수를 연발하고 있습니다. 
+                        다른 멤버들은 점점 나아지고 있는데 자신만 제자리인 것 같아서 팀에 피해를 주는 것 같습니다.
+                    </p>
+                    <p><strong>이 상황에서 태민이는 어떤 감정을 느꼈을까요?</strong></p>
+                </div>
+
+                <div class="emotion-options">
+                    <button class="emotion-btn" data-emotion="frustrated" data-correct="true">
+                        <i class="fas fa-tired"></i><br>좌절감
+                    </button>
+                    <button class="emotion-btn" data-emotion="confident" data-correct="false">
+                        <i class="fas fa-thumbs-up"></i><br>자신감
+                    </button>
+                    <button class="emotion-btn" data-emotion="curious" data-correct="false">
+                        <i class="fas fa-search"></i><br>호기심
+                    </button>
+                    <button class="emotion-btn" data-emotion="peaceful" data-correct="false">
+                        <i class="fas fa-dove"></i><br>평온함
+                    </button>
+                </div>
+
+                <div class="emotion-feedback">
+                    <h4><i class="fas fa-check-circle"></i> 정답입니다!</h4>
+                    <p>
+                        태민이는 자신의 실력이 늘지 않고 팀에 피해를 주는 것 같아서 좌절감을 느꼈을 것입니다. 
+                        노력해도 원하는 결과가 나오지 않을 때 좌절감을 느끼는 것은 성장 과정에서 자연스러운 감정입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 시나리오 5: 감사와 따뜻함 -->
+            <div id="scenario-5" class="scenario" data-scenario="5">
+                <div class="scenario-image">
+                    <i class="fas fa-gift"></i>
+                </div>
+                
+                <div class="scenario-content">
+                    <h3>뜻밖의 도움</h3>
+                    <p>
+                        은지는 요즘 집안 사정이 어려워져서 학원을 그만두게 되었습니다. 
+                        수학 성적이 떨어질까 봐 걱정하고 있었는데, 담임선생님이 방과 후에 개별 지도를 해주시겠다고 제안하셨습니다. 
+                        또한 친구들도 함께 공부하자며 도움을 주겠다고 나섰습니다.
+                    </p>
+                    <p><strong>이 상황에서 은지는 어떤 감정을 느꼈을까요?</strong></p>
+                </div>
+
+                <div class="emotion-options">
+                    <button class="emotion-btn" data-emotion="grateful" data-correct="true">
+                        <i class="fas fa-heart"></i><br>감사함
+                    </button>
+                    <button class="emotion-btn" data-emotion="embarrassed" data-correct="false">
+                        <i class="fas fa-flushed"></i><br>부끄러움
+                    </button>
+                    <button class="emotion-btn" data-emotion="jealous" data-correct="false">
+                        <i class="fas fa-envious"></i><br>질투
+                    </button>
+                    <button class="emotion-btn" data-emotion="indifferent" data-correct="false">
+                        <i class="fas fa-meh-blank"></i><br>무관심
+                    </button>
+                </div>
+
+                <div class="emotion-feedback">
+                    <h4><i class="fas fa-check-circle"></i> 정답입니다!</h4>
+                    <p>
+                        은지는 어려운 상황에서 선생님과 친구들이 도움의 손길을 내밀어 주어서 감사함을 느꼈을 것입니다. 
+                        다른 사람의 따뜻한 배려와 도움을 받을 때 느끼는 감사함은 인간관계를 더욱 깊게 만들어줍니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 시나리오 네비게이션 -->
+            <div class="scenario-navigation">
+                <button id="prev-btn" class="btn btn-outline" onclick="prevScenario()" disabled>
+                    <i class="fas fa-arrow-left"></i> 이전
+                </button>
+                
+                <div class="scenario-progress">
+                    <div class="progress-dot active" data-scenario="1"></div>
+                    <div class="progress-dot" data-scenario="2"></div>
+                    <div class="progress-dot" data-scenario="3"></div>
+                    <div class="progress-dot" data-scenario="4"></div>
+                    <div class="progress-dot" data-scenario="5"></div>
+                </div>
+                
+                <button id="next-btn" class="btn btn-primary" onclick="nextScenario()">
+                    다음 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 성찰 및 토론 섹션 -->
+        <div class="reflection-section">
+            <h2><i class="fas fa-lightbulb"></i> 성찰하기</h2>
+            <p>모든 시나리오를 완료한 후, 다음 질문들에 대해 생각해보세요.</p>
+            
+            <ul class="reflection-questions">
+                <li>
+                    <strong>Q1. 감정을 정확히 인식하는 것이 왜 중요할까요?</strong>
+                    <br><small class="text-muted">자신과 타인의 감정을 이해하는 것의 의미에 대해 생각해보세요.</small>
+                </li>
+                <li>
+                    <strong>Q2. 같은 상황에서도 사람마다 다른 감정을 느낄 수 있을까요?</strong>
+                    <br><small class="text-muted">개인의 경험과 성격이 감정에 미치는 영향을 고려해보세요.</small>
+                </li>
+                <li>
+                    <strong>Q3. 부정적 감정을 느꼈을 때 어떻게 대처할 수 있을까요?</strong>
+                    <br><small class="text-muted">건강한 감정 조절 방법에 대해 생각해보세요.</small>
+                </li>
+                <li>
+                    <strong>Q4. 다른 사람의 감정을 더 잘 이해하기 위해서는 어떻게 해야 할까요?</strong>
+                    <br><small class="text-muted">공감 능력을 기르는 방법에 대해 고민해보세요.</small>
+                </li>
+            </ul>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="openDiscussion()">
+                    <i class="fas fa-comments"></i> 토론하기
+                </button>
+                <button class="btn btn-secondary" onclick="saveReflection()">
+                    <i class="fas fa-save"></i> 성찰 내용 저장
+                </button>
+            </div>
+        </div>
+
+        <!-- 다음 활동 안내 -->
+        <div class="card mt-4">
+            <div class="card-header text-center">
+                <h2 class="card-title">
+                    <i class="fas fa-arrow-right"></i>
+                    다음 활동
+                </h2>
+                <p class="card-subtitle">감정 인식 능력을 바탕으로 SEL 역량을 더 깊이 개발해보세요</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <a href="sel-competency.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>SEL 역량 개발</h4>
+                                <p class="text-muted">5가지 핵심 역량을 체계적으로 개발해보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="ai-interaction.html" class="card">
+                            <div class="card-body text-center">
+                                <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h4>AI 상호작용</h4>
+                                <p class="text-muted">AI와 대화하며 감정과 상황을 분석해보세요</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 공통 JavaScript -->
+    <script src="../assets/js/common.js"></script>
+    
+    <script>
+        let currentScenario = 1;
+        const totalScenarios = 5;
+        let completedScenarios = new Set();
+        
+        // 시나리오 이동 함수
+        function nextScenario() {
+            if (currentScenario < totalScenarios) {
+                showScenario(currentScenario + 1);
+            }
+        }
+        
+        function prevScenario() {
+            if (currentScenario > 1) {
+                showScenario(currentScenario - 1);
+            }
+        }
+        
+        function showScenario(scenarioNum) {
+            // 현재 시나리오 숨기기
+            document.querySelector('.scenario.active').classList.remove('active');
+            
+            // 새 시나리오 보이기
+            const newScenario = document.getElementById(`scenario-${scenarioNum}`);
+            newScenario.classList.add('active');
+            
+            // 시나리오 번호 업데이트
+            document.getElementById('scenario-number').textContent = scenarioNum;
+            currentScenario = scenarioNum;
+            
+            // 진행 상태 업데이트
+            updateProgress();
+            updateNavigation();
+            
+            // 페이지 상단으로 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function updateProgress() {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index + 1 === currentScenario) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+        
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            prevBtn.disabled = currentScenario === 1;
+            nextBtn.disabled = currentScenario === totalScenarios;
+            
+            if (currentScenario === totalScenarios) {
+                nextBtn.innerHTML = '<i class="fas fa-check"></i> 완료';
+            } else {
+                nextBtn.innerHTML = '다음 <i class="fas fa-arrow-right"></i>';
+            }
+        }
+        
+        // 감정 선택 처리
+        document.addEventListener('DOMContentLoaded', function() {
+            // 감정 버튼 클릭 이벤트
+            document.querySelectorAll('.emotion-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const scenario = this.closest('.scenario');
+                    const scenarioNum = scenario.dataset.scenario;
+                    
+                    // 같은 시나리오의 다른 버튼들에서 선택 해제
+                    scenario.querySelectorAll('.emotion-btn').forEach(b => {
+                        b.classList.remove('selected');
+                    });
+                    
+                    // 클릭한 버튼 선택
+                    this.classList.add('selected');
+                    
+                    // 피드백 표시
+                    const feedback = scenario.querySelector('.emotion-feedback');
+                    const isCorrect = this.dataset.correct === 'true';
+                    
+                    if (isCorrect) {
+                        feedback.style.background = 'var(--success-color)';
+                        feedback.innerHTML = feedback.innerHTML; // 기존 내용 유지
+                        completedScenarios.add(parseInt(scenarioNum));
+                    } else {
+                        feedback.style.background = 'var(--error-color)';
+                        feedback.innerHTML = `
+                            <h4><i class="fas fa-times-circle"></i> 다시 생각해보세요!</h4>
+                            <p>다른 선택지를 고려해보세요. 주인공의 상황과 감정을 더 자세히 살펴보세요.</p>
+                        `;
+                    }
+                    
+                    feedback.classList.add('show');
+                    
+                    // 정답이면 잠시 후 다음 시나리오로 이동
+                    if (isCorrect && currentScenario < totalScenarios) {
+                        setTimeout(() => {
+                            nextScenario();
+                        }, 2000);
+                    }
+                    
+                    // 진행 상황 저장
+                    saveProgress();
+                });
+            });
+            
+            // 초기 상태 설정
+            updateProgress();
+            updateNavigation();
+            loadProgress();
+        });
+        
+        // 진행 상황 저장/로드
+        function saveProgress() {
+            const progress = {
+                currentScenario: currentScenario,
+                completedScenarios: Array.from(completedScenarios)
+            };
+            AIDT.utils.storage.set('emotionRecognitionProgress', progress);
+        }
+        
+        function loadProgress() {
+            const progress = AIDT.utils.storage.get('emotionRecognitionProgress');
+            if (progress) {
+                currentScenario = progress.currentScenario || 1;
+                completedScenarios = new Set(progress.completedScenarios || []);
+                showScenario(currentScenario);
+            }
+        }
+        
+        // 토론 및 성찰 기능
+        function openDiscussion() {
+            // 토론 페이지로 이동 또는 모달 열기
+            AIDT.notification.show('토론 기능은 개발 중입니다.', 'info');
+        }
+        
+        function saveReflection() {
+            AIDT.notification.show('성찰 내용이 저장되었습니다.', 'success');
+        }
+        
+        // 진행 상황 표시 점 클릭 이벤트
+        document.querySelectorAll('.progress-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const scenarioNum = parseInt(this.dataset.scenario);
+                showScenario(scenarioNum);
+            });
+        });
+    </script>
+</body>
+</html>

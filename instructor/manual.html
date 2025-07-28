@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강사 메뉴얼 - AIDT HTHT×SEL</title>
+    <meta name="description" content="AIDT HTHT×SEL 교육 운영을 위한 상세한 지침서와 교수법 가이드를 제공합니다.">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .manual-toc {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-link {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: var(--transition);
+        }
+        
+        .toc-link:hover,
+        .toc-link.active {
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+            background: var(--bg-light);
+            text-decoration: none;
+        }
+        
+        .manual-section {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #f0fdf4, #f8f9fa);
+            border-left: 4px solid var(--success-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fff7ed, #f8f9fa);
+            border-left: 4px solid var(--warning-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius);
+        }
+        
+        .activity-box {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .activity-title {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .steps-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .steps-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 1rem 0 1rem 3rem;
+            border-left: 2px solid var(--border-color);
+            margin-left: 1rem;
+        }
+        
+        .steps-list li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 3rem;
+            height: 3rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .steps-list li:last-child {
+            border-left: none;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .resource-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .evaluation-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .evaluation-matrix th,
+        .evaluation-matrix td {
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .evaluation-matrix th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .evaluation-matrix tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        @media (max-width: 768px) {
+            .manual-toc {
+                position: static;
+                margin-bottom: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .steps-list li {
+                padding-left: 2rem;
+                margin-left: 0.5rem;
+            }
+            
+            .steps-list li:before {
+                left: -1rem;
+                width: 2rem;
+                height: 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="../index.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-brain"></i>
+                        AIDT HTHT×SEL
+                    </a>
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 글로벌 네비게이션 -->
+    <nav class="global-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pages/intro.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i> 소개
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manual.html" class="nav-link active">
+                        <i class="fas fa-book"></i> 강사 메뉴얼
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 브레드크럼 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">홈</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="../instructor/" class="breadcrumb-link">강사 자료</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">강사 메뉴얼</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container" style="padding: 2rem 1rem;">
+        <!-- 페이지 헤더 -->
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                <h1 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-chalkboard-teacher" style="color: var(--primary-color);"></i>
+                    AIDT HTHT×SEL 강사 메뉴얼
+                </h1>
+                <p class="card-subtitle" style="font-size: 1.1rem;">
+                    AI 디지털 교과서를 활용한 하이테크 하이터치 사회정서학습 교육 가이드
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 목차 (사이드바) -->
+            <div class="col" style="flex: 0 0 250px;">
+                <div class="manual-toc">
+                    <h3 class="toc-title"><i class="fas fa-list"></i> 목차</h3>
+                    <ul class="toc-list">
+                        <li class="toc-item">
+                            <a href="#introduction" class="toc-link">1. 개요</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#concepts" class="toc-link">2. 핵심 개념</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#pedagogy" class="toc-link">3. 교수법</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#lesson-plans" class="toc-link">4. 수업 계획</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#activities" class="toc-link">5. 활동 가이드</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#assessment" class="toc-link">6. 평가 방법</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#technology" class="toc-link">7. 기술 활용</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#resources" class="toc-link">8. 교육 자료</a>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#troubleshooting" class="toc-link">9. 문제 해결</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 메뉴얼 내용 -->
+            <div class="col">
+                <!-- 1. 개요 -->
+                <section id="introduction" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">1. 개요</h2>
+                        <p class="section-subtitle">AIDT HTHT×SEL 교육 프로그램 소개</p>
+                    </div>
+
+                    <h3>🎯 교육 목표</h3>
+                    <p>
+                        본 프로그램은 고등학교 1-2학년 학생들을 대상으로 AI Digital Textbook(AIDT)의 혁신적 기술과 
+                        High-Tech × High-Touch(HTHT) 교육 모델을 통합하여 사회정서학습(SEL)을 촉진하는 것을 목표로 합니다.
+                    </p>
+
+                    <div class="concept-box">
+                        <h4><i class="fas fa-lightbulb"></i> 핵심 철학</h4>
+                        <p>
+                            <strong>기술과 인간성의 조화:</strong> 첨단 AI 기술을 활용하면서도 학습자 간, 
+                            교사와 학생 간의 따뜻한 인간적 상호작용을 중시합니다.
+                        </p>
+                    </div>
+
+                    <h3>📚 교육 대상 및 범위</h3>
+                    <ul>
+                        <li><strong>대상:</strong> 고등학교 1-2학년 (만 15-17세)</li>
+                        <li><strong>수업 시간:</strong> 주 2회, 회당 50분 (총 20차시)</li>
+                        <li><strong>학급 규모:</strong> 20-30명 권장</li>
+                        <li><strong>교육 기간:</strong> 한 학기 (약 10주)</li>
+                    </ul>
+
+                    <h3>🌟 기대 효과</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h4>개별맞춤 학습</h4>
+                            <p>AI 기술로 학습자별 맞춤형 교육 제공</p>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4>정서 발달</h4>
+                            <p>SEL 5대 역량을 통한 전인적 성장</p>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>협력 능력</h4>
+                            <p>디지털 협업을 통한 소통 기술 향상</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. 핵심 개념 -->
+                <section id="concepts" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">2. 핵심 개념</h2>
+                        <p class="section-subtitle">AIDT, HTHT, SEL의 이해</p>
+                    </div>
+
+                    <h3>🤖 AI Digital Textbook (AIDT)</h3>
+                    <div class="concept-box">
+                        <h4>정의</h4>
+                        <p>
+                            인공지능 기술이 적용된 디지털 교과서로, 학습자 개인의 수준과 특성에 맞춘 
+                            개별화 학습과 협력적 활동을 지원하는 디지털 교수학습 도구
+                        </p>
+                    </div>
+
+                    <h4>주요 기능</h4>
+                    <ul>
+                        <li><strong>적응형 학습:</strong> 학습자의 이해도에 따른 난이도 조절</li>
+                        <li><strong>개별화 콘텐츠:</strong> 학습 스타일별 맞춤형 자료 제공</li>
+                        <li><strong>실시간 피드백:</strong> 즉각적인 학습 결과 분석 및 조언</li>
+                        <li><strong>학습 분석:</strong> 데이터 기반 학습 패턴 파악</li>
+                    </ul>
+
+                    <h3>🤝 High-Tech High-Touch (HTHT)</h3>
+                    <div class="concept-box">
+                        <h4>정의</h4>
+                        <p>
+                            기술을 통한 개별화 학습(High-Tech)과 교사의 정서적 지원(High-Touch)을 
+                            융합한 교육 모델
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <h4>High-Tech 요소</h4>
+                            <ul>
+                                <li>AI 기반 학습 분석</li>
+                                <li>가상현실(VR/AR) 체험</li>
+                                <li>디지털 협업 도구</li>
+                                <li>자동화된 평가 시스템</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h4>High-Touch 요소</h4>
+                            <ul>
+                                <li>교사-학생 개별 상담</li>
+                                <li>동료 간 협력 학습</li>
+                                <li>정서적 지원 및 격려</li>
+                                <li>인간적 소통과 공감</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>❤️ Social Emotional Learning (SEL)</h3>
+                    <div class="concept-box">
+                        <h4>정의</h4>
+                        <p>
+                            자기인식, 자기관리, 사회적 인식, 관계 기술, 책임 있는 의사결정의 
+                            5가지 핵심 역량을 개발하는 학습 과정
+                        </p>
+                    </div>
+
+                    <h4>SEL 5대 핵심 역량</h4>
+                    <table class="evaluation-matrix">
+                        <thead>
+                            <tr>
+                                <th>역량</th>
+                                <th>설명</th>
+                                <th>교육 활동 예시</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>자기인식</strong></td>
+                                <td>자신의 감정, 생각, 가치관 인식</td>
+                                <td>감정 일기 작성, 성찰 활동</td>
+                            </tr>
+                            <tr>
+                                <td><strong>자기관리</strong></td>
+                                <td>감정 조절과 목표 달성 관리</td>
+                                <td>스트레스 관리, 목표 설정</td>
+                            </tr>
+                            <tr>
+                                <td><strong>사회적 인식</strong></td>
+                                <td>타인의 감정과 사회 상황 이해</td>
+                                <td>공감 훈련, 다양성 이해</td>
+                            </tr>
+                            <tr>
+                                <td><strong>관계 기술</strong></td>
+                                <td>건강한 관계 구축과 유지</td>
+                                <td>의사소통 연습, 갈등 해결</td>
+                            </tr>
+                            <tr>
+                                <td><strong>책임감 있는 의사결정</strong></td>
+                                <td>윤리적이고 건설적인 선택</td>
+                                <td>도덕적 딜레마 토론, 의사결정 연습</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- 3. 교수법 -->
+                <section id="pedagogy" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">3. 교수법</h2>
+                        <p class="section-subtitle">효과적인 AIDT HTHT×SEL 교육 방법</p>
+                    </div>
+
+                    <h3>🎯 교수학습 원리</h3>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-star"></i> 핵심 원리</h4>
+                        <ul>
+                            <li><strong>학습자 중심:</strong> 개별 학습자의 특성과 요구를 최우선으로 고려</li>
+                            <li><strong>체험 중심:</strong> 이론보다는 실제 체험과 활동을 통한 학습</li>
+                            <li><strong>협력 중심:</strong> 동료와의 협력을 통한 사회적 학습</li>
+                            <li><strong>성찰 중심:</strong> 지속적인 자기 성찰과 피드백</li>
+                        </ul>
+                    </div>
+
+                    <h3>📋 수업 진행 모델</h3>
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-chalkboard"></i>
+                            HTHT 통합 수업 모델
+                        </div>
+                        <ol class="steps-list">
+                            <li>
+                                <h4>도입 (High-Touch)</h4>
+                                <p>교사와 학생 간의 인사, 감정 확인, 학습 동기 부여</p>
+                            </li>
+                            <li>
+                                <h4>전개 1 (High-Tech)</h4>
+                                <p>AIDT를 활용한 개별맞춤 학습, AI 도구 체험</p>
+                            </li>
+                            <li>
+                                <h4>전개 2 (High-Touch)</h4>
+                                <p>동료와의 협력 활동, 교사의 개별 지도</p>
+                            </li>
+                            <li>
+                                <h4>정리 (HTHT 통합)</h4>
+                                <p>AI 분석 결과를 바탕으로 한 성찰과 교사 피드백</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <h3>💡 교수 전략</h3>
+                    
+                    <h4>1. 개별화 전략</h4>
+                    <ul>
+                        <li>AI 분석을 통한 학습자별 수준 파악</li>
+                        <li>맞춤형 학습 경로 제공</li>
+                        <li>개별 상담 및 지도</li>
+                    </ul>
+
+                    <h4>2. 협력 학습 전략</h4>
+                    <ul>
+                        <li>소그룹 프로젝트 기반 학습</li>
+                        <li>동료 간 피드백 활동</li>
+                        <li>디지털 협업 도구 활용</li>
+                    </ul>
+
+                    <h4>3. 성찰 활동 전략</h4>
+                    <ul>
+                        <li>학습 과정 일지 작성</li>
+                        <li>동료와의 성찰 나누기</li>
+                        <li>AI 데이터 기반 자기 분석</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 주의사항</h4>
+                        <ul>
+                            <li>기술이 교육의 목적이 되어서는 안 됩니다. 항상 학습자의 성장이 우선입니다.</li>
+                            <li>개별화 학습과 협력 학습의 균형을 유지해야 합니다.</li>
+                            <li>학습자의 디지털 리터러시 수준을 고려한 점진적 접근이 필요합니다.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 4. 수업 계획 -->
+                <section id="lesson-plans" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">4. 수업 계획</h2>
+                        <p class="section-subtitle">단계별 상세 수업 계획안</p>
+                    </div>
+
+                    <h3>📅 전체 교육과정 개요 (20차시)</h3>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">1-2차시: 오리엔테이션</div>
+                            <p>AIDT, HTHT, SEL 개념 소개 및 학습 환경 구축</p>
+                            <ul>
+                                <li>프로그램 소개 및 기대효과 안내</li>
+                                <li>디지털 도구 사용법 익히기</li>
+                                <li>학습자 특성 진단 및 분석</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">3-6차시: 자기인식 및 자기관리</div>
+                            <p>SEL의 기초가 되는 자기 이해와 관리 능력 개발</p>
+                            <ul>
+                                <li>감정 인식 활동 (AI 감정 분석 도구 활용)</li>
+                                <li>개인 성향 및 학습 스타일 탐색</li>
+                                <li>목표 설정 및 계획 수립</li>
+                                <li>스트레스 관리 및 감정 조절 연습</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">7-10차시: 사회적 인식</div>
+                            <p>타인 이해와 사회적 상황 인식 능력 향상</p>
+                            <ul>
+                                <li>공감 능력 개발 활동</li>
+                                <li>다양성 이해 및 수용</li>
+                                <li>사회적 단서 읽기 연습</li>
+                                <li>문화적 차이 인식 활동</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">11-14차시: 관계 기술</div>
+                            <p>효과적인 의사소통과 관계 형성 기술 습득</p>
+                            <ul>
+                                <li>적극적 경청 연습</li>
+                                <li>갈등 해결 시뮬레이션</li>
+                                <li>협력 프로젝트 수행</li>
+                                <li>디지털 의사소통 예절</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">15-18차시: 책임감 있는 의사결정</div>
+                            <p>윤리적이고 합리적인 판단과 선택 능력 배양</p>
+                            <ul>
+                                <li>도덕적 딜레마 토론</li>
+                                <li>의사결정 과정 분석</li>
+                                <li>결과 예측 및 책임감 인식</li>
+                                <li>AI 윤리 토론</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">19-20차시: 통합 프로젝트 및 성찰</div>
+                            <p>학습 내용의 종합적 적용 및 전체 과정 성찰</p>
+                            <ul>
+                                <li>팀 프로젝트 발표</li>
+                                <li>개인별 성장 포트폴리오 작성</li>
+                                <li>동료 피드백 및 상호 평가</li>
+                                <li>향후 계획 수립</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>📝 수업 계획서 양식</h3>
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-file-alt"></i>
+                            표준 수업 계획서 구성
+                        </div>
+                        <table class="evaluation-matrix">
+                            <thead>
+                                <tr>
+                                    <th>구성 요소</th>
+                                    <th>내용</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>수업 정보</td>
+                                    <td>차시, 주제, 소요 시간, 대상</td>
+                                </tr>
+                                <tr>
+                                    <td>학습 목표</td>
+                                    <td>지식, 기능, 태도 영역별 성취 목표</td>
+                                </tr>
+                                <tr>
+                                    <td>SEL 역량</td>
+                                    <td>해당 차시에서 중점적으로 다룰 SEL 역량</td>
+                                </tr>
+                                <tr>
+                                    <td>AIDT 활용</td>
+                                    <td>사용할 AI 도구 및 기능</td>
+                                </tr>
+                                <tr>
+                                    <td>수업 단계</td>
+                                    <td>도입-전개-정리 단계별 활동</td>
+                                </tr>
+                                <tr>
+                                    <td>평가 계획</td>
+                                    <td>형성평가 및 총괄평가 방법</td>
+                                </tr>
+                                <tr>
+                                    <td>준비물</td>
+                                    <td>필요한 기자재 및 교육 자료</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 5. 활동 가이드 -->
+                <section id="activities" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">5. 활동 가이드</h2>
+                        <p class="section-subtitle">구체적인 교육 활동 및 실행 방법</p>
+                    </div>
+
+                    <h3>🎭 체험형 활동 예시</h3>
+
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-smile"></i>
+                            감정 인식 시뮬레이션
+                        </div>
+                        <h4>활동 목표</h4>
+                        <p>다양한 상황에서 자신과 타인의 감정을 정확히 인식하고 표현하는 능력 개발</p>
+                        
+                        <h4>준비물</h4>
+                        <ul>
+                            <li>AI 감정 분석 도구 (웹 기반 또는 앱)</li>
+                            <li>상황 시나리오 카드</li>
+                            <li>감정 표현 어휘 목록</li>
+                        </ul>
+                        
+                        <h4>진행 방법</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <h5>상황 제시 (5분)</h5>
+                                <p>학습자에게 일상생활에서 일어날 수 있는 감정적 상황을 제시합니다.</p>
+                            </li>
+                            <li>
+                                <h5>개별 감정 인식 (10분)</h5>
+                                <p>각자 상황에서 느낄 수 있는 감정을 AI 도구의 도움을 받아 분석하고 기록합니다.</p>
+                            </li>
+                            <li>
+                                <h5>소그룹 공유 (15분)</h5>
+                                <p>4-5명씩 그룹을 이루어 각자의 감정 인식 결과를 공유하고 토론합니다.</p>
+                            </li>
+                            <li>
+                                <h5>전체 토론 (15분)</h5>
+                                <p>그룹별 결과를 전체와 공유하고 다양한 감정 반응에 대해 토론합니다.</p>
+                            </li>
+                            <li>
+                                <h5>성찰 및 정리 (5분)</h5>
+                                <p>활동을 통해 배운 점과 실생활 적용 방안을 개별적으로 기록합니다.</p>
+                            </li>
+                        </ol>
+                        
+                        <div class="tip-box">
+                            <h4><i class="fas fa-lightbulb"></i> 지도 팁</h4>
+                            <ul>
+                                <li>학습자들이 솔직하게 감정을 표현할 수 있는 안전한 분위기 조성</li>
+                                <li>옳고 그른 감정이 없음을 강조하여 자유로운 표현 독려</li>
+                                <li>AI 도구의 결과를 절대적으로 믿지 말고 참고 자료로 활용</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-users"></i>
+                            디지털 협업 프로젝트
+                        </div>
+                        <h4>활동 목표</h4>
+                        <p>온라인 협업 도구를 활용하여 팀원들과 효과적으로 소통하고 협력하는 능력 개발</p>
+                        
+                        <h4>준비물</h4>
+                        <ul>
+                            <li>온라인 협업 플랫폼 (Google Workspace, Microsoft Teams 등)</li>
+                            <li>프로젝트 주제 및 가이드라인</li>
+                            <li>평가 루브릭</li>
+                        </ul>
+                        
+                        <h4>진행 방법</h4>
+                        <ol class="steps-list">
+                            <li>
+                                <h5>팀 구성 및 역할 분담 (10분)</h5>
+                                <p>3-4명씩 팀을 구성하고 각자의 역할과 책임을 명확히 정합니다.</p>
+                            </li>
+                            <li>
+                                <h5>프로젝트 계획 수립 (20분)</h5>
+                                <p>협업 도구를 사용하여 프로젝트 계획서를 작성하고 일정을 관리합니다.</p>
+                            </li>
+                            <li>
+                                <h5>협력 작업 수행 (2-3주)</h5>
+                                <p>온라인 플랫폼에서 실시간으로 소통하며 프로젝트를 진행합니다.</p>
+                            </li>
+                            <li>
+                                <h5>중간 점검 및 피드백 (1회/주)</h5>
+                                <p>교사의 지도 하에 진행 상황을 점검하고 필요한 지원을 받습니다.</p>
+                            </li>
+                            <li>
+                                <h5>결과 발표 및 평가 (50분)</h5>
+                                <p>완성된 프로젝트를 발표하고 동료 평가를 실시합니다.</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <h3>🔧 도구 활용 가이드</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4>학습 분석 도구</h4>
+                            <p>학습 패턴 분석 및 개별화 추천</p>
+                            <small>Google Analytics for Education, Khan Academy</small>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>소통 플랫폼</h4>
+                            <p>실시간 토론 및 의견 공유</p>
+                            <small>Padlet, Mentimeter, Zoom</small>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h4>협업 도구</h4>
+                            <p>팀 프로젝트 관리 및 협력</p>
+                            <small>Trello, Slack, Google Workspace</small>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>AI 어시스턴트</h4>
+                            <p>학습 지원 및 질의응답</p>
+                            <small>ChatGPT, Claude, Socratic</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. 평가 방법 -->
+                <section id="assessment" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">6. 평가 방법</h2>
+                        <p class="section-subtitle">다면적이고 지속적인 평가 체계</p>
+                    </div>
+
+                    <h3>📊 평가 철학 및 원칙</h3>
+                    <div class="concept-box">
+                        <h4>핵심 원칙</h4>
+                        <ul>
+                            <li><strong>성장 중심:</strong> 결과보다는 학습 과정과 성장에 중점</li>
+                            <li><strong>다면적 평가:</strong> 인지적, 정의적, 행동적 영역을 종합적으로 평가</li>
+                            <li><strong>지속적 평가:</strong> 일회성이 아닌 지속적인 관찰과 피드백</li>
+                            <li><strong>참여적 평가:</strong> 자기평가와 동료평가를 적극 활용</li>
+                        </ul>
+                    </div>
+
+                    <h3>🎯 평가 영역 및 방법</h3>
+                    
+                    <table class="evaluation-matrix">
+                        <thead>
+                            <tr>
+                                <th>평가 영역</th>
+                                <th>평가 방법</th>
+                                <th>비율</th>
+                                <th>평가 도구</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SEL 역량 발달</td>
+                                <td>포트폴리오, 자기성찰보고서</td>
+                                <td>40%</td>
+                                <td>SEL 역량 체크리스트, 성찰 일지</td>
+                            </tr>
+                            <tr>
+                                <td>협력 및 참여</td>
+                                <td>동료평가, 관찰평가</td>
+                                <td>30%</td>
+                                <td>협력 활동 루브릭, 참여 관찰표</td>
+                            </tr>
+                            <tr>
+                                <td>프로젝트 수행</td>
+                                <td>결과물 평가, 발표평가</td>
+                                <td>20%</td>
+                                <td>프로젝트 루브릭, 발표 평가표</td>
+                            </tr>
+                            <tr>
+                                <td>디지털 활용 능력</td>
+                                <td>실습 평가, 창작물 평가</td>
+                                <td>10%</td>
+                                <td>디지털 리터러시 체크리스트</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>📋 평가 도구 예시</h3>
+                    
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-clipboard-check"></i>
+                            SEL 역량 자기평가 척도
+                        </div>
+                        <p><strong>사용법:</strong> 각 문항에 대해 1(전혀 그렇지 않다) ~ 5(매우 그렇다)로 평가</p>
+                        
+                        <h4>자기인식 영역</h4>
+                        <ul>
+                            <li>나는 내 감정의 변화를 잘 알아차린다.</li>
+                            <li>나는 내 강점과 약점을 정확히 파악하고 있다.</li>
+                            <li>나는 내 가치관과 신념을 명확히 알고 있다.</li>
+                        </ul>
+                        
+                        <h4>자기관리 영역</h4>
+                        <ul>
+                            <li>나는 화가 날 때 마음을 진정시킬 수 있다.</li>
+                            <li>나는 계획을 세우고 꾸준히 실행한다.</li>
+                            <li>나는 스트레스를 건강한 방법으로 해소한다.</li>
+                        </ul>
+                        
+                        <h4>사회적 인식 영역</h4>
+                        <ul>
+                            <li>나는 다른 사람의 감정을 잘 파악할 수 있다.</li>
+                            <li>나는 다양한 관점을 이해하려고 노력한다.</li>
+                            <li>나는 사회적 상황을 적절히 판단할 수 있다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4><i class="fas fa-star"></i> 효과적인 피드백 제공 방법</h4>
+                        <ul>
+                            <li><strong>구체적 피드백:</strong> "잘했다"보다는 구체적인 행동과 결과를 언급</li>
+                            <li><strong>성장 지향적:</strong> 현재 상태보다는 발전 가능성에 초점</li>
+                            <li><strong>균형 잡힌 피드백:</strong> 긍정적 측면과 개선점을 함께 제시</li>
+                            <li><strong>실행 가능한 조언:</strong> 학습자가 실제로 실행할 수 있는 구체적인 방법 제시</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 7. 기술 활용 -->
+                <section id="technology" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">7. 기술 활용</h2>
+                        <p class="section-subtitle">AIDT 도구 및 플랫폼 활용 가이드</p>
+                    </div>
+
+                    <h3>💻 필수 기술 환경</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h4>하드웨어</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>개인용 컴퓨터 또는 태블릿</li>
+                                <li>안정적인 인터넷 연결</li>
+                                <li>웹캠 및 마이크</li>
+                                <li>프로젝터 또는 대형 디스플레이</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4>소프트웨어</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>최신 웹 브라우저 (Chrome, Firefox 등)</li>
+                                <li>화상회의 도구 (Zoom, Teams 등)</li>
+                                <li>오피스 프로그램 (MS Office, Google Workspace)</li>
+                                <li>AI 학습 플랫폼 접속</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>🤖 AI 도구 활용 가이드</h3>
+                    
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-robot"></i>
+                            AI 학습 도우미 활용법
+                        </div>
+                        
+                        <h4>1. 개인 맞춤형 학습</h4>
+                        <ul>
+                            <li><strong>학습 진단:</strong> AI가 학습자의 현재 수준과 학습 스타일 분석</li>
+                            <li><strong>콘텐츠 추천:</strong> 개인별 맞춤형 학습 자료 및 활동 제안</li>
+                            <li><strong>진도 관리:</strong> 학습 속도에 맞춘 자동 진도 조절</li>
+                        </ul>
+                        
+                        <h4>2. 실시간 피드백</h4>
+                        <ul>
+                            <li><strong>즉시 피드백:</strong> 활동 결과에 대한 실시간 분석 및 조언</li>
+                            <li><strong>오류 분석:</strong> 틀린 부분에 대한 구체적인 설명 제공</li>
+                            <li><strong>학습 팁:</strong> 개선을 위한 구체적인 학습 방법 제시</li>
+                        </ul>
+                        
+                        <h4>3. 학습 데이터 분석</h4>
+                        <ul>
+                            <li><strong>패턴 분석:</strong> 학습 행동 패턴 및 선호도 파악</li>
+                            <li><strong>성과 추적:</strong> 시간별 학습 성과 변화 모니터링</li>
+                            <li><strong>예측 및 권장:</strong> 향후 학습 방향 및 목표 제시</li>
+                        </ul>
+                    </div>
+
+                    <h3>🔧 플랫폼별 활용 방법</h3>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Google for Education</div>
+                            <ul>
+                                <li><strong>Google Classroom:</strong> 과제 배포 및 제출, 피드백 관리</li>
+                                <li><strong>Google Meet:</strong> 실시간 화상 수업 및 소그룹 활동</li>
+                                <li><strong>Google Docs/Sheets:</strong> 협력적 문서 작성 및 데이터 분석</li>
+                                <li><strong>Google Forms:</strong> 설문조사 및 자기평가 도구</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Microsoft Education</div>
+                            <ul>
+                                <li><strong>Teams for Education:</strong> 통합 학습 관리 시스템</li>
+                                <li><strong>OneNote Class Notebook:</strong> 디지털 학습 노트</li>
+                                <li><strong>PowerPoint Live:</strong> 인터랙티브 프레젠테이션</li>
+                                <li><strong>Forms:</strong> 퀴즈 및 평가 도구</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">전용 AI 학습 플랫폼</div>
+                            <ul>
+                                <li><strong>적응형 학습:</strong> 개인별 맞춤형 학습 경로 제공</li>
+                                <li><strong>지능형 튜터링:</strong> AI 기반 개별 지도 시스템</li>
+                                <li><strong>학습 분석:</strong> 상세한 학습 데이터 분석 및 리포트</li>
+                                <li><strong>게임화 요소:</strong> 동기 부여를 위한 게임적 요소 적용</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4><i class="fas fa-shield-alt"></i> 디지털 안전 및 윤리</h4>
+                        <ul>
+                            <li><strong>개인정보 보호:</strong> 학습자의 개인정보 및 학습 데이터 보호</li>
+                            <li><strong>디지털 시민성:</strong> 온라인에서의 올바른 행동 규범 교육</li>
+                            <li><strong>AI 윤리:</strong> AI 도구 사용 시 윤리적 고려사항 안내</li>
+                            <li><strong>균형 잡힌 사용:</strong> 기술 의존도를 적절히 조절</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 8. 교육 자료 -->
+                <section id="resources" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">8. 교육 자료</h2>
+                        <p class="section-subtitle">수업 운영을 위한 다양한 자료와 템플릿</p>
+                    </div>
+
+                    <h3>📚 기본 교육 자료</h3>
+                    
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-presentation"></i>
+                            </div>
+                            <h4>프레젠테이션 자료</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>AIDT HTHT×SEL 개념 소개</li>
+                                <li>SEL 역량별 설명 자료</li>
+                                <li>활동 안내 슬라이드</li>
+                                <li>사례 연구 자료</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h4>멀티미디어 자료</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>교육용 동영상 클립</li>
+                                <li>인터랙티브 시뮬레이션</li>
+                                <li>음성 가이드 자료</li>
+                                <li>VR/AR 체험 콘텐츠</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h4>워크시트 템플릿</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>감정 인식 활동지</li>
+                                <li>성찰 일지 양식</li>
+                                <li>프로젝트 계획서</li>
+                                <li>동료 평가표</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4>평가 도구</h4>
+                            <ul style="text-align: left; font-size: 0.9rem;">
+                                <li>SEL 역량 진단도구</li>
+                                <li>포트폴리오 루브릭</li>
+                                <li>관찰 평가표</li>
+                                <li>자기평가 척도</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>🎨 활동별 자료 모음</h3>
+                    
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-smile"></i>
+                            감정 인식 활동 자료
+                        </div>
+                        <ul>
+                            <li><strong>감정 카드 세트:</strong> 다양한 감정을 시각적으로 표현한 카드</li>
+                            <li><strong>상황 시나리오:</strong> 일상생활의 감정적 상황들</li>
+                            <li><strong>감정 어휘 사전:</strong> 구체적이고 다양한 감정 표현 단어</li>
+                            <li><strong>AI 감정 분석 앱:</strong> 표정이나 음성으로 감정을 분석하는 도구</li>
+                        </ul>
+                    </div>
+
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-users"></i>
+                            협력 학습 자료
+                        </div>
+                        <ul>
+                            <li><strong>역할 카드:</strong> 팀 활동에서의 다양한 역할 정의</li>
+                            <li><strong>협력 규칙 포스터:</strong> 효과적인 협력을 위한 기본 규칙</li>
+                            <li><strong>갈등 해결 가이드:</strong> 단계별 갈등 해결 방법</li>
+                            <li><strong>피드백 문장 템플릿:</strong> 건설적인 피드백을 위한 표현</li>
+                        </ul>
+                    </div>
+
+                    <h3>🔗 유용한 온라인 자료</h3>
+                    
+                    <table class="evaluation-matrix">
+                        <thead>
+                            <tr>
+                                <th>분야</th>
+                                <th>자료명</th>
+                                <th>설명</th>
+                                <th>활용 방법</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SEL 교육</td>
+                                <td>CASEL 공식 자료</td>
+                                <td>SEL 국제 표준 가이드라인</td>
+                                <td>이론적 배경 학습, 커리큘럼 설계</td>
+                            </tr>
+                            <tr>
+                                <td>AI 교육</td>
+                                <td>AI4ALL 교육 자료</td>
+                                <td>AI 윤리 및 활용 교육 자료</td>
+                                <td>AI 리터러시 교육, 윤리 토론</td>
+                            </tr>
+                            <tr>
+                                <td>디지털 협업</td>
+                                <td>Google for Education</td>
+                                <td>협업 도구 활용 가이드</td>
+                                <td>디지털 협업 기술 습득</td>
+                            </tr>
+                            <tr>
+                                <td>평가 도구</td>
+                                <td>Kahoot, Padlet</td>
+                                <td>인터랙티브 평가 플랫폼</td>
+                                <td>형성평가, 실시간 피드백</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- 9. 문제 해결 -->
+                <section id="troubleshooting" class="manual-section">
+                    <div class="section-header">
+                        <h2 class="section-title">9. 문제 해결</h2>
+                        <p class="section-subtitle">자주 발생하는 문제와 해결 방안</p>
+                    </div>
+
+                    <h3>🔧 기술적 문제 해결</h3>
+                    
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-wifi"></i>
+                            인터넷 연결 문제
+                        </div>
+                        <h4>증상</h4>
+                        <ul>
+                            <li>AI 플랫폼 접속 불가</li>
+                            <li>화상 수업 중 연결 끊김</li>
+                            <li>협업 도구 동기화 실패</li>
+                        </ul>
+                        <h4>해결 방법</h4>
+                        <ol>
+                            <li>네트워크 연결 상태 확인 및 재연결</li>
+                            <li>모바일 핫스팟을 활용한 백업 연결</li>
+                            <li>오프라인 모드로 전환 후 나중에 동기화</li>
+                            <li>학교 IT 지원팀에 기술 지원 요청</li>
+                        </ol>
+                    </div>
+
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-laptop"></i>
+                            디바이스 호환성 문제
+                        </div>
+                        <h4>증상</h4>
+                        <ul>
+                            <li>일부 학생의 기기에서 플랫폼 실행 불가</li>
+                            <li>브라우저별 기능 차이</li>
+                            <li>앱 설치 권한 문제</li>
+                        </ul>
+                        <h4>해결 방법</h4>
+                        <ol>
+                            <li>권장 브라우저 및 버전 안내</li>
+                            <li>웹 기반 대안 솔루션 제공</li>
+                            <li>학교 공용 기기 활용 방안 마련</li>
+                            <li>단순화된 인터페이스로 접근</li>
+                        </ol>
+                    </div>
+
+                    <h3>👥 교육적 문제 해결</h3>
+                    
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-user-times"></i>
+                            학습자 참여도 저조
+                        </div>
+                        <h4>원인 분석</h4>
+                        <ul>
+                            <li>기술 사용에 대한 두려움이나 부담</li>
+                            <li>SEL 주제에 대한 관심 부족</li>
+                            <li>개인적 어려움이나 스트레스</li>
+                        </ul>
+                        <h4>해결 전략</h4>
+                        <ol>
+                            <li><strong>개별 상담:</strong> 일대일 면담을 통한 어려움 파악</li>
+                            <li><strong>단계적 접근:</strong> 쉬운 활동부터 시작하여 자신감 구축</li>
+                            <li><strong>동료 지원:</strong> 멘토-멘티 시스템 구축</li>
+                            <li><strong>다양한 참여 방식:</strong> 개인 성향에 맞는 참여 옵션 제공</li>
+                        </ol>
+                    </div>
+
+                    <div class="activity-box">
+                        <div class="activity-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            협력 활동 중 갈등
+                        </div>
+                        <h4>갈등 유형</h4>
+                        <ul>
+                            <li>역할 분담 관련 불만</li>
+                            <li>의견 차이로 인한 대립</li>
+                            <li>참여도 차이로 인한 불공정감</li>
+                        </ul>
+                        <h4>중재 방법</h4>
+                        <ol>
+                            <li><strong>즉시 개입:</strong> 갈등 상황을 빠르게 파악하고 중재</li>
+                            <li><strong>이해관계 파악:</strong> 각 당사자의 입장과 감정 경청</li>
+                            <li><strong>해결책 모색:</strong> 함께 합의 가능한 해결 방안 찾기</li>
+                            <li><strong>예방 교육:</strong> 갈등 예방을 위한 협력 기술 교육</li>
+                        </ol>
+                    </div>
+
+                    <h3>📞 지원 체계</h3>
+                    
+                    <div class="tip-box">
+                        <h4><i class="fas fa-phone"></i> 도움 요청 채널</h4>
+                        <ul>
+                            <li><strong>기술 지원:</strong> 학교 IT 지원팀 또는 플랫폼 고객지원</li>
+                            <li><strong>교육 상담:</strong> 동료 교사, 교육전문가 네트워크</li>
+                            <li><strong>학생 상담:</strong> 상담교사, 학교 심리상담센터</li>
+                            <li><strong>학부모 소통:</strong> 가정통신문, 학부모 간담회</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4><i class="fas fa-exclamation-circle"></i> 응급 상황 대응</h4>
+                        <ul>
+                            <li><strong>사이버 괴롭힘 발견 시:</strong> 즉시 상황 중단, 개별 상담, 학부모 연락</li>
+                            <li><strong>개인정보 유출 우려 시:</strong> 해당 계정 비활성화, IT팀 신고</li>
+                            <li><strong>심각한 정서적 문제 발견 시:</strong> 상담교사 연계, 전문기관 의뢰</li>
+                        </ul>
+                    </div>
+
+                    <h3>📝 지속적 개선 방안</h3>
+                    
+                    <ul>
+                        <li><strong>정기 평가:</strong> 학기별 프로그램 효과성 평가 및 개선</li>
+                        <li><strong>피드백 수집:</strong> 학생, 학부모, 동료 교사 의견 수렴</li>
+                        <li><strong>전문성 개발:</strong> 관련 연수 참여 및 자기계발</li>
+                        <li><strong>사례 공유:</strong> 성공 사례 및 노하우 공유</li>
+                        <li><strong>최신 동향 파악:</strong> AIDT 및 SEL 분야 연구 동향 모니터링</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- 공통 JavaScript -->
+    <script src="../assets/js/common.js"></script>
+    
+    <script>
+        // 목차 링크 활성화
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('.manual-section');
+            
+            // 스크롤 시 현재 섹션 하이라이트
+            function updateActiveLink() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        currentSection = section.id;
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // 초기 로드 시 활성화
+            updateActiveLink();
+            
+            // 스크롤 이벤트 리스너
+            window.addEventListener('scroll', updateActiveLink);
+            
+            // 목차 링크 클릭 시 부드러운 스크롤
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // 프린트 기능
+        function printManual() {
+            window.print();
+        }
+        
+        // 북마크 기능
+        function bookmarkSection(sectionId) {
+            AIDT.utils.storage.set('bookmarkedSection', sectionId);
+            AIDT.notification.show('섹션이 북마크되었습니다.', 'success');
+        }
+        
+        // PDF 내보내기 (시뮬레이션)
+        function exportToPDF() {
+            AIDT.notification.show('PDF 내보내기 기능은 개발 중입니다.', 'info');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>협업 공간 - AIDT HTHT×SEL</title>
+    <meta name="description" content="팀 프로젝트를 위한 협업 도구와 토론 기능을 통해 효과적인 협력 학습을 실현합니다.">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .collaboration-board {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            min-height: 600px;
+        }
+        
+        .board-column {
+            min-width: 300px;
+            flex-shrink: 0;
+            background: var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .column-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .column-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .task-count {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .task-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .task-card.high-priority {
+            border-left-color: var(--error-color);
+        }
+        
+        .task-card.medium-priority {
+            border-left-color: var(--warning-color);
+        }
+        
+        .task-card.low-priority {
+            border-left-color: var(--success-color);
+        }
+        
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .task-description {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .task-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-lighter);
+        }
+        
+        .task-assignee {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .assignee-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .add-task-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px dashed var(--border-color);
+            background: transparent;
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+        
+        .add-task-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: var(--bg-white);
+        }
+        
+        .discussion-section {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-top: 2rem;
+        }
+        
+        .discussion-header {
+            background: linear-gradient(135deg, var(--success-color), #219a52);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .discussion-content {
+            padding: 1.5rem;
+        }
+        
+        .comment {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            margin-bottom: 1rem;
+        }
+        
+        .comment:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        
+        .comment-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .author-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .author-info h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .author-info small {
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+        
+        .comment-time {
+            color: var(--text-lighter);
+            font-size: 0.75rem;
+        }
+        
+        .comment-content {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .comment-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+        
+        .comment-action {
+            background: none;
+            border: none;
+            color: var(--text-lighter);
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+        
+        .comment-action:hover {
+            color: var(--primary-color);
+        }
+        
+        .add-comment-form {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+        
+        .comment-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+        }
+        
+        .team-members {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .member-card {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background: var(--bg-light);
+            transition: var(--transition);
+        }
+        
+        .member-card:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .member-avatar-large {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .member-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .member-role {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .collaboration-board {
+                flex-direction: column;
+            }
+            
+            .board-column {
+                min-width: auto;
+            }
+            
+            .team-members {
+                flex-direction: column;
+            }
+            
+            .member-card {
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .member-avatar-large {
+                margin: 0;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="../index.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-brain"></i>
+                        AIDT HTHT×SEL
+                    </a>
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 글로벌 네비게이션 -->
+    <nav class="global-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="intro.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i> 소개
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="project-wizard.html" class="nav-link">
+                        <i class="fas fa-magic"></i> 프로젝트 기획
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="emotion-recognition.html" class="nav-link">
+                        <i class="fas fa-smile"></i> 감정 인식
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="sel-competency.html" class="nav-link">
+                        <i class="fas fa-users"></i> SEL 역량
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-interaction.html" class="nav-link">
+                        <i class="fas fa-comments"></i> AI 상호작용
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="collaboration.html" class="nav-link active">
+                        <i class="fas fa-project-diagram"></i> 협업 공간
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../instructor/manual.html" class="nav-link">
+                        <i class="fas fa-chalkboard-teacher"></i> 강사 메뉴얼
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 브레드크럼 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">홈</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">협업 공간</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container" style="padding: 2rem 1rem;">
+        <!-- 페이지 헤더 -->
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                <h1 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-project-diagram" style="color: var(--success-color);"></i>
+                    협업 공간
+                </h1>
+                <p class="card-subtitle" style="font-size: 1.1rem;">
+                    팀원들과 함께 프로젝트를 계획하고 진행하며 효과적으로 협력해보세요
+                </p>
+            </div>
+        </div>
+
+        <!-- 팀 멤버 소개 -->
+        <div class="team-members">
+            <div class="member-card">
+                <div class="member-avatar-large" style="background: var(--primary-color);">지</div>
+                <div>
+                    <div class="member-name">김지수</div>
+                    <div class="member-role">팀 리더</div>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-avatar-large" style="background: var(--secondary-color);">민</div>
+                <div>
+                    <div class="member-name">박민지</div>
+                    <div class="member-role">디자인 담당</div>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-avatar-large" style="background: var(--accent-color);">현</div>
+                <div>
+                    <div class="member-name">이현우</div>
+                    <div class="member-role">개발 담당</div>
+                </div>
+            </div>
+            <div class="member-card">
+                <div class="member-avatar-large" style="background: var(--success-color);">서</div>
+                <div>
+                    <div class="member-name">최서연</div>
+                    <div class="member-role">기획 담당</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 프로젝트 현황 보드 -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-tasks"></i>
+                    프로젝트: 학교 친환경 캠페인
+                </h2>
+                <p class="card-subtitle">진행 상황을 한눈에 파악하고 작업을 관리해보세요</p>
+            </div>
+            <div class="card-body">
+                <div class="collaboration-board">
+                    <!-- 할 일 -->
+                    <div class="board-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fas fa-list"></i>
+                                할 일
+                            </div>
+                            <div class="task-count">3</div>
+                        </div>
+                        
+                        <div class="task-card high-priority">
+                            <div class="task-title">캠페인 주제 선정</div>
+                            <div class="task-description">친환경 캠페인의 구체적인 주제와 방향을 결정해야 합니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--success-color);">서</div>
+                                    <span>최서연</span>
+                                </div>
+                                <span>마감: 3일 후</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-card medium-priority">
+                            <div class="task-title">설문조사 문항 작성</div>
+                            <div class="task-description">학생들의 환경 인식도를 조사할 설문 문항을 준비합니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--primary-color);">지</div>
+                                    <span>김지수</span>
+                                </div>
+                                <span>마감: 5일 후</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-card low-priority">
+                            <div class="task-title">참고 자료 수집</div>
+                            <div class="task-description">성공적인 친환경 캠페인 사례들을 조사하고 정리합니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--accent-color);">현</div>
+                                    <span>이현우</span>
+                                </div>
+                                <span>마감: 1주일 후</span>
+                            </div>
+                        </div>
+                        
+                        <button class="add-task-btn" onclick="openTaskModal('todo')">
+                            <i class="fas fa-plus"></i> 새 작업 추가
+                        </button>
+                    </div>
+
+                    <!-- 진행 중 -->
+                    <div class="board-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fas fa-spinner"></i>
+                                진행 중
+                            </div>
+                            <div class="task-count">2</div>
+                        </div>
+                        
+                        <div class="task-card medium-priority">
+                            <div class="task-title">포스터 디자인</div>
+                            <div class="task-description">캠페인 홍보용 포스터 초안을 제작하고 있습니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--secondary-color);">민</div>
+                                    <span>박민지</span>
+                                </div>
+                                <span>진행률: 60%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-card high-priority">
+                            <div class="task-title">교내 승인 신청</div>
+                            <div class="task-description">캠페인 진행을 위한 학교 측 승인을 받고 있습니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--primary-color);">지</div>
+                                    <span>김지수</span>
+                                </div>
+                                <span>진행률: 80%</span>
+                            </div>
+                        </div>
+                        
+                        <button class="add-task-btn" onclick="openTaskModal('progress')">
+                            <i class="fas fa-plus"></i> 새 작업 추가
+                        </button>
+                    </div>
+
+                    <!-- 완료 -->
+                    <div class="board-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fas fa-check"></i>
+                                완료
+                            </div>
+                            <div class="task-count">4</div>
+                        </div>
+                        
+                        <div class="task-card">
+                            <div class="task-title">팀 역할 분담</div>
+                            <div class="task-description">각 팀원의 역할과 책임을 명확히 정의했습니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--primary-color);">지</div>
+                                    <span>김지수</span>
+                                </div>
+                                <span>완료: 3일 전</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-card">
+                            <div class="task-title">프로젝트 계획서 작성</div>
+                            <div class="task-description">전체적인 프로젝트 계획과 일정을 수립했습니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--success-color);">서</div>
+                                    <span>최서연</span>
+                                </div>
+                                <span>완료: 5일 전</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-card">
+                            <div class="task-title">팀 미팅 일정 조율</div>
+                            <div class="task-description">정기 미팅 시간과 장소를 정했습니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--secondary-color);">민</div>
+                                    <span>박민지</span>
+                                </div>
+                                <span>완료: 1주일 전</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-card">
+                            <div class="task-title">기초 자료 조사</div>
+                            <div class="task-description">환경 문제 현황과 학교 환경 정책을 조사했습니다.</div>
+                            <div class="task-meta">
+                                <div class="task-assignee">
+                                    <div class="assignee-avatar" style="background: var(--accent-color);">현</div>
+                                    <span>이현우</span>
+                                </div>
+                                <span>완료: 1주일 전</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 팀 토론 섹션 -->
+        <div class="discussion-section">
+            <div class="discussion-header">
+                <h2><i class="fas fa-comments"></i> 팀 토론</h2>
+                <p>팀원들과 아이디어를 공유하고 의견을 나눠보세요</p>
+            </div>
+            
+            <div class="discussion-content">
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="author-avatar" style="background: var(--primary-color);">지</div>
+                            <div class="author-info">
+                                <h4>김지수</h4>
+                                <small>팀 리더</small>
+                            </div>
+                        </div>
+                        <div class="comment-time">2시간 전</div>
+                    </div>
+                    <div class="comment-content">
+                        교장 선생님과 미팅을 했는데, 우리 캠페인 아이디어를 정말 좋아하셨어요! 특히 학생들이 직접 참여할 수 있는 체험 활동 부분을 높이 평가하셨습니다. 다음 주까지 구체적인 실행 계획을 제출하면 공식 승인해 주시기로 했어요. 🎉
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-action">
+                            <i class="fas fa-thumbs-up"></i> 좋아요 (3)
+                        </button>
+                        <button class="comment-action">
+                            <i class="fas fa-reply"></i> 답글
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="author-avatar" style="background: var(--secondary-color);">민</div>
+                            <div class="author-info">
+                                <h4>박민지</h4>
+                                <small>디자인 담당</small>
+                            </div>
+                        </div>
+                        <div class="comment-time">1시간 전</div>
+                    </div>
+                    <div class="comment-content">
+                        와! 정말 좋은 소식이네요! 지수야 고생했어요 👏<br><br>
+                        저는 포스터 디자인 초안을 거의 완성했어요. 밝고 활기찬 느낌으로 만들었는데, 내일 미팅 때 보여드릴게요. 그리고 SNS용 이미지들도 함께 준비하고 있어요!
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-action">
+                            <i class="fas fa-thumbs-up"></i> 좋아요 (2)
+                        </button>
+                        <button class="comment-action">
+                            <i class="fas fa-reply"></i> 답글
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="author-avatar" style="background: var(--accent-color);">현</div>
+                            <div class="author-info">
+                                <h4>이현우</h4>
+                                <small>개발 담당</small>
+                            </div>
+                        </div>
+                        <div class="comment-time">30분 전</div>
+                    </div>
+                    <div class="comment-content">
+                        참고 자료 조사 결과를 공유드려요!<br><br>
+                        📊 다른 학교 성공 사례들을 보니, 학생 참여도가 높았던 캠페인들의 공통점은:<br>
+                        1. 재미있는 체험 활동<br>
+                        2. 실질적인 환경 개선 효과<br>
+                        3. 지속적인 피드백과 결과 공유<br><br>
+                        우리도 이런 요소들을 잘 활용하면 좋을 것 같아요!
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-action">
+                            <i class="fas fa-thumbs-up"></i> 좋아요 (4)
+                        </button>
+                        <button class="comment-action">
+                            <i class="fas fa-reply"></i> 답글
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="author-avatar" style="background: var(--success-color);">서</div>
+                            <div class="author-info">
+                                <h4>최서연</h4>
+                                <small>기획 담당</small>
+                            </div>
+                        </div>
+                        <div class="comment-time">방금 전</div>
+                    </div>
+                    <div class="comment-content">
+                        현우야, 정말 유용한 자료 고마워! 📝<br><br>
+                        이 정보를 바탕으로 실행 계획을 더 구체화해볼게요. 특히 '지속적인 피드백과 결과 공유' 부분이 중요한 것 같아요. 캠페인 진행 상황을 실시간으로 볼 수 있는 게시판이나 앱을 만들면 어떨까요?
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-action">
+                            <i class="fas fa-thumbs-up"></i> 좋아요
+                        </button>
+                        <button class="comment-action">
+                            <i class="fas fa-reply"></i> 답글
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="add-comment-form">
+                <h4 style="margin-bottom: 1rem;"><i class="fas fa-pen"></i> 의견 추가하기</h4>
+                <textarea class="comment-input" placeholder="팀원들과 공유하고 싶은 의견이나 아이디어를 자유롭게 작성해보세요..."></textarea>
+                <div class="text-right mt-3">
+                    <button class="btn btn-outline btn-sm" onclick="clearComment()">
+                        <i class="fas fa-eraser"></i> 지우기
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="addComment()">
+                        <i class="fas fa-paper-plane"></i> 의견 등록
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 협업 도구 안내 -->
+        <div class="card mt-4" style="background: linear-gradient(135deg, var(--bg-light), var(--bg-white));">
+            <div class="card-body">
+                <h3><i class="fas fa-tools text-primary"></i> 효과적인 협업을 위한 팁</h3>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-users text-primary" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>명확한 역할 분담</h5>
+                            <p class="text-muted small">각자의 역할과 책임을 명확히 하여 효율적으로 작업하세요.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-calendar text-secondary" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>정기적인 소통</h5>
+                            <p class="text-muted small">정해진 시간에 만나 진행 상황을 공유하고 조율하세요.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-target text-accent" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>공동 목표 설정</h5>
+                            <p class="text-muted small">모든 팀원이 공유하는 명확한 목표를 설정하세요.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <i class="fas fa-heart text-success" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <h5>서로 격려하기</h5>
+                            <p class="text-muted small">팀원들의 노력을 인정하고 서로를 격려해주세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 완료 안내 -->
+        <div class="card mt-4">
+            <div class="card-header text-center">
+                <h2 class="card-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    AIDT HTHT×SEL 체험 완료!
+                </h2>
+                <p class="card-subtitle">모든 학습 영역을 체험해보셨습니다</p>
+            </div>
+            <div class="card-body text-center">
+                <div style="font-size: 4rem; color: var(--success-color); margin-bottom: 1.5rem;">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>축하합니다! 🎉</h3>
+                <p style="font-size: 1.1rem; margin: 1.5rem 0;">
+                    AI Digital Textbook과 High-Tech High-Touch 교육 모델을 통한<br>
+                    사회정서학습 여정을 성공적으로 완주하셨습니다!
+                </p>
+                
+                <div class="row mt-4">
+                    <div class="col">
+                        <div class="card" style="background: var(--primary-color); color: white;">
+                            <div class="card-body">
+                                <h4><i class="fas fa-brain"></i> 체험한 내용</h4>
+                                <ul style="text-align: left; margin: 1rem 0 0 0;">
+                                    <li>AIDT HTHT×SEL 개념 이해</li>
+                                    <li>프로젝트 기획 및 설계</li>
+                                    <li>감정 인식 및 공감 능력</li>
+                                    <li>SEL 5가지 핵심 역량</li>
+                                    <li>AI와의 상호작용</li>
+                                    <li>협업 및 소통 기술</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style="background: var(--secondary-color); color: white;">
+                            <div class="card-body">
+                                <h4><i class="fas fa-star"></i> 얻은 역량</h4>
+                                <ul style="text-align: left; margin: 1rem 0 0 0;">
+                                    <li>자기인식 및 성찰</li>
+                                    <li>감정 조절 및 관리</li>
+                                    <li>타인에 대한 이해와 공감</li>
+                                    <li>효과적인 의사소통</li>
+                                    <li>협력적 문제 해결</li>
+                                    <li>책임감 있는 의사결정</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <a href="../index.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home"></i> 홈으로 돌아가기
+                    </a>
+                    <a href="../instructor/manual.html" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-book"></i> 강사 메뉴얼 보기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 작업 추가 모달 -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>새 작업 추가</h3>
+                <button class="modal-close" onclick="closeTaskModal()">&times;</button>
+            </div>
+            <form onsubmit="addTask(event)">
+                <div class="form-group">
+                    <label class="form-label">작업 제목</label>
+                    <input type="text" class="form-control" id="task-title" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">작업 설명</label>
+                    <textarea class="form-control" id="task-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">담당자</label>
+                    <select class="form-control" id="task-assignee">
+                        <option value="김지수">김지수</option>
+                        <option value="박민지">박민지</option>
+                        <option value="이현우">이현우</option>
+                        <option value="최서연">최서연</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">우선순위</label>
+                    <select class="form-control" id="task-priority">
+                        <option value="low">낮음</option>
+                        <option value="medium">보통</option>
+                        <option value="high">높음</option>
+                    </select>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-outline" onclick="closeTaskModal()">취소</button>
+                    <button type="submit" class="btn btn-primary">추가</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 공통 JavaScript -->
+    <script src="../assets/js/common.js"></script>
+    
+    <script>
+        let currentColumn = '';
+        
+        // 작업 추가 모달 관련 함수
+        function openTaskModal(column) {
+            currentColumn = column;
+            document.getElementById('task-modal').classList.add('show');
+        }
+        
+        function closeTaskModal() {
+            document.getElementById('task-modal').classList.remove('show');
+        }
+        
+        function addTask(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('task-title').value;
+            const description = document.getElementById('task-description').value;
+            const assignee = document.getElementById('task-assignee').value;
+            const priority = document.getElementById('task-priority').value;
+            
+            // 새 작업 카드 생성
+            const taskCard = createTaskCard(title, description, assignee, priority);
+            
+            // 해당 컬럼에 추가
+            const column = document.querySelector(`.board-column:nth-child(${getColumnIndex(currentColumn)})`);
+            const addButton = column.querySelector('.add-task-btn');
+            column.insertBefore(taskCard, addButton);
+            
+            // 작업 수 업데이트
+            updateTaskCount(currentColumn, 1);
+            
+            // 폼 초기화 및 모달 닫기
+            event.target.reset();
+            closeTaskModal();
+            
+            AIDT.notification.show('새 작업이 추가되었습니다!', 'success');
+        }
+        
+        function createTaskCard(title, description, assignee, priority) {
+            const taskCard = document.createElement('div');
+            taskCard.className = `task-card ${priority}-priority`;
+            
+            const assigneeInitial = assignee.charAt(0);
+            const assigneeColors = {
+                '김지수': 'var(--primary-color)',
+                '박민지': 'var(--secondary-color)',
+                '이현우': 'var(--accent-color)',
+                '최서연': 'var(--success-color)'
+            };
+            
+            taskCard.innerHTML = `
+                <div class="task-title">${title}</div>
+                <div class="task-description">${description}</div>
+                <div class="task-meta">
+                    <div class="task-assignee">
+                        <div class="assignee-avatar" style="background: ${assigneeColors[assignee]};">${assigneeInitial}</div>
+                        <span>${assignee}</span>
+                    </div>
+                    <span>방금 추가됨</span>
+                </div>
+            `;
+            
+            return taskCard;
+        }
+        
+        function getColumnIndex(column) {
+            switch(column) {
+                case 'todo': return 1;
+                case 'progress': return 2;
+                case 'done': return 3;
+                default: return 1;
+            }
+        }
+        
+        function updateTaskCount(column, change) {
+            const columnIndex = getColumnIndex(column);
+            const taskCountElement = document.querySelector(`.board-column:nth-child(${columnIndex}) .task-count`);
+            const currentCount = parseInt(taskCountElement.textContent);
+            taskCountElement.textContent = currentCount + change;
+        }
+        
+        // 댓글 관련 함수
+        function addComment() {
+            const commentInput = document.querySelector('.comment-input');
+            const content = commentInput.value.trim();
+            
+            if (!content) {
+                AIDT.notification.show('의견을 입력해주세요.', 'warning');
+                return;
+            }
+            
+            // 새 댓글 요소 생성
+            const comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.innerHTML = `
+                <div class="comment-header">
+                    <div class="comment-author">
+                        <div class="author-avatar" style="background: var(--primary-color);">나</div>
+                        <div class="author-info">
+                            <h4>나</h4>
+                            <small>팀원</small>
+                        </div>
+                    </div>
+                    <div class="comment-time">방금 전</div>
+                </div>
+                <div class="comment-content">
+                    ${content.replace(/\n/g, '<br>')}
+                </div>
+                <div class="comment-actions">
+                    <button class="comment-action">
+                        <i class="fas fa-thumbs-up"></i> 좋아요
+                    </button>
+                    <button class="comment-action">
+                        <i class="fas fa-reply"></i> 답글
+                    </button>
+                </div>
+            `;
+            
+            // 댓글 목록에 추가
+            const discussionContent = document.querySelector('.discussion-content');
+            discussionContent.appendChild(comment);
+            
+            // 입력창 초기화
+            commentInput.value = '';
+            
+            // 스크롤을 새 댓글로 이동
+            comment.scrollIntoView({ behavior: 'smooth' });
+            
+            AIDT.notification.show('의견이 등록되었습니다!', 'success');
+        }
+        
+        function clearComment() {
+            document.querySelector('.comment-input').value = '';
+        }
+        
+        // 작업 카드 클릭 이벤트 (드래그 앤 드롭 시뮬레이션)
+        document.addEventListener('DOMContentLoaded', function() {
+            // 모달 외부 클릭 시 닫기
+            document.getElementById('task-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeTaskModal();
+                }
+            });
+            
+            // 작업 카드 클릭 이벤트
+            document.querySelectorAll('.task-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // 작업 상세 정보 표시 (시뮬레이션)
+                    const title = this.querySelector('.task-title').textContent;
+                    AIDT.notification.show(`"${title}" 작업을 선택했습니다.`, 'info');
+                });
+            });
+            
+            // 팀원 카드 호버 효과
+            document.querySelectorAll('.member-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

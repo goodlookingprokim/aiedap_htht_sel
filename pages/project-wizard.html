@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 기획 마법사 - AIDT HTHT×SEL</title>
+    <meta name="description" content="AIDT와 HTHT×SEL을 접목한 교육 프로젝트를 단계별로 기획하고 설계할 수 있는 체계적인 도구입니다.">
+    
+    <!-- 공통 스타일시트 -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .step-container {
+            display: none;
+        }
+        
+        .step-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .step-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            text-align: center;
+        }
+        
+        .step-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-gray);
+            color: var(--text-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .step-circle.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .step-circle.completed {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .step-line {
+            width: 60px;
+            height: 2px;
+            background: var(--bg-gray);
+        }
+        
+        .step-line.active {
+            background: var(--primary-light);
+        }
+        
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-light);
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        
+        .form-section h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .checkbox-item:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-light);
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 0.75rem;
+            transform: scale(1.2);
+        }
+        
+        .project-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .example-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .example-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .example-card.selected {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .step-progress {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .step-line {
+                width: 30px;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 글로벌 헤더 -->
+    <header class="global-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="../index.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-brain"></i>
+                        AIDT HTHT×SEL
+                    </a>
+                </h1>
+                <div class="header-meta">
+                    <span>AI Digital Textbook × High-Tech High-Touch × Social Emotional Learning</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 글로벌 네비게이션 -->
+    <nav class="global-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="intro.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i> 소개
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="project-wizard.html" class="nav-link active">
+                        <i class="fas fa-magic"></i> 프로젝트 기획
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="emotion-recognition.html" class="nav-link">
+                        <i class="fas fa-smile"></i> 감정 인식
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="sel-competency.html" class="nav-link">
+                        <i class="fas fa-users"></i> SEL 역량
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-interaction.html" class="nav-link">
+                        <i class="fas fa-comments"></i> AI 상호작용
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="collaboration.html" class="nav-link">
+                        <i class="fas fa-project-diagram"></i> 협업 공간
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../instructor/manual.html" class="nav-link">
+                        <i class="fas fa-chalkboard-teacher"></i> 강사 메뉴얼
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 브레드크럼 -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">홈</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">프로젝트 기획 마법사</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container" style="padding: 2rem 1rem;">
+        
+        <!-- 1단계: 프로젝트 개요 -->
+        <div id="step-1" class="step-container active">
+            <div class="card">
+                <div class="step-header">
+                    <h1><i class="fas fa-magic"></i> 프로젝트 기획 마법사</h1>
+                    <p>AIDT HTHT×SEL 교육 프로젝트를 체계적으로 설계해보세요</p>
+                    
+                    <div class="step-progress">
+                        <div class="step-circle active">1</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">2</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">3</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">4</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">5</div>
+                    </div>
+                </div>
+                
+                <div class="card-body" style="padding: 2rem;">
+                    <div class="form-section">
+                        <h3><i class="fas fa-lightbulb"></i> 1단계: 프로젝트 개요</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">프로젝트 주제</label>
+                            <input type="text" class="form-control" id="project-topic" 
+                                   placeholder="예: 환경보호를 위한 학교 내 친환경 실천 프로젝트">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">해결하고자 하는 문제</label>
+                            <textarea class="form-control" id="project-problem" rows="4" 
+                                      placeholder="이 프로젝트를 통해 해결하고자 하는 구체적인 문제나 상황을 설명해주세요"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">프로젝트 목표</label>
+                            <textarea class="form-control" id="project-goals" rows="3" 
+                                      placeholder="이 프로젝트를 통해 달성하고자 하는 목표를 구체적으로 작성해주세요"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-navigation">
+                    <div></div>
+                    <button class="btn btn-primary" onclick="nextStep(2)">
+                        다음 단계 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2단계: 학습 목표 설정 -->
+        <div id="step-2" class="step-container">
+            <div class="card">
+                <div class="step-header">
+                    <h1><i class="fas fa-target"></i> 학습 목표 설정</h1>
+                    <p>AIDT와 SEL 역량을 연계한 학습 목표를 설정하세요</p>
+                    
+                    <div class="step-progress">
+                        <div class="step-circle completed">1</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle active">2</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">3</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">4</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">5</div>
+                    </div>
+                </div>
+                
+                <div class="card-body" style="padding: 2rem;">
+                    <div class="form-section">
+                        <h3><i class="fas fa-check-circle"></i> SEL 핵심 역량 선택</h3>
+                        <p class="text-muted">이 프로젝트에서 중점적으로 개발할 SEL 역량을 선택해주세요 (복수 선택 가능)</p>
+                        
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="self-awareness" name="sel-competency" value="self-awareness">
+                                <div>
+                                    <strong>자기인식</strong>
+                                    <br><small class="text-muted">자신의 감정, 생각, 가치관 인식</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="self-management" name="sel-competency" value="self-management">
+                                <div>
+                                    <strong>자기관리</strong>
+                                    <br><small class="text-muted">감정 조절과 목표 달성을 위한 자기 관리</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="social-awareness" name="sel-competency" value="social-awareness">
+                                <div>
+                                    <strong>사회적 인식</strong>
+                                    <br><small class="text-muted">타인의 감정과 사회적 상황 이해</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="relationship-skills" name="sel-competency" value="relationship-skills">
+                                <div>
+                                    <strong>관계 기술</strong>
+                                    <br><small class="text-muted">건강한 관계 구축과 유지</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="responsible-decision" name="sel-competency" value="responsible-decision">
+                                <div>
+                                    <strong>책임 있는 의사결정</strong>
+                                    <br><small class="text-muted">윤리적이고 건설적인 선택</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3><i class="fas fa-bullseye"></i> 구체적 학습 목표</h3>
+                        <div class="form-group">
+                            <label class="form-label">측정 가능한 학습 목표</label>
+                            <textarea class="form-control" id="measurable-goal" rows="3" 
+                                      placeholder="예: 학생들이 환경 문제에 대한 자신의 생각과 감정을 명확히 표현하고, 팀원과 협력하여 실천 방안을 3가지 이상 도출할 수 있다."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">프로젝트 기간</label>
+                            <select class="form-control" id="project-duration">
+                                <option value="">기간을 선택하세요</option>
+                                <option value="1-week">1주</option>
+                                <option value="2-weeks">2주</option>
+                                <option value="1-month">1개월</option>
+                                <option value="1-semester">1학기</option>
+                                <option value="custom">직접 입력</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-navigation">
+                    <button class="btn btn-outline" onclick="prevStep(1)">
+                        <i class="fas fa-arrow-left"></i> 이전 단계
+                    </button>
+                    <button class="btn btn-primary" onclick="nextStep(3)">
+                        다음 단계 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3단계: AIDT 기능 활용 -->
+        <div id="step-3" class="step-container">
+            <div class="card">
+                <div class="step-header">
+                    <h1><i class="fas fa-robot"></i> AIDT 기능 활용</h1>
+                    <p>AI 디지털 교과서의 기능을 프로젝트에 어떻게 활용할지 계획하세요</p>
+                    
+                    <div class="step-progress">
+                        <div class="step-circle completed">1</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle completed">2</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle active">3</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">4</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">5</div>
+                    </div>
+                </div>
+                
+                <div class="card-body" style="padding: 2rem;">
+                    <div class="form-section">
+                        <h3><i class="fas fa-cogs"></i> AIDT 활용 기능 선택</h3>
+                        
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="personalized-learning" name="aidt-feature" value="personalized-learning">
+                                <div>
+                                    <strong>개별맞춤 학습</strong>
+                                    <br><small class="text-muted">학습자 수준별 콘텐츠 제공</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="adaptive-assessment" name="aidt-feature" value="adaptive-assessment">
+                                <div>
+                                    <strong>적응형 평가</strong>
+                                    <br><small class="text-muted">학습 진도에 따른 동적 평가</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="learning-analytics" name="aidt-feature" value="learning-analytics">
+                                <div>
+                                    <strong>학습 분석</strong>
+                                    <br><small class="text-muted">학습 패턴 분석 및 피드백</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="collaborative-tools" name="aidt-feature" value="collaborative-tools">
+                                <div>
+                                    <strong>협업 도구</strong>
+                                    <br><small class="text-muted">디지털 협업 플랫폼 활용</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ai-tutoring" name="aidt-feature" value="ai-tutoring">
+                                <div>
+                                    <strong>AI 튜터링</strong>
+                                    <br><small class="text-muted">인공지능 학습 도우미</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="multimedia-content" name="aidt-feature" value="multimedia-content">
+                                <div>
+                                    <strong>멀티미디어 콘텐츠</strong>
+                                    <br><small class="text-muted">다양한 형태의 학습 자료</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3><i class="fas fa-handshake"></i> HTHT 전략</h3>
+                        <div class="form-group">
+                            <label class="form-label">High-Tech 요소</label>
+                            <textarea class="form-control" id="high-tech-strategy" rows="3" 
+                                      placeholder="기술을 활용한 학습 방법을 구체적으로 설명해주세요"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">High-Touch 요소</label>
+                            <textarea class="form-control" id="high-touch-strategy" rows="3" 
+                                      placeholder="교사와 학생 간, 학생 간의 인간적 소통 방법을 설명해주세요"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-navigation">
+                    <button class="btn btn-outline" onclick="prevStep(2)">
+                        <i class="fas fa-arrow-left"></i> 이전 단계
+                    </button>
+                    <button class="btn btn-primary" onclick="nextStep(4)">
+                        다음 단계 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4단계: 활동 설계 -->
+        <div id="step-4" class="step-container">
+            <div class="card">
+                <div class="step-header">
+                    <h1><i class="fas fa-tasks"></i> 활동 설계</h1>
+                    <p>구체적인 학습 활동과 평가 방법을 설계하세요</p>
+                    
+                    <div class="step-progress">
+                        <div class="step-circle completed">1</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle completed">2</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle completed">3</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle active">4</div>
+                        <div class="step-line"></div>
+                        <div class="step-circle">5</div>
+                    </div>
+                </div>
+                
+                <div class="card-body" style="padding: 2rem;">
+                    <div class="form-section">
+                        <h3><i class="fas fa-play-circle"></i> 주요 활동 계획</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">도입 활동</label>
+                            <textarea class="form-control" id="intro-activity" rows="3" 
+                                      placeholder="프로젝트를 시작하는 동기부여 활동을 설명해주세요"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">전개 활동</label>
+                            <textarea class="form-control" id="main-activity" rows="4" 
+                                      placeholder="주요 학습 활동과 체험 활동을 단계별로 설명해주세요"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">정리 활동</label>
+                            <textarea class="form-control" id="wrap-activity" rows="3" 
+                                      placeholder="학습 내용을 정리하고 성찰하는 활동을 설명해주세요"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3><i class="fas fa-chart-bar"></i> 평가 방법</h3>
+                        
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="self-evaluation" name="evaluation-method" value="self-evaluation">
+                                <div>
+                                    <strong>자기 평가</strong>
+                                    <br><small class="text-muted">학습자의 성찰적 평가</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="peer-evaluation" name="evaluation-method" value="peer-evaluation">
+                                <div>
+                                    <strong>동료 평가</strong>
+                                    <br><small class="text-muted">학습자 간 상호 평가</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="teacher-evaluation" name="evaluation-method" value="teacher-evaluation">
+                                <div>
+                                    <strong>교사 평가</strong>
+                                    <br><small class="text-muted">교사의 관찰 및 평가</small>
+                                </div>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="portfolio-evaluation" name="evaluation-method" value="portfolio-evaluation">
+                                <div>
+                                    <strong>포트폴리오 평가</strong>
+                                    <br><small class="text-muted">학습 과정 누적 평가</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-navigation">
+                    <button class="btn btn-outline" onclick="prevStep(3)">
+                        <i class="fas fa-arrow-left"></i> 이전 단계
+                    </button>
+                    <button class="btn btn-primary" onclick="nextStep(5)">
+                        다음 단계 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5단계: 프로젝트 완성 -->
+        <div id="step-5" class="step-container">
+            <div class="card">
+                <div class="step-header">
+                    <h1><i class="fas fa-flag-checkered"></i> 프로젝트 완성</h1>
+                    <p>프로젝트 계획서가 완성되었습니다!</p>
+                    
+                    <div class="step-progress">
+                        <div class="step-circle completed">1</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle completed">2</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle completed">3</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle completed">4</div>
+                        <div class="step-line active"></div>
+                        <div class="step-circle active">5</div>
+                    </div>
+                </div>
+                
+                <div class="card-body" style="padding: 2rem;">
+                    <div class="text-center mb-4">
+                        <div style="font-size: 4rem; color: var(--success-color); margin-bottom: 1rem;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>축하합니다!</h2>
+                        <p class="text-muted">AIDT HTHT×SEL 교육 프로젝트 계획이 완성되었습니다.</p>
+                    </div>
+                    
+                    <div class="card mb-4" style="background: var(--bg-light);">
+                        <div class="card-body">
+                            <h3><i class="fas fa-download"></i> 프로젝트 계획서 요약</h3>
+                            <div id="project-summary">
+                                <!-- 동적으로 생성될 프로젝트 요약 내용 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h4><i class="fas fa-download"></i> 계획서 다운로드</h4>
+                                    <p class="text-muted">완성된 프로젝트 계획서를 PDF로 다운로드하세요</p>
+                                    <button class="btn btn-primary" onclick="downloadProject()">
+                                        <i class="fas fa-file-pdf"></i> PDF 다운로드
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h4><i class="fas fa-share"></i> 프로젝트 공유</h4>
+                                    <p class="text-muted">동료 교사들과 프로젝트를 공유해보세요</p>
+                                    <button class="btn btn-secondary" onclick="shareProject()">
+                                        <i class="fas fa-share-alt"></i> 공유하기
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-navigation">
+                    <button class="btn btn-outline" onclick="prevStep(4)">
+                        <i class="fas fa-arrow-left"></i> 이전 단계
+                    </button>
+                    <button class="btn btn-success" onclick="restartWizard()">
+                        <i class="fas fa-redo"></i> 새 프로젝트 만들기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 공통 JavaScript -->
+    <script src="../assets/js/common.js"></script>
+    
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        
+        // 단계 이동 함수
+        function nextStep(step) {
+            if (validateStep(currentStep)) {
+                saveStepData(currentStep);
+                showStep(step);
+            }
+        }
+        
+        function prevStep(step) {
+            showStep(step);
+        }
+        
+        function showStep(step) {
+            // 현재 단계 숨기기
+            document.querySelector(`.step-container.active`).classList.remove('active');
+            
+            // 새 단계 보이기
+            const newStep = document.getElementById(`step-${step}`);
+            newStep.classList.add('active');
+            
+            currentStep = step;
+            updateProgress();
+            
+            // 페이지 상단으로 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function updateProgress() {
+            const circles = document.querySelectorAll('.step-circle');
+            const lines = document.querySelectorAll('.step-line');
+            
+            circles.forEach((circle, index) => {
+                const stepNum = index + 1;
+                circle.classList.remove('active', 'completed');
+                
+                if (stepNum < currentStep) {
+                    circle.classList.add('completed');
+                } else if (stepNum === currentStep) {
+                    circle.classList.add('active');
+                }
+            });
+            
+            lines.forEach((line, index) => {
+                line.classList.remove('active');
+                if (index < currentStep - 1) {
+                    line.classList.add('active');
+                }
+            });
+        }
+        
+        function validateStep(step) {
+            switch(step) {
+                case 1:
+                    const topic = document.getElementById('project-topic').value;
+                    const problem = document.getElementById('project-problem').value;
+                    const goals = document.getElementById('project-goals').value;
+                    
+                    if (!topic || !problem || !goals) {
+                        AIDT.notification.show('모든 필드를 입력해주세요.', 'warning');
+                        return false;
+                    }
+                    break;
+                    
+                case 2:
+                    const selectedCompetencies = document.querySelectorAll('input[name="sel-competency"]:checked');
+                    const measurableGoal = document.getElementById('measurable-goal').value;
+                    const duration = document.getElementById('project-duration').value;
+                    
+                    if (selectedCompetencies.length === 0 || !measurableGoal || !duration) {
+                        AIDT.notification.show('SEL 역량을 선택하고 모든 필드를 입력해주세요.', 'warning');
+                        return false;
+                    }
+                    break;
+                    
+                case 3:
+                    const selectedFeatures = document.querySelectorAll('input[name="aidt-feature"]:checked');
+                    const highTech = document.getElementById('high-tech-strategy').value;
+                    const highTouch = document.getElementById('high-touch-strategy').value;
+                    
+                    if (selectedFeatures.length === 0 || !highTech || !highTouch) {
+                        AIDT.notification.show('AIDT 기능을 선택하고 HTHT 전략을 입력해주세요.', 'warning');
+                        return false;
+                    }
+                    break;
+                    
+                case 4:
+                    const introActivity = document.getElementById('intro-activity').value;
+                    const mainActivity = document.getElementById('main-activity').value;
+                    const wrapActivity = document.getElementById('wrap-activity').value;
+                    const evaluationMethods = document.querySelectorAll('input[name="evaluation-method"]:checked');
+                    
+                    if (!introActivity || !mainActivity || !wrapActivity || evaluationMethods.length === 0) {
+                        AIDT.notification.show('모든 활동을 입력하고 평가 방법을 선택해주세요.', 'warning');
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+        
+        function saveStepData(step) {
+            const data = {};
+            
+            switch(step) {
+                case 1:
+                    data.topic = document.getElementById('project-topic').value;
+                    data.problem = document.getElementById('project-problem').value;
+                    data.goals = document.getElementById('project-goals').value;
+                    break;
+                    
+                case 2:
+                    data.selCompetencies = Array.from(document.querySelectorAll('input[name="sel-competency"]:checked')).map(cb => cb.value);
+                    data.measurableGoal = document.getElementById('measurable-goal').value;
+                    data.duration = document.getElementById('project-duration').value;
+                    break;
+                    
+                case 3:
+                    data.aidtFeatures = Array.from(document.querySelectorAll('input[name="aidt-feature"]:checked')).map(cb => cb.value);
+                    data.highTechStrategy = document.getElementById('high-tech-strategy').value;
+                    data.highTouchStrategy = document.getElementById('high-touch-strategy').value;
+                    break;
+                    
+                case 4:
+                    data.introActivity = document.getElementById('intro-activity').value;
+                    data.mainActivity = document.getElementById('main-activity').value;
+                    data.wrapActivity = document.getElementById('wrap-activity').value;
+                    data.evaluationMethods = Array.from(document.querySelectorAll('input[name="evaluation-method"]:checked')).map(cb => cb.value);
+                    break;
+            }
+            
+            AIDT.utils.storage.set(`projectStep${step}`, data);
+            
+            // 5단계에서 프로젝트 요약 생성
+            if (step === 4) {
+                generateProjectSummary();
+            }
+        }
+        
+        function generateProjectSummary() {
+            const allData = {};
+            for (let i = 1; i <= 4; i++) {
+                const stepData = AIDT.utils.storage.get(`projectStep${i}`);
+                if (stepData) {
+                    Object.assign(allData, stepData);
+                }
+            }
+            
+            const summaryElement = document.getElementById('project-summary');
+            if (summaryElement && allData.topic) {
+                summaryElement.innerHTML = `
+                    <div class="mb-3">
+                        <strong>프로젝트 주제:</strong> ${allData.topic}
+                    </div>
+                    <div class="mb-3">
+                        <strong>선택된 SEL 역량:</strong> ${allData.selCompetencies ? allData.selCompetencies.join(', ') : '없음'}
+                    </div>
+                    <div class="mb-3">
+                        <strong>프로젝트 기간:</strong> ${allData.duration || '미설정'}
+                    </div>
+                    <div class="mb-3">
+                        <strong>활용할 AIDT 기능:</strong> ${allData.aidtFeatures ? allData.aidtFeatures.join(', ') : '없음'}
+                    </div>
+                `;
+            }
+        }
+        
+        function downloadProject() {
+            AIDT.notification.show('프로젝트 계획서 다운로드 기능은 개발 중입니다.', 'info');
+        }
+        
+        function shareProject() {
+            AIDT.notification.show('프로젝트 공유 기능은 개발 중입니다.', 'info');
+        }
+        
+        function restartWizard() {
+            // 저장된 데이터 초기화
+            for (let i = 1; i <= 5; i++) {
+                AIDT.utils.storage.remove(`projectStep${i}`);
+            }
+            
+            // 모든 입력 필드 초기화
+            document.querySelectorAll('input, textarea, select').forEach(field => {
+                if (field.type === 'checkbox' || field.type === 'radio') {
+                    field.checked = false;
+                } else {
+                    field.value = '';
+                }
+            });
+            
+            // 1단계로 돌아가기
+            showStep(1);
+            AIDT.notification.show('새 프로젝트를 시작합니다!', 'success');
+        }
+        
+        // 페이지 로드 시 저장된 데이터 복원
+        document.addEventListener('DOMContentLoaded', function() {
+            // 저장된 데이터가 있으면 복원
+            for (let i = 1; i <= 4; i++) {
+                const savedData = AIDT.utils.storage.get(`projectStep${i}`);
+                if (savedData) {
+                    restoreStepData(i, savedData);
+                }
+            }
+            
+            updateProgress();
+        });
+        
+        function restoreStepData(step, data) {
+            switch(step) {
+                case 1:
+                    if (data.topic) document.getElementById('project-topic').value = data.topic;
+                    if (data.problem) document.getElementById('project-problem').value = data.problem;
+                    if (data.goals) document.getElementById('project-goals').value = data.goals;
+                    break;
+                    
+                case 2:
+                    if (data.selCompetencies) {
+                        data.selCompetencies.forEach(competency => {
+                            const checkbox = document.getElementById(competency);
+                            if (checkbox) checkbox.checked = true;
+                        });
+                    }
+                    if (data.measurableGoal) document.getElementById('measurable-goal').value = data.measurableGoal;
+                    if (data.duration) document.getElementById('project-duration').value = data.duration;
+                    break;
+                    
+                case 3:
+                    if (data.aidtFeatures) {
+                        data.aidtFeatures.forEach(feature => {
+                            const checkbox = document.getElementById(feature);
+                            if (checkbox) checkbox.checked = true;
+                        });
+                    }
+                    if (data.highTechStrategy) document.getElementById('high-tech-strategy').value = data.highTechStrategy;
+                    if (data.highTouchStrategy) document.getElementById('high-touch-strategy').value = data.highTouchStrategy;
+                    break;
+                    
+                case 4:
+                    if (data.introActivity) document.getElementById('intro-activity').value = data.introActivity;
+                    if (data.mainActivity) document.getElementById('main-activity').value = data.mainActivity;
+                    if (data.wrapActivity) document.getElementById('wrap-activity').value = data.wrapActivity;
+                    if (data.evaluationMethods) {
+                        data.evaluationMethods.forEach(method => {
+                            const checkbox = document.getElementById(method);
+                            if (checkbox) checkbox.checked = true;
+                        });
+                    }
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
