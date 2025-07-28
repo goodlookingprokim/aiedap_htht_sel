@@ -81,7 +81,7 @@
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: var(--shadow-lg);
             text-decoration: none;
             color: inherit;
@@ -120,6 +120,46 @@
         /* 추가적인 리셋 */
         .feature-card::-webkit-details-marker {
             display: none !important;
+        }
+        
+        /* 모든 가능한 버튼 형태 차단 */
+        .feature-card > *:not(.feature-icon):not(.feature-title):not(.feature-description) {
+            display: none !important;
+        }
+        
+        /* 브라우저 번역 버튼, 확장 프로그램 버튼 등 제거 */
+        .feature-card [class*="translate"],
+        .feature-card [class*="translator"],
+        .feature-card [class*="button"]:not(.feature-*),
+        .feature-card [class*="btn"]:not(.feature-*),
+        .feature-card [id*="translate"],
+        .feature-card [id*="translator"] {
+            display: none !important;
+        }
+        
+        /* Safari/Chrome 특수 요소 제거 */
+        .feature-card::-webkit-inner-spin-button,
+        .feature-card::-webkit-outer-spin-button,
+        .feature-card::-webkit-search-decoration,
+        .feature-card::-webkit-search-cancel-button,
+        .feature-card::-webkit-search-results-button,
+        .feature-card::-webkit-search-results-decoration {
+            display: none !important;
+            -webkit-appearance: none !important;
+        }
+        
+        /* 절대 위치 요소 차단 */
+        .feature-card > *[style*="position: absolute"],
+        .feature-card > *[style*="position: fixed"] {
+            display: none !important;
+        }
+        
+        /* 카드 내부 요소 보호 */
+        .feature-icon,
+        .feature-title,
+        .feature-description {
+            position: relative !important;
+            z-index: 10 !important;
         }
         
         .feature-icon {
@@ -390,16 +430,7 @@
     <script>
         // 페이지별 초기화
         document.addEventListener('DOMContentLoaded', function() {
-            // 카드 호버 효과 개선
-            document.querySelectorAll('.feature-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
+            // 카드 호버 효과는 CSS로 처리
             
             // 통계 카운터 애니메이션
             const animateCounter = (element, target) => {
