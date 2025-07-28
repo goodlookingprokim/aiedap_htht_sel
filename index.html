@@ -23,9 +23,13 @@
         /* 페이지별 추가 스타일 */
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
+            color: white !important;
             padding: 4rem 0;
             text-align: center;
+        }
+        
+        .hero-section * {
+            color: white !important;
         }
         
         .hero-title {
@@ -33,12 +37,14 @@
             font-weight: 700;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: white !important;
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            color: white !important;
         }
         
         .concept-badges {
@@ -194,6 +200,19 @@
         body > button[style*="position: fixed"],
         body > button[style*="position: absolute"] {
             display: none !important;
+        }
+        
+        /* 푸터 흰색 텍스트 강화 */
+        footer {
+            color: white !important;
+        }
+        
+        footer * {
+            color: white !important;
+        }
+        
+        footer p {
+            color: white !important;
         }
         
         .stats-section {
