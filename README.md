@@ -1,4 +1,3 @@
-```
 # AIDT HTHT×SEL 프로젝트
 
 **AI Digital Textbook(AIDT)을 활용한 High-Tech High-Touch(HTHT) 교육 모델과 사회정서학습(SEL)을 접목한 체험형 웹 애플리케이션**
@@ -121,6 +120,3 @@ AIEDAP수도권역 - AI 교육 개발 및 적용 프로젝트 팀
 ## 연락처
 
 프로젝트에 대한 문의사항은 GitHub Issues 또는 이메일(aiedap@example.com)을 통해 연락 주시기 바랍니다.
-```
-
-이 코드 블록을 복사하여 GitHub의 README.md 파일에 그대로 붙여넣으시면 됩니다. 마크다운 형식이 모두 적용되어 GitHub에서 잘 보이게 됩니다.
