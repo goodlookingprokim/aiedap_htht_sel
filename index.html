@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" translate="no" class="notranslate">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIDT HTHT×SEL - AI Digital Textbook과 사회정서학습</title>
     <meta name="description" content="AI Digital Textbook(AIDT)을 활용한 High-Tech High-Touch(HTHT) 교육 모델과 사회정서학습(SEL) 통합 플랫폼">
+    
+    <!-- 번역 방지 메타 태그 -->
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="notranslate">
     
     <!-- 공통 스타일시트 -->
     <link rel="stylesheet" href="assets/css/common.css">
@@ -162,6 +166,41 @@
             z-index: 10 !important;
         }
         
+        /* CSS 격리 강화 */
+        .feature-card {
+            isolation: isolate;
+            contain: layout style paint;
+        }
+        
+        /* Feature card wrapper */
+        .feature-card-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 번역 관련 클래스 차단 */
+        [class*="goog-te"],
+        [class*="skiptranslate"],
+        [id*="goog-gt"],
+        .translated-ltr,
+        .translated-rtl,
+        .goog-te-gadget,
+        .goog-te-banner-frame,
+        #goog-gt-tt,
+        .goog-tooltip,
+        .jfk-bubble {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
         .feature-icon {
             font-size: 3rem;
             color: var(--primary-color);
@@ -282,70 +321,82 @@
             </div>
             
             <div class="features-grid">
-                <a href="pages/intro.html" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-lightbulb"></i>
+                <a href="pages/intro.html" class="feature-card" translate="no">
+                    <div class="feature-card-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="feature-title">AIDT HTHT×SEL 소개</h3>
+                        <p class="feature-description">
+                            AI 디지털 교과서, 하이테크 하이터치 교육 모델, 사회정서학습의 
+                            핵심 개념과 통합 교육 방향을 이해합니다.
+                        </p>
                     </div>
-                    <h3 class="feature-title">AIDT HTHT×SEL 소개</h3>
-                    <p class="feature-description">
-                        AI 디지털 교과서, 하이테크 하이터치 교육 모델, 사회정서학습의 
-                        핵심 개념과 통합 교육 방향을 이해합니다.
-                    </p>
                 </a>
 
-                <a href="pages/project-wizard.html" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-magic"></i>
+                <a href="pages/project-wizard.html" class="feature-card" translate="no">
+                    <div class="feature-card-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h3 class="feature-title">프로젝트 기획 마법사</h3>
+                        <p class="feature-description">
+                            AIDT와 HTHT×SEL을 접목한 교육 프로젝트를 단계별로 기획하고 
+                            설계할 수 있는 체계적인 도구입니다.
+                        </p>
                     </div>
-                    <h3 class="feature-title">프로젝트 기획 마법사</h3>
-                    <p class="feature-description">
-                        AIDT와 HTHT×SEL을 접목한 교육 프로젝트를 단계별로 기획하고 
-                        설계할 수 있는 체계적인 도구입니다.
-                    </p>
                 </a>
 
-                <a href="pages/emotion-recognition.html" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-smile"></i>
+                <a href="pages/emotion-recognition.html" class="feature-card" translate="no">
+                    <div class="feature-card-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3 class="feature-title">감정 인식 활동</h3>
+                        <p class="feature-description">
+                            다양한 상황에서의 감정 인식 및 공감 능력을 개발하는 
+                            대화형 시나리오 기반 활동을 제공합니다.
+                        </p>
                     </div>
-                    <h3 class="feature-title">감정 인식 활동</h3>
-                    <p class="feature-description">
-                        다양한 상황에서의 감정 인식 및 공감 능력을 개발하는 
-                        대화형 시나리오 기반 활동을 제공합니다.
-                    </p>
                 </a>
 
-                <a href="pages/sel-competency.html" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
+                <a href="pages/sel-competency.html" class="feature-card" translate="no">
+                    <div class="feature-card-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">SEL 역량 개발</h3>
+                        <p class="feature-description">
+                            자기인식, 자기관리, 사회적 인식, 관계 기술, 책임 있는 의사결정 
+                            등 5가지 SEL 핵심 역량을 체계적으로 개발합니다.
+                        </p>
                     </div>
-                    <h3 class="feature-title">SEL 역량 개발</h3>
-                    <p class="feature-description">
-                        자기인식, 자기관리, 사회적 인식, 관계 기술, 책임 있는 의사결정 
-                        등 5가지 SEL 핵심 역량을 체계적으로 개발합니다.
-                    </p>
                 </a>
 
-                <a href="pages/ai-interaction.html" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
+                <a href="pages/ai-interaction.html" class="feature-card" translate="no">
+                    <div class="feature-card-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="feature-title">AI 상호작용 체험</h3>
+                        <p class="feature-description">
+                            모의 AI 환경에서 질문하고 피드백을 받으며 
+                            AI 기반 학습 지원을 직접 경험해볼 수 있습니다.
+                        </p>
                     </div>
-                    <h3 class="feature-title">AI 상호작용 체험</h3>
-                    <p class="feature-description">
-                        모의 AI 환경에서 질문하고 피드백을 받으며 
-                        AI 기반 학습 지원을 직접 경험해볼 수 있습니다.
-                    </p>
                 </a>
 
-                <a href="pages/collaboration.html" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-project-diagram"></i>
+                <a href="pages/collaboration.html" class="feature-card" translate="no">
+                    <div class="feature-card-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="feature-title">협업 공간</h3>
+                        <p class="feature-description">
+                            팀 프로젝트를 위한 협업 도구와 토론 기능을 통해 
+                            효과적인 협력 학습을 실현합니다.
+                        </p>
                     </div>
-                    <h3 class="feature-title">협업 공간</h3>
-                    <p class="feature-description">
-                        팀 프로젝트를 위한 협업 도구와 토론 기능을 통해 
-                        효과적인 협력 학습을 실현합니다.
-                    </p>
                 </a>
             </div>
         </div>
@@ -385,27 +436,31 @@
             
             <div class="row mt-4">
                 <div class="col">
-                    <a href="instructor/manual.html" class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-book"></i>
+                    <a href="instructor/manual.html" class="feature-card" translate="no">
+                        <div class="feature-card-wrapper">
+                            <div class="feature-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="feature-title">강사 메뉴얼</h3>
+                            <p class="feature-description">
+                                AIDT HTHT×SEL 교육 운영을 위한 상세한 지침서와 
+                                교수법 가이드를 제공합니다.
+                            </p>
                         </div>
-                        <h3 class="feature-title">강사 메뉴얼</h3>
-                        <p class="feature-description">
-                            AIDT HTHT×SEL 교육 운영을 위한 상세한 지침서와 
-                            교수법 가이드를 제공합니다.
-                        </p>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="resources/" class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-folder-open"></i>
+                    <a href="resources/" class="feature-card" translate="no">
+                        <div class="feature-card-wrapper">
+                            <div class="feature-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <h3 class="feature-title">교육 자료실</h3>
+                            <p class="feature-description">
+                                수업 계획서, 활동 가이드, 평가 도구 등 
+                                교육 운영에 필요한 다양한 자료를 제공합니다.
+                            </p>
                         </div>
-                        <h3 class="feature-title">교육 자료실</h3>
-                        <p class="feature-description">
-                            수업 계획서, 활동 가이드, 평가 도구 등 
-                            교육 운영에 필요한 다양한 자료를 제공합니다.
-                        </p>
                     </a>
                 </div>
             </div>
@@ -431,6 +486,30 @@
         // 페이지별 초기화
         document.addEventListener('DOMContentLoaded', function() {
             // 카드 호버 효과는 CSS로 처리
+            
+            // DOM 변경 감지 및 제거
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1 && node.closest('.feature-card')) {
+                            // 허용된 클래스가 아닌 경우 제거
+                            if (!node.classList.contains('feature-icon') && 
+                                !node.classList.contains('feature-title') && 
+                                !node.classList.contains('feature-description') &&
+                                !node.classList.contains('feature-card-wrapper') &&
+                                !node.tagName.match(/^(I|H3|P)$/)) {
+                                node.remove();
+                                console.log('Removed unwanted element:', node);
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // 모든 feature-card 감시
+            document.querySelectorAll('.feature-card').forEach(card => {
+                observer.observe(card, { childList: true, subtree: true });
+            });
             
             // 통계 카운터 애니메이션
             const animateCounter = (element, target) => {
