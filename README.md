@@ -1,391 +1,103 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIDT HTHT×SEL 프로젝트 README</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <style>
-        .bg-edu-blue {
-            background-color: #3b82f6;
-        }
-        .bg-edu-light {
-            background-color: #f0f9ff;
-        }
-        .text-edu-dark {
-            color: #1e3a8a;
-        }
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-        .file-card {
-            transition: all 0.3s ease;
-        }
-        .file-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-    </style>
-</head>
-<body class="bg-gray-50">
-    <header class="bg-edu-blue text-white py-8 px-4 shadow-lg">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div>
-                <h1 class="text-4xl font-bold mb-2">AIDT HTHT×SEL 프로젝트</h1>
-                <p class="text-xl">AI Digital Textbook 기반 사회정서학습 체험</p>
-            </div>
-            <div class="mt-4 md:mt-0">
-                <span class="bg-white text-edu-blue px-4 py-2 rounded-lg font-bold">v1.0.0</span>
-            </div>
-        </div>
-    </header>
+AIDT HTHT×SEL 프로젝트
 
-    <main class="container mx-auto py-8 px-4">
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">프로젝트 개요</h2>
-            <p class="text-lg mb-4">
-                이 프로젝트는 고등학교 1-2학년 학생들을 대상으로 한 AI Digital Textbook(AIDT)과 HTHT×SEL(High-Tech High-Touch × Social Emotional Learning) 교육 모델에 관한 자료를 제공합니다. 학생들이 AI 기술과 정서적 학습의 균형을 체험하고, 교사들이 이를 효과적으로 가르칠 수 있도록 지원합니다.
-            </p>
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-info-circle text-blue-500 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-blue-700">
-                            본 프로젝트는 AIEDAP수도권역이 주관하며, 교육 현장에서 AI 기술과 사회정서학습의 효과적인 통합을 지원하기 위해 개발되었습니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+AI Digital Textbook(AIDT)을 활용한 High-Tech High-Touch(HTHT) 교육 모델과 사회정서학습(SEL)을 접목한 체험형 웹 애플리케이션
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">포함된 파일</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                <!-- 웹 애플리케이션 파일 -->
-                <div class="file-card bg-edu-light rounded-lg p-5 border border-blue-200">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-file-code text-blue-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">index.html</h3>
-                    </div>
-                    <p class="text-gray-700 mb-2">웹 애플리케이션의 HTML 구조 파일입니다.</p>
-                    <p class="text-sm text-gray-500">107.4 KB</p>
-                </div>
+프로젝트 개요
 
-                <div class="file-card bg-edu-light rounded-lg p-5 border border-blue-200">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-file-code text-green-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">style.css</h3>
-                    </div>
-                    <p class="text-gray-700 mb-2">웹 애플리케이션의 스타일시트입니다.</p>
-                    <p class="text-sm text-gray-500">21.9 KB</p>
-                </div>
+이 프로젝트는 고등학교 1-2학년 학생들을 대상으로 AI Digital Textbook(AIDT)의 혁신적 기술과 High-Tech × High-Touch(HTHT) 교육 모델을 통합하여 사회정서학습(SEL)을 촉진하는 교육 도구를 제공합니다. 웹 애플리케이션과 강사용 메뉴얼을 통해 학생들이 기술을 활용하면서도 인간적 상호작용의 가치를 배울 수 있는 교육 경험을 설계하였습니다.
 
-                <div class="file-card bg-edu-light rounded-lg p-5 border border-blue-200">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-file-code text-yellow-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">script.js</h3>
-                    </div>
-                    <p class="text-gray-700 mb-2">웹 애플리케이션의 JavaScript 코드입니다.</p>
-                    <p class="text-sm text-gray-500">21.9 KB</p>
-                </div>
+주요 개념
+AIDT(AI Digital Textbook): 인공지능 기술이 적용된 디지털 교과서로, 학습자 개인의 수준과 특성에 맞춘 개별화 학습과 협력적 활동을 지원하는 디지털 교수학습 도구
+HTHT(High-Tech High-Touch): 기술을 통한 개별화 학습(High-Tech)과 교사의 정서적 지원(High-Touch)을 융합한 교육 모델
+SEL(Social Emotional Learning): 자기인식, 자기관리, 사회적 인식, 관계 기술, 책임 있는 의사결정의 5가지 핵심 역량을 개발하는 사회정서학습
+파일 구조
 
-                <div class="file-card bg-edu-light rounded-lg p-5 border border-blue-200">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-file-alt text-indigo-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">web_application_functional.html</h3>
-                    </div>
-                    <p class="text-gray-700 mb-2">모든 기능이 통합된 단일 HTML 파일 버전입니다.</p>
-                    <p class="text-sm text-gray-500">113.6 KB</p>
-                </div>
+본 프로젝트는 두 가지 방식으로 구성 및 배포가 가능합니다:
 
-                <!-- 강사용 메뉴얼 파일 -->
-                <div class="file-card bg-edu-light rounded-lg p-5 border border-blue-200">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-book text-red-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">instructor_manual.html</h3>
-                    </div>
-                    <p class="text-gray-700 mb-2">기본 강사용 메뉴얼입니다.</p>
-                    <p class="text-sm text-gray-500">72.8 KB</p>
-                </div>
+1. 분리 파일 방식 (권장)
+aidt_htht_sel_web_app/
+├── index.html        # 웹 애플리케이션 HTML 구조
+├── style.css         # 웹 애플리케이션 스타일
+├── script.js         # 웹 애플리케이션 기능
+└── instructor_manual_improved.html  # 개선된 강사용 메뉴얼
+복사
+2. 단일 파일 방식
+aidt_htht_sel_web_app/
+├── web_application_functional.html  # 모든 기능이 포함된 웹 애플리케이션(HTML+CSS+JS)
+└── instructor_manual_improved.html  # 개선된 강사용 메뉴얼
+복사
+설치 방법
+로컬 환경에서 실행
+# 1. 저장소 클론
+git clone https://github.com/username/aidt-htht-sel.git
 
-                <div class="file-card bg-edu-light rounded-lg p-5 border border-blue-200">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-book-open text-red-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">instructor_manual_improved.html</h3>
-                    </div>
-                    <p class="text-gray-700 mb-2">개선된 버전의 강사용 메뉴얼입니다.</p>
-                    <p class="text-sm text-gray-500">96.1 KB</p>
-                </div>
-            </div>
-        </section>
+# 2. 프로젝트 폴더로 이동
+cd aidt-htht-sel
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">설치 및 사용 방법</h2>
-            
-            <h3 class="text-2xl font-bold mt-6 mb-3">1. 로컬에서 실행하기</h3>
-            <div class="bg-gray-50 p-4 rounded-lg mb-6">
-                <ol class="list-decimal pl-6 space-y-2">
-                    <li>모든 파일을 같은 폴더에 저장합니다.</li>
-                    <li>웹 브라우저에서 <code class="bg-gray-200 px-2 py-1 rounded">index.html</code> 파일을 엽니다.</li>
-                    <li>또는 단일 파일 버전인 <code class="bg-gray-200 px-2 py-1 rounded">web_application_functional.html</code>을 직접 열어도 됩니다.</li>
-                </ol>
-            </div>
+# 3. 웹 브라우저에서 index.html 또는 web_application_functional.html 열기
+복사
+GitHub Pages 배포
+GitHub 저장소를 생성합니다.
+프로젝트 파일을 저장소에 업로드합니다:
+분리 파일 방식: index.html, style.css, script.js, instructor_manual_improved.html
+단일 파일 방식: web_application_functional.html(index.html로 이름 변경), instructor_manual_improved.html
+저장소 설정(Settings)에서 Pages 메뉴로 이동합니다.
+Source 섹션에서 Branch를 main으로, 폴더를 /(root)로 설정하고 Save를 클릭합니다.
+몇 분 후 GitHub Pages URL이 생성됩니다.
+주요 기능
+1. 체험형 웹 애플리케이션
+HTHT×SEL 프로젝트 기획 마법사: 단계별로 AIDT와 HTHT×SEL을 접목한 교육 프로젝트 기획
+감정 인식 활동: 다양한 상황에서의 감정을 인식하고 공감하는 체험형 활동
+SEL 역량 개발: 5가지 SEL 역량을 개발하는 다양한 활동과 성찰 도구
+AI 상호작용: 모의 AI 환경에서 질문, 피드백, 학습 지원 체험
+협업 공간: 팀 프로젝트를 위한 협업 도구와 토론 공간
+2. 강사용 메뉴얼
+핵심 개념 해설: AIDT, HTHT, SEL의 이론적 배경과 교육적 가치 설명
+수업 진행 가이드: 단계별 상세 수업 진행 방법과 시간 배분 안내
+사례 분석: 다양한 교과에 적용 가능한 HTHT×SEL 수업 사례 분석
+활동 워크시트: 수업에 활용할 수 있는 상세 활동지 및 평가 루브릭
+FAQ 및 문제해결: 발생 가능한 문제 상황과 대응 전략 안내
+기술 스택
+HTML5
+CSS3
+JavaScript (ES6+)
+Local Storage API
+Responsive Design
+사용 방법
+교사용
+강사용 메뉴얼(instructor_manual_improved.html)을 통해 AIDT, HTHT, SEL의 개념과 수업 적용 방법을 학습합니다.
+웹 애플리케이션을 직접 체험해보고 학생들에게 적용할 활동을 선택합니다.
+메뉴얼에 제공된 수업 계획과 활동지를 참고하여 수업을 준비합니다.
+학생들에게 웹 애플리케이션 URL을 공유하고 활동을 안내합니다.
+학생용
+웹 브라우저로 제공된 URL에 접속합니다.
+소개 페이지에서 AIDT, HTHT, SEL의 개념을 이해합니다.
+관심 있는 활동(프로젝트 기획, 감정 인식, SEL 역량 개발 등)을 선택하여 참여합니다.
+결과물을 저장하거나 교사/동료와 공유합니다.
+데이터 저장
 
-            <h3 class="text-2xl font-bold mt-6 mb-3">2. GitHub Pages로 배포하기</h3>
-            <div class="bg-gray-50 p-4 rounded-lg mb-6">
-                <ol class="list-decimal pl-6 space-y-2">
-                    <li>GitHub 계정에 로그인합니다.</li>
-                    <li>새 저장소(repository)를 생성합니다.</li>
-                    <li>모든 파일을 저장소에 업로드합니다.</li>
-                    <li>저장소 설정에서 GitHub Pages를 활성화합니다 (Settings > Pages).</li>
-                    <li>Source를 'main' 브랜치로 설정하고 저장합니다.</li>
-                    <li>GitHub Pages URL을 통해 웹사이트에 접근할 수 있습니다.</li>
-                </ol>
-            </div>
+이 웹 애플리케이션은 브라우저의 Local Storage를 활용하여 사용자 활동 데이터를 저장합니다. 따라서 같은 브라우저를 사용하는 한 페이지 새로고침 후에도 입력한 데이터가 유지됩니다. 장기 보관이 필요한 경우 결과를 별도로 저장하거나 공유하는 것을 권장합니다.
 
-            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-6">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-lightbulb text-yellow-500 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-yellow-700">
-                            단일 파일 버전을 사용할 경우, <code class="bg-yellow-100 px-2 py-1 rounded">web_application_functional.html</code>을 <code class="bg-yellow-100 px-2 py-1 rounded">index.html</code>로 이름을 바꾸어 업로드하면 GitHub Pages의 기본 페이지로 표시됩니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+호환성
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">웹 애플리케이션 사용 가이드</h2>
-            
-            <div class="mb-6">
-                <h3 class="text-2xl font-semibold mb-3">주요 기능</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <i class="fas fa-project-diagram text-blue-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">프로젝트 기획 마법사</p>
-                            <p class="text-gray-700">AIDT와 HTHT×SEL을 접목한 교육 프로젝트를 단계별로 기획할 수 있습니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-heartbeat text-red-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">감정 인식 활동</p>
-                            <p class="text-gray-700">다양한 상황에서의 감정을 인식하고 공감하는 체험형 활동에 참여할 수 있습니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-brain text-purple-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">SEL 역량 개발</p>
-                            <p class="text-gray-700">5가지 SEL 역량을 개발하는 다양한 활동과 성찰 도구를 경험할 수 있습니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-robot text-green-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">AI 상호작용</p>
-                            <p class="text-gray-700">모의 AI 환경에서 질문, 피드백, 학습 지원을 경험할 수 있습니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-users text-yellow-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">협업 공간</p>
-                            <p class="text-gray-700">팀원들과 함께 프로젝트를 기획하고 아이디어를 공유할 수 있는 공간이 있습니다.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+이 애플리케이션은 다음 브라우저의 최신 버전에서 테스트되었습니다:
 
-            <div class="bg-green-50 border-l-4 border-green-500 p-4 my-4">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-green-700">
-                            웹 애플리케이션은 로컬 스토리지를 활용하여 사용자의 입력 데이터를 자동으로 저장합니다. 브라우저를 닫았다가 다시 열어도 이전 작업 내용이 유지됩니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+Google Chrome
+Mozilla Firefox
+Microsoft Edge
+Safari
+개선 및 기여
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">강사용 메뉴얼 활용 가이드</h2>
-            
-            <div class="mb-6">
-                <h3 class="text-2xl font-semibold mb-3">주요 내용</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <i class="fas fa-book-reader text-indigo-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">강의 개요</p>
-                            <p class="text-gray-700">강의 목표, 구성, 소요시간 및 준비사항에 관한 상세 안내</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">핵심 개념 해설</p>
-                            <p class="text-gray-700">AIDT, HTHT, SEL의 개념과 이론적 배경에 대한 심화 설명</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-chalkboard-teacher text-red-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">수업 진행 가이드</p>
-                            <p class="text-gray-700">단계별 상세 진행 방법과 교수 전략 제안</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-clipboard-list text-green-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">사례 분석 및 활동 가이드</p>
-                            <p class="text-gray-700">실제 수업 사례와 활동 진행을 위한 상세 안내</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-question-circle text-blue-500 mt-1 mr-3"></i>
-                        <div>
-                            <p class="font-bold">FAQ 및 문제해결 가이드</p>
-                            <p class="text-gray-700">수업 중 발생할 수 있는 다양한 상황에 대한 대응책</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+프로젝트 개선을 위한 제안이나 기여를 환영합니다. 문제점 발견 시 Issues를 통해 보고해주시거나, Pull Request를 통해 개선 사항을 제안해주세요.
 
-            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 my-4">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-info-circle text-indigo-500 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-indigo-700">
-                            개선된 버전의 강사용 메뉴얼(<code class="bg-indigo-100 px-2 py-1 rounded">instructor_manual_improved.html</code>)에는 평가 루브릭, 문제 상황 대응 가이드, 추가 참고 자료 등이 보강되어 있습니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+라이선스
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">문제 해결</h2>
-            
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-xl font-bold flex items-center">
-                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                        웹 애플리케이션 버튼이 작동하지 않을 경우
-                    </h3>
-                    <div class="pl-7 mt-2 text-gray-700">
-                        <ol class="list-decimal pl-5 space-y-1">
-                            <li>최신 버전의 웹 브라우저를 사용하고 있는지 확인하세요.</li>
-                            <li>JavaScript가 브라우저에서 활성화되어 있는지 확인하세요.</li>
-                            <li>단일 파일 버전(<code class="bg-gray-200 px-2 py-1 rounded">web_application_functional.html</code>)을 사용해보세요.</li>
-                            <li>개별 파일 사용 시, 세 파일(HTML, CSS, JS)이 같은 폴더에 위치하는지 확인하세요.</li>
-                        </ol>
-                    </div>
-                </div>
+이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 LICENSE 파일을 참조하세요.
 
-                <div>
-                    <h3 class="text-xl font-bold flex items-center">
-                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                        데이터가 저장되지 않을 경우
-                    </h3>
-                    <div class="pl-7 mt-2 text-gray-700">
-                        <ol class="list-decimal pl-5 space-y-1">
-                            <li>브라우저의 로컬 스토리지 설정을 확인하세요.</li>
-                            <li>브라우저의 개인정보 보호 모드나 시크릿 모드에서는 데이터가 저장되지 않을 수 있습니다.</li>
-                            <li>브라우저 쿠키 및 사이트 데이터 설정을 확인하세요.</li>
-                        </ol>
-                    </div>
-                </div>
+개발자
 
-                <div>
-                    <h3 class="text-xl font-bold flex items-center">
-                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                        스타일이 제대로 적용되지 않을 경우
-                    </h3>
-                    <div class="pl-7 mt-2 text-gray-700">
-                        <ol class="list-decimal pl-5 space-y-1">
-                            <li>인터넷 연결을 확인하세요 (Tailwind CSS 등 외부 리소스 로딩 필요).</li>
-                            <li>브라우저 캐시를 삭제한 후 페이지를 다시 로드해보세요.</li>
-                            <li>CSS 파일 경로가 올바른지 확인하세요.</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
+AIEDAP수도권역 - AI 교육 개발 및 적용 프로젝트 팀
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-edu-dark mb-4">관련 자료 및 참고 링크</h2>
-            
-            <ul class="space-y-4">
-                <li class="flex items-start">
-                    <i class="fas fa-external-link-alt text-blue-500 mt-1 mr-3"></i>
-                    <div>
-                        <p class="font-bold"><a href="https://casel.org/" class="text-blue-600 hover:underline" target="_blank">CASEL (Collaborative for Academic, Social, and Emotional Learning)</a></p>
-                        <p class="text-gray-700">SEL 역량 및 프레임워크에 대한 전문 자료</p>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-external-link-alt text-blue-500 mt-1 mr-3"></i>
-                    <div>
-                        <p class="font-bold"><a href="https://www.edutopia.org/" class="text-blue-600 hover:underline" target="_blank">Edutopia</a></p>
-                        <p class="text-gray-700">혁신적 교육 방법론 및 SEL 적용 사례</p>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-external-link-alt text-blue-500 mt-1 mr-3"></i>
-                    <div>
-                        <p class="font-bold"><a href="https://www.keris.or.kr/" class="text-blue-600 hover:underline" target="_blank">한국교육학술정보원(KERIS)</a></p>
-                        <p class="text-gray-700">국내 디지털 교과서 및 에듀테크 정보</p>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </main>
+연락처
 
-    <footer class="bg-gray-800 text-white py-8 px-4">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold">AIDT HTHT×SEL 프로젝트</h3>
-                    <p class="text-gray-400">© 2025 AIEDAP수도권역. All rights reserved.</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-blue-400">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-blue-400">
-                        <i class="fab fa-youtube text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-blue-400">
-                        <i class="fas fa-envelope text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="mt-6 text-center text-gray-400 text-sm">
-                <p>본 프로젝트는 교육 목적으로 제작되었으며, 실제 교육 현장에서 활용하실 수 있습니다.</p>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
-    <script id="html_badge_script1">
-        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDgcbjeOfT8NhNeCyzQUAVoFy2PYkSTlArqDbcOdfMj8%2FmbPJJpJhGAZi%2BlAKBEhehfI1BVRxWsYlUXfeyOWpxKEDpfRiT8%2FoX7NGUYEydE3nYn2rHIGrMnVE6q2i0K6%2B%2FC4KVcq3OtyQUBbu1kIPk%2FvYNW03BJ9FtNDVPYSqYwHeG%2Btdmga37gftPuvQbGThMuPL%2Fz8qmv%2BNXsr4GVpkBGl4zhoTFzXqf%2Fwvgd7IPUHYVG3kwefI%2B%2BVs1NCXLoG0AwIlLQvp8B04eB%2BKZjgpvatbdX9cVATDexWAuy%2FBdIRsFPlttGqbDqisnQVmYSvlM51Km3CTb658o9U10PfVBGlF%2F5scaAV5KxuNdfsr0You8P444iS3wPxMuLGAsEyiJUBlEnw7uJixwjeN9m%2FkQ5UYYacP1PcFoNdQn9QBEpufwLUV9cEMWbcka7gyDNZRD3pvylowShgf4n7%2Bz2PwRt717mlk8IKOy6fgsQTc1jBA";
-        window.__genspark_locale = "en-US";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDgcbjeOfT8NhNeCyzQUAVoFy2PYkSTlArqDbcOdfMj8/mbPJJpJhGAZi+lAKBEhehfI1BVRxWsYlUXfeyOWpxKEDpfRiT8/oX7NGUYEydE3nYn2rHIGrMnVE6q2i0K6+/C4KVcq3OtyQUBbu1kIPk/vYNW03BJ9FtNDVPYSqYwHeG+tdmga37gftPuvQbGThMuPL/z8qmv+NXsr4GVpkBGl4zhoTFzXqf/wvgd7IPUHYVG3kwefI++Vs1NCXLoG0AwIlLQvp8B04eB+KZjgpvatbdX9cVATDexWAuy/BdIRsFPlttGqbDqisnQVmYSvlM51Km3CTb658o9U10PfVBGlF/5scaAV5KxuNdfsr0You8P444iS3wPxMuLGAsEyiJUBlEnw7uJixwjeN9m/kQ5UYYacP1PcFoNdQn9QBEpufwLUV9cEMWbcka7gyDNZRD3pvylowShgf4n7+z2PwRt717mlk8IKOy6fgsQTc1jBA";
-    </script>
-    
-    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
-    
+프로젝트에 대한 문의사항은 GitHub Issues 또는 이메일(aiedap@example.com)을 통해 연락 주시기 바랍니다.
