@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDT HTHT×SEL 강사용 상세 메뉴얼</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .concept-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .tip-box {
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background-color: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .activity-box {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .step {
+            background-color: #ebf8ff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .step-number {
+            background-color: #3182ce;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #e2e8f0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f7fafc;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 7px;
+            width: 12px;
+            height: 12px;
+            background-color: #3182ce;
+            border-radius: 50%;
+        }
+        .timeline-header {
+            font-weight: bold;
+            color: #3182ce;
+            margin-bottom: 8px;
+        }
+        .accordion {
+            margin-bottom: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background-color: #f7fafc;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #fff;
+        }
+        .accordion-content-inner {
+            padding: 15px 0;
+        }
+        .checkmark-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checkmark-list li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .checkmark-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #38a169;
+        }
+        .project-example {
+            background-color: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .assessment-rubric {
+            background-color: #edf2f7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container">
+        <header class="text-center mb-10 pt-8">
+            <h1 class="text-3xl font-bold text-blue-800 mb-4">AI Digital Textbook(AIDT) 사례 체험으로 이해하는 HTHT×SEL</h1>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-2">강사용 상세 메뉴얼</h2>
+            <p class="text-lg text-gray-600">고등학교 1-2학년 대상 | 주관: AIEDAP수도권역</p>
+        </header>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-book mr-2"></i>강의 개요</h2>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <p class="mb-3"><strong>강의명:</strong> AI Digital Textbook(AIDT) 사례 체험으로 이해하는 HTHT×SEL - 1차시</p>
+                <p class="mb-3"><strong>강의목표:</strong></p>
+                <ul class="list-disc pl-6 mb-3">
+                    <li>AI Digital Textbook(AIDT)의 의미와 High-Tech × High-Touch(HTHT)의 핵심 구조 이해</li>
+                    <li>SEL의 5대 역량에 대한 이해와 교육 적용 방식 탐색</li>
+                    <li>실제 사례 체험을 통한 학습 내용의 적용 가능성 모색</li>
+                </ul>
+                <p class="mb-3"><strong>중점 SEL 역량:</strong> 사회적 인식</p>
+                <p class="mb-3"><strong>대상:</strong> 고등학교 1-2학년</p>
+                <p class="mb-3"><strong>소요시간:</strong> 100분 (2교시)</p>
+                <p class="mb-3"><strong>준비물:</strong> 학생별 노트북 또는 태블릿, 인터넷 연결, 프레젠테이션 시설, 활동지</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-lightbulb mr-2"></i>핵심 개념 해설</h2>
+            
+            <div class="concept-box">
+                <h3 class="text-xl font-semibold mb-2">1. AI Digital Textbook(AIDT) 개념</h3>
+                <p>인공지능 기술이 적용된 디지털 교과서로, 학습자 개인의 수준과 특성에 맞춘 개별화 학습과 협력적 활동을 지원하는 디지털 교수학습 도구입니다. 전통적 교과서와 달리 학습자와 상호작용하며 개인화된 학습 경로를 제시합니다.</p>
+                <p class="mt-2"><strong>AIDT의 특징:</strong></p>
+                <ul class="ml-6 list-disc">
+                    <li>실시간 학습 진단 및 개인별 맞춤 학습 경로 제공</li>
+                    <li>학습자 질문에 대한 즉각적인 응답과 피드백</li>
+                    <li>협력 학습 및 토론 지원을 위한 상호작용 기능</li>
+                    <li>멀티미디어 콘텐츠와 시뮬레이션을 통한 몰입형 학습 경험</li>
+                    <li>학습 데이터 수집 및 분석을 통한 학습 개선 정보 제공</li>
+                </ul>
+            </div>
+            
+            <div class="concept-box mt-4">
+                <h3 class="text-xl font-semibold mb-2">2. High-Tech × High-Touch (HTHT) 모델</h3>
+                <p>기술과 인간의 만남을 통한 혁신적 교육 모델로, 기술을 통한 개별화 학습(High-Tech)과 교사의 정서적 지원(High-Touch)을 융합하여 학생들의 균형 잡힌 발달을 도모합니다.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                    <div class="bg-blue-100 p-3 rounded">
+                        <h4 class="font-semibold text-blue-800">High-Tech 요소:</h4>
+                        <ul class="ml-4 list-disc">
+                            <li>AI 기반 학습자 분석과 맞춤형 컨텐츠 제공</li>
+                            <li>데이터 기반 개별 학습 진단 및 처방</li>
+                            <li>자기주도적 학습 경로 설계 및 지원</li>
+                            <li>실시간 학습 모니터링 및 피드백</li>
+                            <li>가상 현실(VR) 및 증강 현실(AR)을 통한 체험형 학습</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded">
+                        <h4 class="font-semibold text-green-800">High-Touch 요소:</h4>
+                        <ul class="ml-4 list-disc">
+                            <li>교사-학생 간 의미 있는 상호작용 및 피드백</li>
+                            <li>협력적 문제해결 및 프로젝트 활동 촉진</li>
+                            <li>사회정서적 역량 강화를 위한 인간적 접근</li>
+                            <li>공감과 배려를 통한 정서적 지지</li>
+                            <li>학습자 동기 부여 및 학습 의욕 고취</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-box mt-4">
+                <h3 class="text-xl font-semibold mb-2">3. 사회정서학습(SEL)의 5대 역량</h3>
+                <p>사회정서학습(SEL)은 학생들이 자신의 감정을 인식하고 관리하며, 타인에 대한 공감 능력을 키우고, 긍정적인 관계를 형성하며, 책임 있는 결정을 내릴 수 있는 능력을 개발하는 과정입니다.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                    <div>
+                        <div class="bg-indigo-100 p-3 rounded mb-3">
+                            <h4 class="font-semibold text-indigo-800">1. 자기인식(Self-awareness)</h4>
+                            <p>자신의 감정, 생각, 가치관을 인식하고 이러한 요소들이 행동에 미치는 영향을 이해하는 능력</p>
+                            <p class="mt-1"><strong>예시 활동:</strong> 감정 일기 작성, 자기 성찰 활동</p>
+                        </div>
+                        <div class="bg-purple-100 p-3 rounded mb-3">
+                            <h4 class="font-semibold text-purple-800">2. 자기관리(Self-management)</h4>
+                            <p>다양한 상황에서 자신의 감정, 생각, 행동을 효과적으로 조절하는 능력</p>
+                            <p class="mt-1"><strong>예시 활동:</strong> 목표 설정 및 실행 계획 수립, 스트레스 관리 전략 실습</p>
+                        </div>
+                        <div class="bg-red-100 p-3 rounded">
+                            <h4 class="font-semibold text-red-800">3. 사회적 인식(Social awareness)</h4>
+                            <p>다양한 배경과 문화를 가진 타인의 관점을 이해하고 공감하는 능력</p>
+                            <p class="mt-1"><strong>예시 활동:</strong> 역할극, 다양성 이해 프로젝트</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-yellow-100 p-3 rounded mb-3">
+                            <h4 class="font-semibold text-yellow-800">4. 관계 기술(Relationship skills)</h4>
+                            <p>다양한 개인 및 그룹과 건강하고 보람있는 관계를 형성하고 유지하는 능력</p>
+                            <p class="mt-1"><strong>예시 활동:</strong> 협력 학습, 갈등 해결 시나리오</p>
+                        </div>
+                        <div class="bg-orange-100 p-3 rounded">
+                            <h4 class="font-semibold text-orange-800">5. 책임 있는 의사결정(Responsible decision-making)</h4>
+                            <p>개인의 행동과 사회적 상호작용에 관한 건설적인 선택을 하는 능력</p>
+                            <p class="mt-1"><strong>예시 활동:</strong> 윤리적 딜레마 토론, 문제해결 프로젝트</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-box mt-4">
+                <h3 class="text-xl font-semibold mb-2">4. AIDT, HTHT, SEL의 통합적 연계</h3>
+                <p>AI Digital Textbook(AIDT)를 활용한 HTHT 수업 모델은 기술(High-Tech)을 통해 개인화된 학습을 제공하면서도, 교사의 정서적 지원(High-Touch)을 통해 SEL 역량 개발에 중점을 둠으로써 학생들의 학업적 성취와 사회정서적 발달을 균형 있게 도모합니다.</p>
+                <div class="bg-gray-100 p-4 rounded-lg mt-2">
+                    <h4 class="font-semibold mb-2">통합적 접근 방식:</h4>
+                    <ul class="ml-4 list-disc">
+                        <li><strong>개인화 학습과 정서적 성장:</strong> AIDT의 개인화된 학습 경로는 학생들의 자기인식과 자기관리 역량을 강화</li>
+                        <li><strong>협력적 학습 환경:</strong> 교사의 High-Touch 요소는 관계 기술과 사회적 인식 역량 발달에 기여</li>
+                        <li><strong>데이터 기반 의사결정:</strong> AIDT의 데이터 분석 기능은 학생들의 책임 있는 의사결정 역량 함양을 지원</li>
+                        <li><strong>정서적 피드백 순환:</strong> AI 분석과 교사의 정서적 지지가 결합된 피드백 시스템 구축</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-chalkboard-teacher mr-2"></i>1차시 수업 진행 가이드</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">도입 (10분)</div>
+                    <div class="timeline-content">
+                        <p><strong>1. 강의 소개 및 아이스브레이킹</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>강사 자기소개 및 강의 목표 안내</li>
+                            <li>AIDT, HTHT, SEL에 대한 사전 인식 확인하기: 학생들에게 "AI가 교육에 활용된다면 어떤 모습일까요?"와 같은 질문으로 토론 유도</li>
+                        </ul>
+                        
+                        <div class="tip-box">
+                            <p><strong><i class="fas fa-lightbulb"></i> 강의 팁:</strong> 학생들의 경험을 먼저 물어보면서 시작하세요. 자신이 경험한 AI 기반 학습 도구나 앱에 대해 이야기하도록 유도하면 학생들의 참여를 높일 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">개념 이해 (30분)</div>
+                    <div class="timeline-content">
+                        <p><strong>1. AIDT 개념 소개 (10분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>AI Digital Textbook의 정의와 특징 설명</li>
+                            <li>기존 디지털 교과서와 AIDT의 차이점 비교</li>
+                            <li>AIDT의 교육적 가치와 활용 가능성 설명</li>
+                        </ul>
+                        
+                        <p class="mt-3"><strong>2. HTHT 모델 설명 (10분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>High-Tech와 High-Touch의 개념 소개</li>
+                            <li>교육에서 기술과 인간 상호작용의 균형에 대한 논의</li>
+                            <li>HTHT 모델의 교육적 가치 설명</li>
+                        </ul>
+                        
+                        <p class="mt-3"><strong>3. SEL 5대 역량 소개 (10분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>SEL의 정의와 교육적 중요성 설명</li>
+                            <li>5가지 핵심 역량 상세 소개</li>
+                            <li>SEL이 학업 성취 및 생애 성공에 미치는 영향 설명</li>
+                        </ul>
+                        
+                        <div class="activity-box">
+                            <p><strong><i class="fas fa-users"></i> 참여 활동:</strong> "개념 매핑하기"</p>
+                            <p>학생들을 4-5명의 소그룹으로 나누고, 각 그룹에 포스트잇을 나눠줍니다. 학생들은 AIDT, HTHT, SEL의 핵심 키워드를 포스트잇에 작성한 후, 세 개념 간의 연결점을 찾아 개념지도를 만듭니다. 완성된 개념지도를 그룹별로 발표하게 하세요.</p>
+                            <p class="mt-2"><strong>준비물:</strong> 포스트잇, 전지, 마커</p>
+                            <p><strong>소요시간:</strong> 10분 (제작 7분, 발표 3분)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">사례 분석 및 체험 (30분)</div>
+                    <div class="timeline-content">
+                        <p><strong>1. A고등학교 문학 수업 사례 소개 (10분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>AIDT 챗봇을 활용한 협력적 문학 감상 및 창작 과정 설명</li>
+                            <li>High-Tech 요소: 개별화된 시 작품 분석 및 감상 지원</li>
+                            <li>High-Touch 요소: 모둠별 해석 공유 및 협력적 창작 활동</li>
+                            <li>중점 SEL 역량: 사회적 인식, 관계 기술이 어떻게 향상되었는지 분석</li>
+                        </ul>
+                        
+                        <p class="mt-3"><strong>2. B고등학교 과학 탐구 사례 소개 (10분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>AIDT 데이터 분석 기능을 활용한 환경 문제 프로젝트 소개</li>
+                            <li>High-Tech 요소: 지역 환경 데이터 분석 및 시각화</li>
+                            <li>High-Touch 요소: 모둠별 환경 문제 해결책 도출 과정</li>
+                            <li>중점 SEL 역량: 사회적 인식, 책임 있는 의사결정 역량 향상 분석</li>
+                        </ul>
+                        
+                        <p class="mt-3"><strong>3. 사례 체험 활동 (10분)</strong></p>
+                        <p>학생들에게 AIDT를 활용한 간단한 미니 체험 활동 제공:</p>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <p><strong>체험 활동: "AI와 함께하는 사회 문제 탐구"</strong></p>
+                            <ol class="ml-4 list-decimal">
+                                <li>학생들에게 현재 사회 문제 중 하나를 선택하게 함 (예: 기후변화, 디지털 격차, 청소년 정신건강 등)</li>
+                                <li>AIDT 챗봇을 활용하여 선택한 문제에 대한 다양한 관점 탐색</li>
+                                <li>개인 작업 후, 모둠별로 각자의 탐구 결과를 공유하고 종합</li>
+                                <li>모둠별로 통합된 해결책 제안 발표</li>
+                            </ol>
+                            <p class="mt-2"><strong>준비사항:</strong> 학생들이 AI 챗봇에 접속할 수 있는 디바이스, 활동 워크시트</p>
+                        </div>
+                        
+                        <div class="tip-box">
+                            <p><strong><i class="fas fa-lightbulb"></i> 체험 활동 지도 팁:</strong></p>
+                            <ul class="ml-4 list-disc">
+                                <li>학생들이 AI에 질문할 때 비판적 사고를 촉진하는 질문을 하도록 유도하세요.</li>
+                                <li>AI 응답에 대한 팩트 체크의 중요성을 강조하세요.</li>
+                                <li>개인 작업과 모둠 활동의 균형을 유지하며 High-Tech와 High-Touch의 균형을 경험할 수 있도록 하세요.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">적용 브레인스토밍 (20분)</div>
+                    <div class="timeline-content">
+                        <p><strong>1. AIDT 활용 아이디어 브레인스토밍 (15분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>문제 및 필요 식별: 학생들이 자신의 학교나 교실에서 개선이 필요한 영역 파악</li>
+                            <li>AIDT 활용 융합 아이디어 개별 생성: 각자 아이디어 도출</li>
+                            <li>모둠별 공유 및 발전: 4-5명 모둠에서 아이디어 공유 및 보완</li>
+                            <li>전체 공유 및 피드백: 모둠별 대표 아이디어 발표</li>
+                        </ul>
+                        
+                        <div class="project-example">
+                            <p><strong>브레인스토밍 아이디어 예시:</strong></p>
+                            <ol class="ml-4 list-decimal">
+                                <li><strong>AIDT 기반 감정 인식 대화 프로그램:</strong> AI가 학생의 글쓰기나 발언에서 감정 상태를 분석하고, 교사가 이를 기반으로 정서적 지원 제공</li>
+                                <li><strong>협력적 디지털 스토리텔링:</strong> 학생들이 AI와 협업하여 사회 문제를 다루는 디지털 스토리 제작, 공감 능력 향상</li>
+                                <li><strong>AI 기반 또래 멘토링 시스템:</strong> AI가 학습 데이터를 분석하여 최적의 또래 멘토-멘티 매칭 제안</li>
+                                <li><strong>감정 데이터 기반 학급 분위기 개선 프로젝트:</strong> 학급 내 감정 데이터를 수집/분석하여 긍정적 학습 환경 조성 방안 도출</li>
+                            </ol>
+                        </div>
+                        
+                        <p class="mt-3"><strong>2. 정리 및 다음 차시 안내 (5분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>오늘 학습한 핵심 개념 요약</li>
+                            <li>브레인스토밍 결과에 대한 피드백</li>
+                            <li>다음 차시 내용 및 준비사항 안내</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-clipboard-list mr-2"></i>사례 분석 심화 자료</h2>
+            
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>A고등학교 문학 수업 심화 분석</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <h3 class="text-lg font-semibold mb-2">수업 상세 분석</h3>
+                        <table class="w-full">
+                            <tr>
+                                <th width="20%">수업 단계</th>
+                                <th width="25%">AIDT(High-Tech) 활용</th>
+                                <th width="25%">교사 활동(High-Touch)</th>
+                                <th width="30%">SEL 연계</th>
+                            </tr>
+                            <tr>
+                                <td>시 감상 준비</td>
+                                <td>AIDT 챗봇을 통해 시 작품의 배경 정보 및 작가 소개 제공</td>
+                                <td>학생들의 문학적 경험과 감정을 끌어내는 도입 질문 및 대화</td>
+                                <td>자기인식: 문학 작품에 대한 자신의 반응 인식</td>
+                            </tr>
+                            <tr>
+                                <td>개별 시 분석</td>
+                                <td>개인별 특성에 맞춘 시 분석 방법 추천 및 질의응답 지원</td>
+                                <td>학생들의 분석 과정 모니터링 및 개별 피드백 제공</td>
+                                <td>자기관리: 자기주도적 학습 과정 경험</td>
+                            </tr>
+                            <tr>
+                                <td>모둠별 해석 공유</td>
+                                <td>다양한 해석 가능성을 보여주는 시각화 자료 제공</td>
+                                <td>모둠 토론 촉진 및 다양한 의견 존중 분위기 조성</td>
+                                <td>사회적 인식: 다양한 관점 이해와 존중</td>
+                            </tr>
+                            <tr>
+                                <td>협력적 창작 활동</td>
+                                <td>AI와 협업하여 모둠별 창작 시 작성 지원</td>
+                                <td>창의적 표현 격려 및 협력 과정 지도</td>
+                                <td>관계 기술: 협력적 의사결정 및 창작 경험</td>
+                            </tr>
+                            <tr>
+                                <td>작품 공유 및 성찰</td>
+                                <td>창작 과정 및 결과물 디지털 포트폴리오 구성</td>
+                                <td>작품에 대한 피드백 및 성찰 질문 제공</td>
+                                <td>책임 있는 의사결정: 작품 평가 및 개선 방향 모색</td>
+                            </tr>
+                        </table>
+                        
+                        <h3 class="text-lg font-semibold mt-4 mb-2">주요 성공 요인</h3>
+                        <ol class="ml-4 list-decimal">
+                            <li><strong>개인화와 협력의 균형:</strong> 개별 분석 단계와 협력적 창작 단계를 명확히 구분하여 두 가치의 균형 유지</li>
+                            <li><strong>AI의 보조적 역할:</strong> AI를 최종 답변 제공자가 아닌 다양한 해석 가능성을 제시하는 도구로 활용</li>
+                            <li><strong>교사의 정서적 지지:</strong> 학생들의 창의적 표현에 대한 적절한 인정과 격려 제공</li>
+                            <li><strong>과정 중심 평가:</strong> 결과물뿐만 아니라 협력 과정과 성찰에 대한 평가 강조</li>
+                        </ol>
+                        
+                        <h3 class="text-lg font-semibold mt-4 mb-2">실제 학생 피드백 예시</h3>
+                        <div class="p-3 bg-gray-100 rounded-lg">
+                            <p>"AI 챗봇과 대화하면서 시에 대한 다양한 해석 가능성을 알게 되었어요. 처음에는 '정답'을 찾으려고 했는데, 시는 다양하게 해석될 수 있다는 것을 이해하게 되었습니다."</p>
+                            <p class="mt-2">"모둠 활동에서 친구들과 의견을 나누며 내가 미처 생각하지 못한 시각을 접할 수 있어서 좋았어요. 특히 AI의 도움을 받아 우리만의 창작 시를 만들어가는 과정이 재미있었습니다."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-4">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>B고등학교 과학 탐구 심화 분석</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <h3 class="text-lg font-semibold mb-2">수업 상세 분석</h3>
+                        <table class="w-full">
+                            <tr>
+                                <th width="20%">수업 단계</th>
+                                <th width="25%">AIDT(High-Tech) 활용</th>
+                                <th width="25%">교사 활동(High-Touch)</th>
+                                <th width="30%">SEL 연계</th>
+                            </tr>
+                            <tr>
+                                <td>문제 상황 인식</td>
+                                <td>지역 환경 데이터 시각화 및 문제 상황 제시</td>
+                                <td>실생활 연계 질문과 지역 사회 문제 인식 유도</td>
+                                <td>사회적 인식: 지역 환경 문제에 대한 관심과 공감</td>
+                            </tr>
+                            <tr>
+                                <td>개인별 데이터 분석</td>
+                                <td>학생 수준에 맞춘 데이터 분석 도구 제공</td>
+                                <td>분석 과정 안내 및 개별 지도</td>
+                                <td>자기관리: 데이터 기반 탐구 계획 수립 및 실행</td>
+                            </tr>
+                            <tr>
+                                <td>모둠별 해결책 도출</td>
+                                <td>협력적 문제해결을 위한 디지털 캔버스 제공</td>
+                                <td>모둠 토론 촉진 및 다양한 관점 통합 지원</td>
+                                <td>관계 기술: 의견 조율 및 협력적 문제해결</td>
+                            </tr>
+                            <tr>
+                                <td>해결책 시뮬레이션</td>
+                                <td>AI 기반 환경 변화 시뮬레이션 도구 활용</td>
+                                <td>시뮬레이션 결과 해석 지원 및 비판적 검토 유도</td>
+                                <td>책임 있는 의사결정: 제안의 영향력 예측 및 평가</td>
+                            </tr>
+                            <tr>
+                                <td>지역사회 연계 액션플랜</td>
+                                <td>액션플랜 구성 및 공유를 위한 디지털 도구 활용</td>
+                                <td>지역사회 연계 방안 및 실천 가능성 논의</td>
+                                <td>사회적 인식, 책임 있는 의사결정: 공동체 기여</td>
+                            </tr>
+                        </table>
+                        
+                        <h3 class="text-lg font-semibold mt-4 mb-2">주요 성공 요인</h3>
+                        <ol class="ml-4 list-decimal">
+                            <li><strong>실제 데이터 활용:</strong> 지역사회의 실제 환경 데이터를 활용하여 학습 동기 부여</li>
+                            <li><strong>학생 주도 탐구:</strong> 교사와 AI는 지원자 역할을 하며 학생 주도 탐구 촉진</li>
+                            <li><strong>개인화된 데이터 해석:</strong> 학생별 관심사와 수준에 맞춘 데이터 분석 지원</li>
+                            <li><strong>실천 지향적 결과물:</strong> 단순한 분석을 넘어 실천 가능한 액션플랜 도출</li>
+                        </ol>
+                        
+                        <h3 class="text-lg font-semibold mt-4 mb-2">실제 학생 피드백 예시</h3>
+                        <div class="p-3 bg-gray-100 rounded-lg">
+                            <p>"복잡한 환경 데이터를 AI 도구를 통해 분석하면서 우리 지역의 환경 문제를 더 구체적으로 이해할 수 있었어요. 데이터가 말해주는 내용을 해석하는 과정이 흥미로웠습니다."</p>
+                            <p class="mt-2">"친구들과 해결책을 모색하는 과정에서 다양한 관점이 나왔고, 우리가 직접 지역사회에 기여할 수 있는 방법을 고민하게 되었어요. 학교에서 배운 내용이 실제 세상과 연결된다는 것을 실감했습니다."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-tools mr-2"></i>수업 활동 상세 가이드</h2>
+            
+            <div class="activity-box">
+                <h3 class="text-xl font-semibold mb-2">1. "개념 매핑하기" 활동 진행 가이드</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <p><strong>준비 단계</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>4-5명으로 구성된 모둠 구성 (총 4-6개 모둠 권장)</li>
+                            <li>각 모둠에 전지 1장, 포스트잇 3색(AIDT, HTHT, SEL 구분용), 마커 배부</li>
+                            <li>활동 목표 및 방법 명확히 설명</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <p><strong>개별 키워드 작성 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>각 학생은 AIDT, HTHT, SEL에 대해 배운 핵심 키워드를 포스트잇에 작성</li>
+                            <li>AIDT: 노란색 포스트잇, HTHT: 파란색 포스트잇, SEL: 분홍색 포스트잇 사용</li>
+                            <li>학생당 최소 3개(각 주제별 1개 이상) 키워드 작성 권장</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <p><strong>모둠별 개념지도 작성 (4분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>전지 중앙에 AIDT, HTHT, SEL 세 영역 표시</li>
+                            <li>작성한 키워드 포스트잇을 관련 영역에 붙이기</li>
+                            <li>키워드 간 연결점 찾아 선으로 연결하고 관계 설명 적기</li>
+                            <li>세 개념의 통합적 연계성을 시각화</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <p><strong>발표 및 공유 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>모둠별 1분 내외로 개념지도 설명</li>
+                            <li>특히 세 개념의 연결점에 대한 통찰 공유</li>
+                            <li>다른 모둠과의 유사점과 차이점 발견</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <p><strong><i class="fas fa-lightbulb"></i> 활동 촉진 팁:</strong></p>
+                    <ul class="ml-4 list-disc">
+                        <li>개념 간 연결을 찾는 데 어려움을 겪는 모둠에게는 구체적인 사례를 떠올려보도록 유도</li>
+                        <li>시간이 부족한 경우, 갤러리 워크 방식으로 각 모둠의 결과물을 교실에 게시하고 자유롭게 관람하는 방식으로 대체 가능</li>
+                        <li>우수한 개념지도는 사진으로 촬영하여 학급 게시판이나 온라인 플랫폼에 공유</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="activity-box mt-6">
+                <h3 class="text-xl font-semibold mb-2">2. "AI와 함께하는 사회 문제 탐구" 체험 활동 상세 가이드</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <p><strong>주제 선택 (2분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>추천 사회 문제 주제 제시: 기후변화, 디지털 격차, 청소년 정신건강, 교육 불평등, 지역사회 고령화 등</li>
+                            <li>학생들이 관심 주제 선택 (개인별 또는 모둠별)</li>
+                            <li>너무 많은 모둠이 같은 주제를 선택하지 않도록 조정</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <p><strong>AI 챗봇 활용 다양한 관점 탐색 (4분)</strong></p>
+                        <p class="ml-4">AIDT 챗봇에게 아래와 같은 질문 유형을 사용하도록 안내:</p>
+                        <div class="p-3 bg-gray-100 rounded-lg ml-4 mt-2">
+                            <p><strong>권장 질문 프레임:</strong></p>
+                            <ul class="ml-4 list-disc">
+                                <li>"[선택 주제]에 대한 다양한 이해관계자들의 관점을 설명해줄래?"</li>
+                                <li>"[선택 주제]에 대해 찬성하는 입장과 반대하는 입장은 각각 어떤 논리를 가지고 있어?"</li>
+                                <li>"[선택 주제]를 바라보는 서로 다른 문화적/세대적 시각은 어떤 차이가 있어?"</li>
+                                <li>"[선택 주제]에 관한 사회적 논의에서 자주 간과되는 관점은 무엇일까?"</li>
+                            </ul>
+                        </div>
+                        <p class="ml-4 mt-2">학생들이 각자 발견한 관점들을 워크시트에 기록하도록 안내</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <p><strong>모둠별 관점 공유 및 통합 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>모둠 내에서 각자 발견한 다양한 관점 공유</li>
+                            <li>발견한 관점들을 유형별로 분류하고 공통점과 차이점 분석</li>
+                            <li>가장 중요하다고 생각되는 관점 3-5가지 선택</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <p><strong>해결책 도출 및 발표 준비 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>다양한 관점을 고려한 통합적 해결책 모색</li>
+                            <li>AI 챗봇에 해결책의 실현 가능성 및 잠재적 한계 질문</li>
+                            <li>최종 해결책을 간략하게 정리하여 발표 준비</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <p><strong>모둠별 발표 및 피드백 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>모둠별 1분 이내 발표: 주제, 발견한 핵심 관점들, 제안하는 해결책</li>
+                            <li>다른 모둠들의 피드백 및 질문</li>
+                            <li>교사의 종합적 피드백</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-3 rounded-lg mt-2">
+                    <p class="font-semibold">체험 활동 워크시트 구성 요소:</p>
+                    <ol class="ml-4 list-decimal">
+                        <li>선택한 사회 문제 주제</li>
+                        <li>AI 챗봇과의 대화를 통해 발견한 다양한 관점 기록란 (최소 4가지 이상)</li>
+                        <li>관점 분류 및 중요도 평가 표</li>
+                        <li>통합적 해결책 제안 작성란</li>
+                        <li>AI 챗봇이 제시한 해결책의 한계점 및 보완 방안</li>
+                    </ol>
+                </div>
+                
+                <div class="warning-box">
+                    <p><strong><i class="fas fa-exclamation-triangle"></i> 주의사항:</strong></p>
+                    <ul class="ml-4 list-disc">
+                        <li>학생들이 AI 응답을 무비판적으로 수용하지 않도록 비판적 사고를 강조하세요.</li>
+                        <li>민감한 사회 문제를 다룰 때 존중과 공감의 태도를 유지하도록 사전 안내하세요.</li>
+                        <li>AI가 때로는 편향된 정보나 불완전한 답변을 제공할 수 있음을 인지시키고, 팩트 체크의 중요성을 강조하세요.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="activity-box mt-6">
+                <h3 class="text-xl font-semibold mb-2">3. AIDT 활용 브레인스토밍 활동 상세 가이드</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <p><strong>문제 및 필요 식별 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>학생들에게 학교나 교실에서 개선이 필요한 영역을 생각해보도록 안내</li>
+                            <li>학습, 커뮤니케이션, 정서적 지원, 협력, 창의성 발휘 등 다양한 영역 고려</li>
+                            <li>개인별로 문제 상황 2-3가지 작성</li>
+                        </ul>
+                        <p class="ml-4 mt-2"><strong>교사 촉진 질문:</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>"여러분의 학습 과정에서 어떤 부분이 가장 어렵거나 개선이 필요한가요?"</li>
+                            <li>"학급에서 더 활발한 소통과 협력을 위해 필요한 것은 무엇인가요?"</li>
+                            <li>"학습 동기나 흥미를 높이기 위해 어떤 변화가 있으면 좋을까요?"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <p><strong>AIDT 활용 융합 아이디어 개별 생성 (4분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>식별된 문제에 대해 AIDT를 활용한 해결 방안 아이디어 생성</li>
+                            <li>High-Tech(AI, 데이터 분석 등) 요소와 High-Touch(협력, 정서적 지원 등) 요소를 모두 포함하도록 안내</li>
+                            <li>SEL의 5가지 역량 중 어떤 역량을 중점적으로 개발할지 고려</li>
+                        </ul>
+                        <div class="p-3 bg-gray-100 rounded-lg ml-4 mt-2">
+                            <p><strong>아이디어 구조화를 위한 프레임:</strong></p>
+                            <ol class="ml-4 list-decimal">
+                                <li>해결하고자 하는 문제/필요:</li>
+                                <li>AIDT의 High-Tech 요소 활용 방안:</li>
+                                <li>교사/학생 간 High-Touch 요소:</li>
+                                <li>중점 개발하고자 하는 SEL 역량:</li>
+                                <li>기대 효과:</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <p><strong>모둠별 공유 및 발전 (5분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>4-5명으로 구성된 모둠에서 각자의 아이디어 공유</li>
+                            <li>서로의 아이디어에 대한 긍정적 피드백 및 보완점 제안</li>
+                            <li>모둠에서 가장 발전 가능성이 높은 1-2개 아이디어 선택</li>
+                            <li>선택된 아이디어 구체화 및 보완</li>
+                        </ul>
+                        <p class="ml-4 mt-2"><strong>아이디어 발전을 위한 질문:</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>"이 아이디어를 실제로 구현하려면 어떤 단계가 필요할까요?"</li>
+                            <li>"High-Tech와 High-Touch 요소의 균형은 적절한가요?"</li>
+                            <li>"이 아이디어가 SEL 역량 개발에 어떻게 기여하나요?"</li>
+                            <li>"이 아이디어의 가장 큰 장점과 보완이 필요한 부분은 무엇인가요?"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <p><strong>전체 공유 및 피드백 (3분)</strong></p>
+                        <ul class="ml-4 list-disc">
+                            <li>모둠별 대표가 선택된 아이디어 간략히 발표</li>
+                            <li>전체 학생들의 투표로 가장 혁신적이고 실현 가능한 아이디어 선정</li>
+                            <li>교사의 종합 피드백 및 차시 연계 설명</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-example">
+                    <p><strong>브레인스토밍 결과 예시:</strong></p>
+                    <div class="p-3 bg-white rounded-lg">
+                        <h4 class="font-semibold">1. AI 감정 분석 기반 학습 환경 최적화 시스템</h4>
+                        <ul class="ml-4 list-disc">
+                            <li><strong>문제/필요:</strong> 학생들의 정서 상태에 따른 학습 효율성 차이 해소</li>
+                            <li><strong>High-Tech 요소:</strong> 학생들의 글쓰기나 발언에서 감정 상태를 AI가 분석, 최적의 학습 방법 추천</li>
+                            <li><strong>High-Touch 요소:</strong> 교사가 감정 데이터를 기반으로 개인별 정서적 지원 제공, 또래 지원 그룹 형성</li>
+                            <li><strong>중점 SEL 역량:</strong> 자기인식, 자기관리</li>
+                            <li><strong>기대효과:</strong> 학생들의 감정 인식 능력 향상, 학습 효율성 증가, 정서적 안정감 제고</li>
+                        </ul>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg mt-3">
+                        <h4 class="font-semibold">2. AI 협력적 스토리텔링 프로젝트</h4>
+                        <ul class="ml-4 list-disc">
+                            <li><strong>문제/필요:</strong> 디지털 환경에서의 창의적 표현과 협력 능력 개발</li>
+                            <li><strong>High-Tech 요소:</strong> AI가 스토리 구조 및 발전 방향 제안, 다양한 매체 통합 지원</li>
+                            <li><strong>High-Touch 요소:</strong> 모둠별 역할 분담과 협력적 창작, 피드백 세션을 통한 정서적 교류</li>
+                            <li><strong>중점 SEL 역량:</strong> 관계 기술, 사회적 인식</li>
+                            <li><strong>기대효과:</strong> 디지털 리터러시 향상, 협력적 문제해결 능력 강화, 공감 능력 증진</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-question-circle mr-2"></i>FAQ 및 문제해결 가이드</h2>
+            
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>학생들이 AI에 과도하게 의존하려고 할 때 어떻게 대응해야 하나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p class="mb-3">AI에 대한 의존성은 자주 발생하는 문제입니다. 다음과 같은 방법으로 대응할 수 있습니다:</p>
+                        <ul class="checkmark-list">
+                            <li><strong>명확한 가이드라인 제시:</strong> AI는 도구이지 답을 제공하는 것이 아니라는 점을 지속적으로 강조하세요. AI와의 대화에서 질문하는 방법과 응답을 비판적으로 평가하는 방법에 대한 구체적인 가이드라인을 제공하세요.</li>
+                            <li><strong>비판적 사고 강화 활동:</strong> AI가 제공한 정보에 대해 "이 정보는 어떻게 검증할 수 있을까?", "다른 관점은 무엇이 있을까?" 등의 질문을 통해 비판적으로 평가하는 활동을 포함하세요.</li>
+                            <li><strong>AI 없는 단계 포함:</strong> 활동 중간에 AI 도구를 사용하지 않고 학생들이 직접 생각하고 토론하는 시간을 의도적으로 포함하세요.</li>
+                            <li><strong>과정 중심 평가:</strong> 최종 결과물뿐만 아니라 AI와의 상호작용 과정, 정보 선별 방식, 비판적 검토 과정을 평가 요소에 포함하세요.</li>
+                            <li><strong>팀 역할 분담:</strong> 모둠 활동 시 'AI 정보 검증자', '비판적 질문자' 등의 역할을 부여하여 AI 정보를 무비판적으로 수용하지 않도록 하세요.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-2">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>디지털 기기 접근성이 학생마다 다를 경우 어떻게 대처해야 하나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p class="mb-3">디지털 격차는 AIDT 활용 수업에서 중요한 고려사항입니다. 다음과 같은 대응 방안이 효과적입니다:</p>
+                        <ul class="checkmark-list">
+                            <li><strong>모둠 구성 전략:</strong> 디지털 기기 접근성이 있는 학생과 그렇지 않은 학생을 균등하게 모둠에 배치하여 공유할 수 있도록 합니다.</li>
+                            <li><strong>학교 디지털 자원 활용:</strong> 학교의 컴퓨터실, 태블릿 등을 미리 예약하여 수업에 활용할 수 있도록 합니다.</li>
+                            <li><strong>하이브리드 활동 설계:</strong> 디지털 활동과 아날로그 활동을 병행하여 모든 학생이 참여할 수 있는 기회를 제공합니다.</li>
+                            <li><strong>사전 준비물 공지:</strong> 디지털 기기가 필요한 수업 전에 충분한 시간을 두고 안내하여 학생들이 준비할 수 있도록 합니다.</li>
+                            <li><strong>대안 활동 준비:</strong> 디지털 기기 사용이 불가능한 상황에 대비한 대체 활동을 미리 준비해둡니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-2">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>HTHT 모델에서 High-Tech와 High-Touch의 균형을 어떻게 유지할 수 있나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p class="mb-3">균형 잡힌 HTHT 모델 구현을 위한 전략은 다음과 같습니다:</p>
+                        <ul class="checkmark-list">
+                            <li><strong>활동 단계 분리:</strong> 수업 단계를 High-Tech 중심(개별 탐구, AI 활용 분석 등)과 High-Touch 중심(토론, 피드백, 공감 활동 등) 단계로 명확히 구분하여 각 요소가 충분히 발휘될 수 있도록 합니다.</li>
+                            <li><strong>기술 활용 목적 명확화:</strong> 기술은 인간적 연결을 대체하는 것이 아니라 보완하고 강화하는 도구임을 강조합니다.</li>
+                            <li><strong>교사 역할 재정립:</strong> 교사는 단순한 정보 전달자가 아닌 촉진자, 코치, 정서적 지원자로서의 역할에 집중합니다.</li>
+                            <li><strong>성찰 활동 강화:</strong> 기술 활용 후에는 반드시 경험에 대한 성찰과 공유 시간을 포함하여 정서적 연결을 강화합니다.</li>
+                            <li><strong>학생 피드백 수집:</strong> 정기적으로 학생들에게 기술 활용과 인간적 상호작용의 균형에 대한 피드백을 받아 수업을 조정합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-2">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>SEL 역량 발달을 어떻게 효과적으로 평가할 수 있나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p class="mb-3">SEL 역량 발달 평가는 다양한 방법을 통해 이루어질 수 있습니다:</p>
+                        <div class="assessment-rubric">
+                            <p class="font-semibold mb-2">SEL 역량 평가 방법:</p>
+                            <ol class="ml-4 list-decimal">
+                                <li><strong>자기 성찰 일지:</strong> 학생들이 자신의 감정, 사고과정, 대인관계 경험을 정기적으로 기록하고 변화를 스스로 평가</li>
+                                <li><strong>관찰 체크리스트:</strong> 교사가 특정 SEL 역량 관련 행동을 체크리스트를 통해 관찰하고 기록</li>
+                                <li><strong>또래 피드백:</strong> 구조화된 양식을 통해 학생들이 서로의 SEL 역량에 대한 피드백 제공</li>
+                                <li><strong>실제 상황 과제:</strong> 갈등 해결, 협력적 문제해결 등 실제 상황에서 SEL 역량을 적용하는 과제 수행 및 평가</li>
+                                <li><strong>포트폴리오 평가:</strong> 학생들의 SEL 관련 작품, 활동 기록, 성찰문 등을 시간에 따라 수집하고 발전 과정 평가</li>
+                            </ol>
+                            
+                            <p class="font-semibold mt-3 mb-2">SEL 역량별 평가 루브릭 예시:</p>
+                            <table class="w-full">
+                                <tr>
+                                    <th>역량</th>
+                                    <th>초급 단계</th>
+                                    <th>중급 단계</th>
+                                    <th>고급 단계</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>자기인식</strong></td>
+                                    <td>자신의 감정을 기본적인 용어로 표현할 수 있음</td>
+                                    <td>감정의 원인과 결과를 인식하고 설명할 수 있음</td>
+                                    <td>복잡한 감정을 세밀하게 구분하고 자기 성찰을 통해 패턴을 인식함</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>사회적 인식</strong></td>
+                                    <td>타인의 관점이 자신과 다를 수 있음을 인정함</td>
+                                    <td>다양한 관점을 비교하고 이해할 수 있음</td>
+                                    <td>사회적/문화적 맥락에서 다양한 관점을 통합적으로 고려하고 공감함</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>관계 기술</strong></td>
+                                    <td>기본적인 소통 규칙을 준수하며 협력함</td>
+                                    <td>갈등 상황에서 적절한 소통 전략을 활용함</td>
+                                    <td>복잡한 그룹 역학을 이해하고 건설적인 관계 형성에 기여함</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-2">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>네트워크 연결 문제가 발생했을 때 대체 활동은 어떻게 준비해야 하나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <p class="mb-3">기술 의존적인 수업에서 기술적 문제는 항상 발생할 수 있습니다. 다음과 같은 대체 활동을 준비하세요:</p>
+                        <ul class="checkmark-list">
+                            <li><strong>오프라인 자료 준비:</strong> 핵심 내용이 담긴 인쇄물을 미리 준비하여 네트워크 문제 시 배포할 수 있도록 합니다.</li>
+                            <li><strong>모바일 핫스팟 대안:</strong> 가능하다면 교사용 모바일 핫스팟을 백업으로 준비하여 제한된 연결이라도 가능하게 합니다.</li>
+                            <li><strong>대체 아날로그 활동:</strong> 디지털 활동과 유사한 학습 목표를 달성할 수 있는 카드 정렬, 역할극, 토론 등의 아날로그 활동을 설계해 둡니다.</li>
+                            <li><strong>사전 다운로드 콘텐츠:</strong> 핵심 콘텐츠는 미리 다운로드하여 오프라인에서도 접근 가능하도록 준비합니다.</li>
+                            <li><strong>팀 기반 대체 프로젝트:</strong> 네트워크 문제 발생 시 즉시 전환할 수 있는 팀 기반 창의적 프로젝트를 준비해둡니다.</li>
+                        </ul>
+                        <div class="p-3 bg-gray-100 rounded-lg mt-3">
+                            <p class="font-semibold">오프라인 대체 활동 예시:</p>
+                            <ol class="ml-4 list-decimal">
+                                <li><strong>개념 맵핑 카드 게임:</strong> AIDT, HTHT, SEL의 주요 개념이 적힌 카드를 활용한 연결 게임</li>
+                                <li><strong>SEL 역량 역할극:</strong> 다양한 상황에서 SEL 역량을 발휘하는 역할극 시나리오 활동</li>
+                                <li><strong>문제해결 시뮬레이션:</strong> 학교 내 실제 문제를 High-Tech와 High-Touch 관점으로 분석하고 해결책 제시하기</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-chart-line mr-2"></i>평가 및 피드백 가이드</h2>
+            
+            <div class="p-4 bg-blue-50 rounded-lg">
+                <h3 class="text-xl font-semibold mb-3">평가 원칙</h3>
+                <ul class="checkmark-list">
+                    <li><strong>과정 중심 평가:</strong> 최종 결과물뿐 아니라 문제 해결 과정, 협력 방식, 성찰 과정을 종합적으로 평가</li>
+                    <li><strong>다양한 평가 방법 활용:</strong> 자기평가, 동료평가, 교사 관찰, 포트폴리오 평가 등 다양한 방법 활용</li>
+                    <li><strong>SEL 역량 통합 평가:</strong> 기술적 역량과 함께 SEL 역량의 발달도 평가 요소에 포함</li>
+                    <li><strong>적시 피드백 제공:</strong> 활동 중간에도 형성적 피드백을 제공하여 개선 기회 제공</li>
+                </ul>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-3">활동 참여도 평가 루브릭</h3>
+                    <table class="w-full">
+                        <tr>
+                            <th width="25%">평가 영역</th>
+                            <th width="25%">상(3점)</th>
+                            <th width="25%">중(2점)</th>
+                            <th width="25%">하(1점)</th>
+                        </tr>
+                        <tr>
+                            <td>개인 활동 참여</td>
+                            <td>모든 개인 활동에 적극적으로 참여하고 창의적 결과물 도출</td>
+                            <td>대부분의 개인 활동에 참여하고 기본적인 결과물 도출</td>
+                            <td>참여가 소극적이고 결과물이 불완전함</td>
+                        </tr>
+                        <tr>
+                            <td>모둠 활동 기여</td>
+                            <td>모둠 활동에 주도적으로 기여하며 다른 구성원 참여 독려</td>
+                            <td>모둠 활동에 적절히 기여하며 자신의 역할 수행</td>
+                            <td>모둠 활동 참여가 소극적이고 기여도가 낮음</td>
+                        </tr>
+                        <tr>
+                            <td>의사소통</td>
+                            <td>자신의 의견을 명확히 표현하고 타인의 의견 경청 및 질문</td>
+                            <td>자신의 의견을 표현하고 타인의 의견 경청</td>
+                            <td>의견 표현이 미흡하거나 타인의 의견에 소극적</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-3">아이디어 개발 평가 루브릭</h3>
+                    <table class="w-full">
+                        <tr>
+                            <th width="25%">평가 영역</th>
+                            <th width="25%">상(3점)</th>
+                            <th width="25%">중(2점)</th>
+                            <th width="25%">하(1점)</th>
+                        </tr>
+                        <tr>
+                            <td>창의성</td>
+                            <td>매우 독창적이고 혁신적인 아이디어 제시</td>
+                            <td>기존 아이디어에 새로운 요소를 더함</td>
+                            <td>기존 아이디어를 단순 반복함</td>
+                        </tr>
+                        <tr>
+                            <td>HTHT 요소 균형</td>
+                            <td>High-Tech와 High-Touch 요소가 균형있게 통합됨</td>
+                            <td>두 요소가 포함되었으나 균형이 다소 부족함</td>
+                            <td>한 쪽 요소에 편중되거나 연결성이 부족함</td>
+                        </tr>
+                        <tr>
+                            <td>SEL 연계성</td>
+                            <td>SEL 역량과 명확하게 연계되며 발달 방안 구체적</td>
+                            <td>SEL 역량과 연계되나 발달 방안이 일반적</td>
+                            <td>SEL 역량과의 연계가 미흡함</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-4 bg-white rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-3">피드백 제공 가이드</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-semibold text-blue-600">효과적인 피드백 원칙:</h4>
+                        <ul class="ml-4 list-disc">
+                            <li><strong>구체적 관찰에 기반:</strong> "좋아요"보다는 "○○한 부분이 창의적이었어요."</li>
+                            <li><strong>행동 중심:</strong> 사람이 아닌 행동이나 아이디어에 초점</li>
+                            <li><strong>균형 있는 접근:</strong> 강점과 개선점을 함께 제시</li>
+                            <li><strong>시기적절:</strong> 활동 직후 즉각적 피드백 제공</li>
+                            <li><strong>실행 가능:</strong> 구체적인 개선 방향 제시</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-green-600">피드백 템플릿:</h4>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <p><strong>강점 인정:</strong> "○○ 활동에서 ○○한 점이 특히 인상적이었습니다."</p>
+                            <p><strong>질문을 통한 성찰:</strong> "○○한 부분에 대해 어떤 생각으로 접근했나요?"</p>
+                            <p><strong>대안 제시:</strong> "○○한 부분은 ○○하게 접근하면 더 효과적일 수 있을 것 같아요."</p>
+                            <p><strong>실천 격려:</strong> "다음에는 ○○한 점을 시도해보면 어떨까요?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4"><i class="fas fa-link mr-2"></i>추가 자료 및 리소스</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-3">SEL 심화 자료</h3>
+                    <ul class="ml-4 list-disc">
+                        <li>CASEL(Collaborative for Academic, Social, and Emotional Learning) 프레임워크</li>
+                        <li>한국교육과정평가원 SEL 역량 평가 도구</li>
+                        <li>SEL 기반 교수학습 전략 가이드북</li>
+                        <li>교과별 SEL 통합 교육 사례집</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-3">AIDT 활용 참고자료</h3>
+                    <ul class="ml-4 list-disc">
+                        <li>AI Digital Textbook 개발 동향 및 적용 사례</li>
+                        <li>교과별 AI 활용 수업 설계 가이드</li>
+                        <li>AI 윤리 및 정보 리터러시 교육 자료</li>
+                        <li>AIDT 활용 교수학습 시나리오 모음집</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-3">수업 활동지 및 워크시트</h3>
+                    <ul class="ml-4 list-disc">
+                        <li>개념 매핑 활동 워크시트</li>
+                        <li>사회 문제 탐구 체험 활동지</li>
+                        <li>AIDT 활용 아이디어 브레인스토밍 시트</li>
+                        <li>프로젝트 기획 및 설계 템플릿</li>
+                        <li>SEL 역량 자기평가 및 성찰 일지</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-3">온라인 학습 리소스</h3>
+                    <ul class="ml-4 list-disc">
+                        <li>AIEDAP수도권역 교사 지원 플랫폼</li>
+                        <li>AI 기반 교육 도구 라이브러리</li>
+                        <li>HTHT 수업 모델 영상 자료</li>
+                        <li>교사 커뮤니티 및 우수 사례 공유 포럼</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="mt-12 p-6 bg-gray-800 text-white rounded-lg text-center">
+            <p class="font-semibold mb-2">AIDT 사례 체험으로 이해하는 HTHT×SEL - 강사용 상세 메뉴얼</p>
+            <p>© 2025 AIEDAP수도권역</p>
+            <p class="text-sm mt-2">본 자료는 교육 목적으로만 사용할 수 있으며, 무단 배포 및 상업적 활용을 금합니다.</p>
+        </footer>
+    </div>
+    
+    <script>
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDs%2BVIGqcXP8h8%2Fdb0U3Tig6sHmFBmWvzSmYt5VAlxT%2F%2FsLHNhIEZftklE0s9FlacgvOv5R%2FdQIGLY0uqd5KQ4tA0Z03Bwcub1LHavAPnMjBW2VQzzM4EDnPh%2BBw0ikuGjUCSIkOFb2E5mijFWf9RZzqy24vQh5tH%2BMNfRXZ6z7lJdbUSkdWIfiu8jVUNSB5ZkhyrSUhB1uv5b%2BbJTa9dXvL3cl1CwiXpvnkgAj6pM%2FORI41frsHZrnWe55EjIXqnKW6KQg%2FP7ZIgUys3V5V04FnXXdcZCrR2y1Xjp2dEkNEzVZWZBHNilLXFDt8BG711xLGNsyL6NFUnEdN%2BnfQ353aZjeeSLth%2BefFd2HyHzRU6KPVkDdevU6FKZqCV9Si99WgMaQYGyTw893DlNeOEmTVbv3Ojf2gLCzPw74Vjk8boKY0A%2FbikbQLLNOZKi8xIvnATEhUlUqkoYziYMcpaPZZdziHct%2BrhdOY9%2BtbY%2Bh1lUZUmmkObwun25VkZzcLWdSNlwIairJHKU3cl%2BzjeGcY%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDs+VIGqcXP8h8/db0U3Tig6sHmFBmWvzSmYt5VAlxT//sLHNhIEZftklE0s9FlacgvOv5R/dQIGLY0uqd5KQ4tA0Z03Bwcub1LHavAPnMjBW2VQzzM4EDnPh+Bw0ikuGjUCSIkOFb2E5mijFWf9RZzqy24vQh5tH+MNfRXZ6z7lJdbUSkdWIfiu8jVUNSB5ZkhyrSUhB1uv5b+bJTa9dXvL3cl1CwiXpvnkgAj6pM/ORI41frsHZrnWe55EjIXqnKW6KQg/P7ZIgUys3V5V04FnXXdcZCrR2y1Xjp2dEkNEzVZWZBHNilLXFDt8BG711xLGNsyL6NFUnEdN+nfQ353aZjeeSLth+efFd2HyHzRU6KPVkDdevU6FKZqCV9Si99WgMaQYGyTw893DlNeOEmTVbv3Ojf2gLCzPw74Vjk8boKY0A/bikbQLLNOZKi8xIvnATEhUlUqkoYziYMcpaPZZdziHct+rhdOY9+tbY+h1lUZUmmkObwun25VkZzcLWdSNlwIairJHKU3cl+zjeGcY=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
